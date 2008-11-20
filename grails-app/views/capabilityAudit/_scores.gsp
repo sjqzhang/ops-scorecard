@@ -1,0 +1,16 @@
+<table>
+    <tbody>
+        <tr>
+            <th>Control</th>
+            <th>Process</th>
+            <th>Repeatability</th>
+            <th>Cumulative</th>
+        </tr>
+        <tr>
+            <td>${capabilityAudit.toGrade(scores['control'])}</td>
+            <td>${capabilityAudit.toGrade(scores['process'])}</td>
+            <td>${capabilityAudit.toGrade(scores['repeatability'])}</td>
+            <td>${capabilityAudit.toGrade(scores['cumulative'])}</td>
+        </tr>
+    </tbody>
+</table>

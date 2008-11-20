@@ -1,0 +1,148 @@
+a.maintool:hover, span.maintool:hover, a.menulink:hover, span.menulink:hover{
+    background: #ddf;
+    text-decoration:underline;
+}
+span.menulink,a.menulink{
+    display:block;
+    padding:5px 10px;
+    color:blue;
+    font-weight:normal;
+    cursor:pointer;
+}
+
+span.menulink.return,a.menulink.return{
+    border: 1px solid #aaf;
+    -moz-border-radius: 3px;
+    -webkit-border-radius:3px;
+    display:inline;
+}
+
+
+a.menuSelected,span.menuSelected{
+    background: #ddf;
+}
+div.gmenu {
+    border:1px solid #aaa;
+    margin:0;
+    padding:0;
+    width: 200px;
+    position:absolute;
+    background:white;
+    -moz-box-shadow:5px 5px 5px #888;
+    -webkit-box-shadow: 5px 5px 5px #888;
+    line-height:18px;
+}
+div.summarySubmenu {
+    border:1px solid #aaa;
+    margin:0;
+    padding:0;
+    width: 200px;
+    background:white;
+}
+div.gmenu div.summarySubmenu{
+    border-top:0;
+    border-left:0;
+    border-right:0;
+}
+div.gmenu div.menuitem{
+    border-top:0;
+    border-left:0;
+    border-right:0;
+}
+div.gmenu div.menuSectionTitle{
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+div.menuSection ul{
+    margin:0;
+    padding:0;
+    list-style-type:none;
+}
+div.menuSection ul li {
+    display:block;
+    padding:0;
+}
+div.menuSection ul li a{
+    display:block;
+    padding: 5px 5px 5px 15px;
+    color:blue;
+    font-weight:normal;
+}
+div.menuSection ul li a:hover{
+    color:blue;
+    text-decoration:underline;
+    text-shadow: 3px 3px 6px #aaa;
+}
+
+
+/** menuitem **/
+
+.menuitem{
+border-bottom: 1px solid #aaa;
+}
+.menuitem.radio{
+    border: 1px solid #ccc;
+    color: #555;
+}
+.menuitem.radio.select{
+    background: #ddd;
+}
+a.menuitem{
+  padding: 3px;
+  color: blue;
+  font-weight: normal;
+    white-space:nowrap;
+}
+a.compbuttontext{
+  padding: 3px;
+  color: blue;
+  font-weight: normal;
+    white-space:nowrap;
+}
+a.menuitem:hover {
+  text-decoration: underline;
+}
+a.compbuttontext:hover {
+  text-decoration: underline;
+}
+span.menuitem{
+  padding: 3px;
+  color: blue;
+  font-weight: normal;
+  cursor: pointer;
+}
+span.menuitem.text{
+  padding: 3px;
+  color: blue;
+  font-weight: normal;
+  cursor:pointer;
+}
+span.menuitem:hover {
+  text-decoration: underline;
+}
+span.compbuttontext:hover {
+  text-decoration: underline;
+}
+
+a.menuitem.small{
+    font-size: 90%;
+}
+a.menuitem.icon{
+    padding:2px;
+}
+a.menuitem.block{
+    display: block;
+}
+a.menuitem.fixed{
+    padding:2px;
+    margin:3px;
+}
+
+
+a.menuitem img{
+    vertical-align: middle;
+}
+a.menuitem:hover{
+  color:blue;
+}
+
