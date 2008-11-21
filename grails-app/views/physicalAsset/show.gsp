@@ -4,19 +4,22 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-        <title>Show PhysicalAsset</title>
+        <title>Inventory: Show PhysicalAsset</title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
-            <span class="menuButton"><g:link class="list" action="list">PhysicalAsset List</g:link></span>
-            <span class="menuButton"><g:link class="create" action="create">New PhysicalAsset</g:link></span>
-        </div>
+
         <div class="body">
-            <h1>Show PhysicalAsset</h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
+            <div class="buttons">
+                <g:form>
+                    <input type="hidden" name="id" value="${physicalAsset?.id}" />
+                    <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
+                    <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
+                    <span class="button"><g:actionSubmit class="list" value="List" /></span>                    
+                </g:form>
+            </div>
             <div class="dialog">
                 <table>
                     <tbody>
@@ -29,34 +32,80 @@
 
                         </tr>
 
+
+
+                        <tr class="prop">
+                            <td valign="top" class="name">Type:</td>
+
+                            <td valign="top" class="value"><g:link controller="resourceType" action="show" id="${physicalAsset?.type?.id}">${physicalAsset?.type?.encodeAsHTML()}</g:link></td>
+
+                        </tr>
+
                         <tr class="prop">
                             <td valign="top" class="name">Description:</td>
 
                             <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'description')}</td>
 
                         </tr>
-                    
+                        
                         <tr class="prop">
                             <td valign="top" class="name">Function:</td>
                             
                             <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'function')}</td>
                             
                         </tr>
-                    
+
                         <tr class="prop">
-                            <td valign="top" class="name">Ticket Numbers:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'ticketNumbers')}</td>
-                            
+                            <td valign="top" class="name">Status:</td>
+
+                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'status')}</td>
                         </tr>
-                    
+
+
+
                         <tr class="prop">
-                            <td valign="top" class="name">Reprovisioning Duration:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'reprovisioningDuration')}</td>
-                            
+                            <td valign="top" class="name">Make:</td>
+
+                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'make')}</td>
+
                         </tr>
-                    
+
+                        <tr class="prop">
+                            <td valign="top" class="name">Model:</td>
+
+                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'model')}</td>
+
+                        </tr>
+
+                        <tr class="prop">
+                            <td valign="top" class="name">Operating System:</td>
+
+                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'operatingSystem')}</td>
+
+                        </tr>
+
+                        <tr class="prop">
+                            <td valign="top" class="name">Physical Location:</td>
+
+                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'physicalLocation')}</td>
+
+                        </tr>
+
+                        <tr class="prop">
+                            <td valign="top" class="name">Platform:</td>
+
+                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'platform')}</td>
+
+                        </tr>
+
+                        <tr class="prop">
+                            <td valign="top" class="name">Source Supplier:</td>
+
+                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'sourceSupplier')}</td>
+
+                        </tr>
+
+                        
                         <tr class="prop">
                             <td valign="top" class="name">Owner Responsible:</td>
                             
@@ -64,60 +113,34 @@
                             
                         </tr>
                     
-                        <tr class="prop">
-                            <td valign="top" class="name">Status:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'status')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Make:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'make')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Model:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'model')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Operating System:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'operatingSystem')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Physical Location:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'physicalLocation')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Platform:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'platform')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Source Supplier:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'sourceSupplier')}</td>
-                            
-                        </tr>
-                    
+
                         <tr class="prop">
                             <td valign="top" class="name">Date Acquired:</td>
-                            
+
                             <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'dateAcquired')}</td>
-                            
+
+                        </tr>
+
+
+                        <tr class="prop">
+                            <td valign="top" class="name">Next Maintenance Window:</td>
+
+                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'nextMaintenanceWindow')}</td>
+
+                        </tr>
+
+                        <tr class="prop">
+                            <td valign="top" class="name">Ticket Numbers:</td>
+
+                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'ticketNumbers')}</td>
+
+                        </tr>
+
+                        <tr class="prop">
+                            <td valign="top" class="name">Reprovisioning Duration:</td>
+
+                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'reprovisioningDuration')}</td>
+
                         </tr>
                     
 
@@ -150,31 +173,15 @@
                             
                         </tr>
 
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Next Maintenance Window:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'nextMaintenanceWindow')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Type:</td>
-                            
-                            <td valign="top" class="value"><g:link controller="resourceType" action="show" id="${physicalAsset?.type?.id}">${physicalAsset?.type?.encodeAsHTML()}</g:link></td>
-                            
-                        </tr>
+
                     
                     </tbody>
                 </table>
             </div>
-            <div class="buttons">
-                <g:form>
-                    <input type="hidden" name="id" value="${physicalAsset?.id}" />
-                    <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
-                    <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
-                </g:form>
-            </div>
+
         </div>
+    <div class="sidebar">
+        <g:render template="sidebar"/>
+    </div>
     </body>
 </html>

@@ -79,4 +79,13 @@ class ReleaseArtifactController  extends SecureController {
             render(view:'create',model:[releaseArtifact:releaseArtifact])
         }
     }
+
+    def search = {
+        def results = []
+         def queryparams = [:]
+         if (params.category) queryparams['type'] = params.category
+         results = ReleaseArtifact.findAllWhere(queryparams)
+         render(view:'search',model:[releaseArtifactList:results])
+     }
+
 }

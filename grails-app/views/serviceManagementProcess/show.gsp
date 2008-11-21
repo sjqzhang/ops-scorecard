@@ -17,19 +17,13 @@
                     <input type="hidden" name="id" value="${serviceManagementProcess?.id}" />
                     <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
                     <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
+                    <span class="button"><g:actionSubmit class="list" value="List" /></span>
+
                 </g:form>
             </div>
             <div class="dialog">
                 <table>
                     <tbody>
-
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Id:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:serviceManagementProcess, field:'id')}</td>
-                            
-                        </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Name:</td>
@@ -52,6 +46,20 @@
                             
                         </tr>
 
+                        <tr class="prop">
+                            <td valign="top" class="name">Target Service:</td>
+                            <td valign="top" class="value">
+                                <g:link controller="resource" action="show" id="${serviceManagementProcess?.targetResource?.id}">
+                                    <g:if test="serviceManagementProcess?.targetResource?.name">
+                                        ${serviceManagementProcess?.targetResource?.name}
+                                    </g:if>
+                                    <g:else>
+                                        ${serviceManagementProcess?.targetResource?.encodeAsHTML()}
+                                    </g:else>
+                                </g:link>
+                            </td>
+                        </tr>
+                        
                         <tr class="prop">
                             <td valign="top" class="name">Automation Level:</td>
 
@@ -97,19 +105,20 @@
                             <td valign="top" class="value"><g:link controller="user" action="show" id="${serviceManagementProcess?.implementor?.id}">${serviceManagementProcess?.implementor?.encodeAsHTML()}</g:link></td>
                             
                         </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Target Service:</td>
-                            
-                            <td valign="top" class="value"><g:link controller="resource" action="show" id="${serviceManagementProcess?.targetResource?.id}">${serviceManagementProcess?.targetResource?.encodeAsHTML()}</g:link></td>
-                            
-                        </tr>
+
                     
                         <tr class="prop">
                             <td valign="top" class="name">Recipient:</td>
                             
                             <td valign="top" class="value"><g:link controller="user" action="show" id="${serviceManagementProcess?.recipient?.id}">${serviceManagementProcess?.recipient?.encodeAsHTML()}</g:link></td>
                             
+                        </tr>
+
+                         <tr class="prop">
+                            <td valign="top" class="name">Procedure:</td>
+
+                             <td valign="top" class="value">${fieldValue(bean:serviceManagementProcess, field:'procedure')}</td>
+
                         </tr>
                     
                     </tbody>

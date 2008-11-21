@@ -4,7 +4,7 @@ class Usergroup {
     static constraints = {
         name(nullable:false)
         description(nullable:true)
-        function(inList:['control','security','developer','operations'])
+        function(inList:['control','security','development','operations'])
 
     }
     String name

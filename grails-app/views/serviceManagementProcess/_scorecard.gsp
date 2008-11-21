@@ -2,22 +2,22 @@
     <tbody>
         <tr>
             <td width="15">
-                ${scores.automationLevel}
+                <g:prettyScore format="numeric" score="${scores.automationLevel}"/>
             </td>
             <td width="15">
-                ${scores.syscontrol}
+                <g:prettyScore format="numeric" score="${scores.syscontrol}"/>
             </td>
             <td width="15">
-                ${scores.targetResource}
+                <g:prettyScore format="numeric" score="${scores.targetResource}"/>
             </td>
             <td width="15">
-                ${scores.implementor}
+                <g:prettyScore format="numeric" score="${scores.implementor}"/>
             </td>
             <td width="15">
-                ${scores.receipient}
+                <g:prettyScore format="numeric" score="${scores.receipient}"/>
             </td>
-            <td width="15">
-                ${scores.cumulative}
+            <td width="15" style="background-color: azure;">
+                <g:prettyScore format="numeric" score="${scores.cumulative}"/>
             </td>
         </tr>
     </tbody>

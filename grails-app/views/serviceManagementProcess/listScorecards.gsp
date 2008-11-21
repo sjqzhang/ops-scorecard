@@ -14,7 +14,7 @@
 
     <g:if test="${processScorecardMap}">
         <div class="list">
-            <table border="1">
+            <table style="border-collapse:collapse;">
                 <thead>
                     <tr>
                         <th width="100">Service</th>
@@ -63,7 +63,7 @@
 
                             <!-- Grade -->
                             <td width="10">
-                                ${cumulative / scorecards.size()}
+                                <g:prettyScore format="numeric" score="${cumulative / scorecards.size()}"/>
                             </td>
                         </tr>
                     </g:each>

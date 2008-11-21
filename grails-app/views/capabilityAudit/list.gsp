@@ -28,8 +28,7 @@
                         
                    	        <th>Targeted Service</th>
                    	    
-                   	        <g:sortableColumn property="historicalSuccessRating" title="Historical Success Rating" />
-                        
+
                         </tr>
                     </thead>
                     <tbody>
@@ -50,9 +49,15 @@
                         
                             <td>${fieldValue(bean:capabilityAudit, field:'auditDate')}</td>
                         
-                            <td>${fieldValue(bean:capabilityAudit, field:'targetedService')}</td>
+                            <td>
+                                <g:if test="${capabilityAudit.targetedService?.name}">
+                                    <g:link controller="service" action="show" id="${capabilityAudit.targetedService.id}">
+                                        ${capabilityAudit.targetedService.name}
+                                        </g:link>
+                                [${capabilityAudit.targetedService?.type?.name}]
+                                </g:if>
+                            </td>
                         
-                            <td>${fieldValue(bean:capabilityAudit, field:'historicalSuccessRating')}</td>
                         
                         </tr>
                     </g:each>

@@ -3,15 +3,16 @@ class PrettyscoreTagLib {
     // <g:prettyScore score="1"  format="letter | numeric" />
     //
     def prettyScore = {attrs, body ->
+        def score = attrs.score.intValue()
         switch (attrs.format) {
             case 'letter':
-                out << "<span class='lettergrade''>${toLetterGrade(attrs.score)}</span>"
+                out << "<span class='lettergrade''>${toLetterGrade(score)}</span>"
                 break
             case 'numeric':
-                out << "<span style='color:${toColorGrade(attrs.score)}'>${attrs.score}</span>"
+                out << "<span style='color:${toColorGrade(score)}'>${score}</span>"
                 break
             default:
-                out << "<span class='score'>${attrs.score}</span>"
+                out << "<span class='score'>${score}</span>"
         }
 
     }
@@ -60,10 +61,10 @@ class PrettyscoreTagLib {
         def color = 'black'
         switch (score) {
             case 95..100:
-                color = 'DarkGreen'
+                color = 'Blue'
                 break
             case 90..95:
-                color = 'DarkGreen'
+                color = 'DarkBlue'
                 break
             case 85..90:
                 color = 'Green'
@@ -72,7 +73,7 @@ class PrettyscoreTagLib {
                 color = 'Green'
                 break
             case 75..80:
-                color = 'Brown'
+                color = 'Green'
                 break
             case 70..75:
                 color = 'Yellow'
@@ -84,13 +85,13 @@ class PrettyscoreTagLib {
                 color = 'OrangeRed'
                 break
             case 55..60:
-                color = 'Red'
+                color = 'DarkRed'
                 break
             case 50..55:
                 color = 'DarkRed'
                 break
             case 0..50:
-                color = 'DarkRed'
+                color = 'Red'
                 break
         }
         return color

@@ -21,8 +21,8 @@
                    	        <g:sortableColumn property="name" title="Name" />
                         
                    	        <g:sortableColumn property="description" title="Description" />
+                               <g:sortableColumn property="metatype" title="Meta Type" />
 
-                            <th>Instances</th>
 
                         </tr>
                     </thead>
@@ -44,9 +44,8 @@
                             <td>${fieldValue(bean:resourceType, field:'name')}</td>
                         
                             <td>${fieldValue(bean:resourceType, field:'description')}</td>
-                            <td>
-                                
-                            </td>
+                            <td>${fieldValue(bean:resourceType, field:'metatype')}</td>
+
                         </tr>
                     </g:each>
                     </tbody>

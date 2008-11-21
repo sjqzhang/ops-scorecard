@@ -26,8 +26,7 @@
                         
                    	        <g:sortableColumn property="category" title="Category" />
                         
-                               <g:sortableColumn property="implementor" title="Implementor" />
-                   	    
+
                    	        <th>Target Service</th>
                    	    
                         </tr>
@@ -56,11 +55,10 @@
                         
                             <td>${fieldValue(bean:serviceManagementProcess, field:'category')}</td>
                         
-                            <td>${fieldValue(bean:serviceManagementProcess, field:'implementor')}</td>
                         
                             <td>
                                 <g:if test="${serviceManagementProcess?.targetResource}">
-                                    ${serviceManagementProcess?.targetResource?.name}
+                                    ${serviceManagementProcess?.targetResource}
                                 </g:if>
                             </td>
                         

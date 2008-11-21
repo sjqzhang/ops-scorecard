@@ -41,7 +41,7 @@
                                     <label for="type">Type:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:service,field:'type','errors')}">
-                                    <g:select optionKey="id" from="${ResourceType.list()}" name="type.id" value="${service?.type?.id}" ></g:select>
+                                    <g:select optionKey="id" from="${ResourceType.findAllByMetatype('service')}" name="type.id" value="${service?.type?.id}" ></g:select>
                                 </td>
                             </tr> 
                         

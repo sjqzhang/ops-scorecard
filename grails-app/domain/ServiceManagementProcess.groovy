@@ -10,6 +10,7 @@ class ServiceManagementProcess {
         implementor(nullable: true)
         targetResource(nullable: true)
         recipient(nullable: true)
+        procedure(nullable: true)
     }
 
     String name
@@ -22,6 +23,8 @@ class ServiceManagementProcess {
 
     User implementor
     Service targetResource
+
+    String procedure
 
     User recipient
 

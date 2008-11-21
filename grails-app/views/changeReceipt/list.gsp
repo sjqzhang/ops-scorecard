@@ -25,7 +25,7 @@
 
                     <g:sortableColumn property="owner.login" title="Owner"/>
 
-                    <g:sortableColumn property="isAuthorized" title="Is Authorized"/>
+                    <g:sortableColumn property="changeOutcome" title="Change Outcome"/>
 
                 </tr>
             </thead>
@@ -61,7 +61,7 @@
                             </g:link>
                         </td>
 
-                        <td>${fieldValue(bean: changeReceipt, field: 'isAuthorized')}</td>
+                        <td>${fieldValue(bean: changeReceipt, field: 'changeOutcome')}</td>
 
                     </tr>
                 </g:each>

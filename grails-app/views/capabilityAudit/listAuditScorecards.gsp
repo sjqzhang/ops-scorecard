@@ -14,23 +14,24 @@
 
 
     <g:if test="${capabilityScoreCardList}">
+        <div style="margin-bottom:5px;">
+            <span style="font-weight:bold; font-size:9px;">Timeframe:</span>
+             <span style="font-size:8px;">Start: ${scorecardParams?.startDate};
+                            End: ${scorecardParams?.endDate}
+             </span>                   
+             </div>
         <% def cumulative = 0 %>
         <div class="list">
             <table>
                 <thead>
                     <tr>
-                        <th width="50">Timeframe</th>
-                        <th>Audits</th>
-                        <th>Grade</th>
+                        <th>Capability Audit Scorecard</th>
+                        <th>Overall</th>
                     </tr>
                 </thead>
                 <tbody>
+                    
                     <tr>
-                        <!-- timeframee -->
-                        <td>
-                            Start: ${scorecardParams?.startDate}<br/>
-                            End: ${scorecardParams?.endDate}
-                        </td>
                         <!-- the audits -->
                         <td valign="top">
 
@@ -64,23 +65,22 @@
 
                                             <!-- control -->
                                             <td width="10">
-                                                <span class="lettergrade">${capabilityScoreCard?.scores?.control}</span>
+                                                <g:prettyScore format="numeric" score="${capabilityScoreCard?.scores?.control}"/>
 
                                             </td>
                                             <!-- process -->
                                             <td width="10">
-                                                <span class="lettergrade">${capabilityScoreCard?.scores?.process}</span>
+                                                <g:prettyScore format="numeric" score="${capabilityScoreCard?.scores?.process}"/>
 
                                             </td>
                                             <!-- repeatability -->
-                                            <td width="10">
-                                                <g:set var="score" value="${capabilityScoreCard?.scores?.repeatability}"/>
-                                                <span class="lettergrade">${score}</span>
+                                            <td width="10">                                                
+                                                <g:prettyScore format="numeric" score="${capabilityScoreCard?.scores?.repeatability}"/>
                                             </td>
                                             <!-- cumulative -->
                                             <td width="10">
                                                 <g:set var="score" value="${capabilityScoreCard?.scores?.cumulative}"/>
-                                                <span class="lettergrade">${score}</span>
+                                                <g:prettyScore format="numeric" score="${score}"/>
                                                 <% cumulative += score %>
                                             </td>
                                         </tr>
@@ -91,7 +91,7 @@
                         </td>
                         <!-- the rolled up score -->
                         <td valign="top">
-                            <span class="lettergrade">${cumulative}</span>
+                            <g:prettyScore format="numeric" score="${cumulative}"/>
                         </td>
                     </tr>
                 </tbody>
