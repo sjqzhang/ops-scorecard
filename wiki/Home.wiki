@@ -20,4 +20,6 @@ svn co https://ops-scorecard.googlecode.com/svn/trunk scorecard
 
 3) Run the application
 
+cd scorecard
+
 grails -Dserver.port=9090 run-app
