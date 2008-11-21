@@ -42,7 +42,14 @@
                             <input type="text" id="description" name="description" value="${fieldValue(bean: resourceType, field: 'description')}"/>
                         </td>
                     </tr>
-
+                    <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="metatype">Meta Type:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:resourceType,field:'metatype','errors')}">
+                                    <g:select id="metatype" name="metatype" from="${ResourceType.constraints.metatype.inList}" value="${resourceType.metatype}" ></g:select>
+                                </td>
+                    </tr>
                     <tr class="prop">
 
                         <td valign="top" class="name">

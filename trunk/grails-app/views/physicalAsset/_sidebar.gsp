@@ -13,7 +13,7 @@
     <tr>
         <td><g:link action="list" >All types</g:link></td>
     </tr>
-    <g:each var="type" in="${ResourceType?.list()}">
+    <g:each var="type" in="${ResourceType.findAllByMetatype('asset')}">
         <tr>
             <td>
                 <g:link action="list" params="[resourceType: type.name]"> ${type.name}</g:link>

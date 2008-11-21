@@ -20,6 +20,7 @@
             <g:form action="save" method="post" >
                  <div class="buttons">
                     <span class="button"><input class="save" type="submit" value="Create" /></span>
+                     <span class="button"><g:actionSubmit class="list" value="List" /></span>                                                              
                 </div>
                 <div class="dialog">
                     <table>
@@ -42,7 +43,14 @@
                                     <input type="text" id="description" name="description" value="${fieldValue(bean:resourceType,field:'description')}"/>
                                 </td>
                             </tr> 
-                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="metatype">Meta Type:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:resourceType,field:'metatype','errors')}">
+                                    <g:select id="metatype" name="metatype" from="${ResourceType.constraints.metatype.inList}" value="${resourceType.metatype}" ></g:select>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

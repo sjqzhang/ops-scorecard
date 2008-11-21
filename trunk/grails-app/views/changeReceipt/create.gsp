@@ -18,6 +18,7 @@
     <g:form action="save" method="post">
         <div class="buttons">
             <span class="button"><input class="save" type="submit" value="Create"/></span>
+            <span class="button"><g:actionSubmit class="list" value="List" /></span>            
         </div>
         <div class="dialog">
             <h3>General</h3>
@@ -202,7 +203,11 @@
                             <label for="targetedService">Targeted Service:</label>
                         </td>
                         <td valign="top" class="value ${hasErrors(bean: changeReceipt, field: 'targetedService', 'errors')}">
-                            <g:select optionKey="id" from="${Service.list()}" name="targetedService.id" value="${changeReceipt?.targetedService?.id}"></g:select>
+                            <select name="targetedService.id" id="targetedService.id">
+                            <g:each in="${Service.list()}" var="s">
+                                <option value="${s.id}">${s?.name} [${s?.type?.name}]</option>
+                            </g:each>
+                        </select>
                         </td>
                     </tr>
 

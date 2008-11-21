@@ -18,6 +18,7 @@
     <g:form action="save" method="post">
         <div class="buttons">
             <span class="button"><input class="save" type="submit" value="Create"/></span>
+            <span class="button"><g:actionSubmit class="list" value="List" /></span>                                
         </div>
         <div class="dialog">
             <h3>General</h3>
@@ -189,14 +190,21 @@
 
             <table>
 
+
                 <tr class="prop">
                     <td valign="top" class="name">
-                        <label for="targetedService">Targeted Service:</label>
+                        <label for="targetResource">Target Service:</label>
                     </td>
-                    <td valign="top" class="value ${hasErrors(bean: capabilityAudit, field: 'targetedService', 'errors')}">
-                        <g:select optionKey="id" from="${Service.list()}" name="targetedService.id" value="${capabilityAudit?.targetedService?.id}" noSelection="['null':'']"></g:select>
+                    <td valign="top" class="value ${hasErrors(bean: serviceManagementProcess, field: 'targetResource', 'errors')}">
+                        <select name="targetResource.id" id="targetResource.id">
+                            <option value="null"></option>
+                            <g:each in="${Service.list()}" var="taretgetResource">
+                                <option value="${taretgetResource.id}">${taretgetResource?.name} [${taretgetResource?.type?.name}]</option>
+                            </g:each>
+                        </select>
                     </td>
                 </tr>
+
                 <tr class="prop">
                     <td valign="top" class="name">
                         <label for="ticketService">Ticket Service:</label>
@@ -211,7 +219,7 @@
                         <label for="verifyingBusinessProcesses">Verifying Business Processes:</label>
                     </td>
                     <td valign="top" class="value ${hasErrors(bean: capabilityAudit, field: 'verifyingBusinessProcesses', 'errors')}">
-                        <g:select optionKey="id" from="${ServiceManagementProcess.list()}" name="verifyingBusinessProcesses.id" value="${capabilityAudit?.verifyingBusinessProcesses?.id}" noSelection="['null':'']"></g:select>
+                        <g:select optionKey="id" from="${ServiceManagementProcess.findAllByCategory('verification')}" name="verifyingBusinessProcesses.id" value="${capabilityAudit?.verifyingBusinessProcesses?.id}" noSelection="['null':'']"></g:select>
                     </td>
                 </tr>
 
@@ -220,7 +228,7 @@
                         <label for="implementationProcess">Implementation Process:</label>
                     </td>
                     <td valign="top" class="value ${hasErrors(bean: capabilityAudit, field: 'implementationProcess', 'errors')}">
-                        <g:select optionKey="id" from="${ServiceManagementProcess.list()}" name="implementationProcess.id" value="${capabilityAudit?.implementationProcess?.id}" noSelection="['null':'']"></g:select>
+                        <g:select optionKey="id" from="${ServiceManagementProcess.findAllByCategory('implementation')}" name="implementationProcess.id" value="${capabilityAudit?.implementationProcess?.id}" noSelection="['null':'']"></g:select>
                     </td>
                 </tr>
 
@@ -229,7 +237,7 @@
                         <label for="escalationProcess">Escalation Process:</label>
                     </td>
                     <td valign="top" class="value ${hasErrors(bean: capabilityAudit, field: 'escalationProcess', 'errors')}">
-                        <g:select optionKey="id" from="${ServiceManagementProcess.list()}" name="escalationProcess.id" value="${capabilityAudit?.escalationProcess?.id}" noSelection="['null':'']"></g:select>
+                        <g:select optionKey="id" from="${ServiceManagementProcess.findAllByCategory('escalation')}" name="escalationProcess.id" value="${capabilityAudit?.escalationProcess?.id}" noSelection="['null':'']"></g:select>
                     </td>
                 </tr>
 
@@ -238,7 +246,7 @@
                         <label for="backoutProcess">Backout Process:</label>
                     </td>
                     <td valign="top" class="value ${hasErrors(bean: capabilityAudit, field: 'backoutProcess', 'errors')}">
-                        <g:select optionKey="id" from="${ServiceManagementProcess.list()}" name="backoutProcess.id" value="${capabilityAudit?.backoutProcess?.id}" noSelection="['null':'']"></g:select>
+                        <g:select optionKey="id" from="${ServiceManagementProcess.findAllByCategory('backout')}" name="backoutProcess.id" value="${capabilityAudit?.backoutProcess?.id}" noSelection="['null':'']"></g:select>
                     </td>
                 </tr>
 
@@ -253,10 +261,10 @@
 
                 <tr class="prop">
                     <td valign="top" class="name">
-                        <label for="changeDetectionProcess">Change Detection Process:</label>
+                        <label for="changeDetectionProcess">Detective Control Process:</label>
                     </td>
                     <td valign="top" class="value ${hasErrors(bean: capabilityAudit, field: 'changeDetectionProcess', 'errors')}">
-                        <g:select optionKey="id" from="${ServiceManagementProcess.list()}" name="changeDetectionProcess.id" value="${capabilityAudit?.changeDetectionProcess?.id}" noSelection="['null':'']"></g:select>
+                        <g:select optionKey="id" from="${ServiceManagementProcess.findAllByCategory('detective')}" name="changeDetectionProcess.id" value="${capabilityAudit?.changeDetectionProcess?.id}" noSelection="['null':'']"></g:select>
                     </td>
                 </tr>
 
@@ -270,17 +278,10 @@
                             <label for="buildProcess">Build Process:</label>
                         </td>
                         <td valign="top" class="value ${hasErrors(bean: capabilityAudit, field: 'buildProcess', 'errors')}">
-                            <g:select optionKey="id" from="${ServiceManagementProcess.list()}" name="buildProcess.id" value="${capabilityAudit?.buildProcess?.id}" noSelection="['null':'']"></g:select>
+                            <g:select optionKey="id" from="${ServiceManagementProcess.findAllByCategory('build')}" name="buildProcess.id" value="${capabilityAudit?.buildProcess?.id}" noSelection="['null':'']"></g:select>
                         </td>
                     </tr>
-                    <tr class="prop">
-                        <td valign="top" class="name">
-                            <label for="handoffProcess">Handoff Process:</label>
-                        </td>
-                        <td valign="top" class="value ${hasErrors(bean: capabilityAudit, field: 'handoffProcess', 'errors')}">
-                            <g:select optionKey="id" from="${ServiceManagementProcess.list()}" name="handoffProcess.id" value="${capabilityAudit?.handoffProcess?.id}" noSelection="['null':'']"></g:select>
-                        </td>
-                    </tr>
+
                     <tr class="prop">
                         <td valign="top" class="name">
                             <label for="releaseEngineers">Release Engineers:</label>
@@ -304,7 +305,7 @@
                             <label for="softwareAcceptanceProcess">Software Acceptance Process:</label>
                         </td>
                         <td valign="top" class="value ${hasErrors(bean: capabilityAudit, field: 'softwareAcceptanceProcess', 'errors')}">
-                            <g:select optionKey="id" from="${ServiceManagementProcess.list()}" name="softwareAcceptanceProcess.id" value="${capabilityAudit?.softwareAcceptanceProcess?.id}" noSelection="['null':'']"></g:select>
+                            <g:select optionKey="id" from="${ServiceManagementProcess.findAllByCategory('acceptance')}" name="softwareAcceptanceProcess.id" value="${capabilityAudit?.softwareAcceptanceProcess?.id}" noSelection="['null':'']"></g:select>
                         </td>
                     </tr>
 
@@ -342,7 +343,6 @@
                             <input type="text" id="processDeviationPercentage" name="processDeviationPercentage" value="${fieldValue(bean: capabilityAudit, field: 'processDeviationPercentage')}"/>
                         </td>
                     </tr>
-
                 </tbody>
             </table>
         </div>

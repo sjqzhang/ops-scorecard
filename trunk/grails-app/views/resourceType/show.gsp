@@ -44,6 +44,13 @@
                             <td valign="top" class="value">${fieldValue(bean:resourceType, field:'description')}</td>
                             
                         </tr>
+
+                        <tr class="prop">
+                            <td valign="top" class="name">Meta Type:</td>
+
+                            <td valign="top" class="value">${fieldValue(bean:resourceType, field:'metatype')}</td>
+
+                        </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Instances:</td>

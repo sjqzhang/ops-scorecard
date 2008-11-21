@@ -19,6 +19,7 @@
             <g:form action="save" method="post" >
                  <div class="buttons">
                     <span class="button"><input class="save" type="submit" value="Create" /></span>
+                     <span class="button"><g:actionSubmit class="list" value="List" /></span>                                         
                 </div>
                 <div class="dialog">
                     <table>
@@ -53,6 +54,20 @@
 
                             <tr class="prop">
                                 <td valign="top" class="name">
+                                    <label for="targetResource">Target Service:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:serviceManagementProcess,field:'targetResource','errors')}">
+                                    <select name="targetResource.id" id="targetResource.id" >
+                                        <option value="null"></option>
+                                        <g:each in="${Service.list()}" var="taretgetResource">
+                                            <option value="${taretgetResource.id}">${taretgetResource?.name} [${taretgetResource?.type?.name}]</option>
+                                        </g:each>
+                                    </select>
+                                </td>
+                            </tr>
+                            
+                            <tr class="prop">
+                                <td valign="top" class="name">
                                     <label for="automationLevel">Automation Level:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:serviceManagementProcess,field:'automationLevel','errors')}">
@@ -75,15 +90,7 @@
                                     <g:select optionKey="id" from="${User.list()}" name="implementor.id" value="${serviceManagementProcess?.implementor?.id}" ></g:select>
                                 </td>
                             </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="targetResource">Target Service:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:serviceManagementProcess,field:'targetResource','errors')}">
-                                    <g:select optionKey="id" from="${Service.list()}" name="targetResource.id" value="${serviceManagementProcess?.targetResource?.id}" ></g:select>
-                                </td>
-                            </tr> 
+         
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
@@ -93,7 +100,15 @@
                                     <g:select optionKey="id" from="${User.list()}" name="recipient.id" value="${serviceManagementProcess?.recipient?.id}" noSelection="['null':'']"></g:select>
                                 </td>
                             </tr> 
-                        
+
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="procedure">Procedure:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:serviceManagementProcess,field:'procedure','errors')}">
+                                    <g:textArea type="text" name="procedure" value="${fieldValue(bean:serviceManagementProcess,field:'procedure')}" />
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

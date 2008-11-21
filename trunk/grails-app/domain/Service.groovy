@@ -9,4 +9,8 @@ class Service extends Resource {
 	String outageCost
 	User customer
     URL serviceURL
+
+    String toString() {
+        return "${name} [${type.name}]"
+    }
 }
