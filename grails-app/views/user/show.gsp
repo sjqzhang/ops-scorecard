@@ -54,10 +54,15 @@
                         </tr>
 
                         <tr class="prop">
-                            <td valign="top" class="name">User Group:</td>
-                            
-                            <td valign="top" class="value"><g:link controller="usergroup" action="show" id="${user?.userGroup?.id}">${user?.userGroup?.encodeAsHTML()}</g:link></td>
-                            
+                            <td valign="top" class="email">Teams:</td>
+
+                            <td valign="top" class="value">
+                                <g:each in="${user.userGroups}">
+                                    <g:link action="show" controller="usergroup" id="${it.id}">${it.name}</g:link>
+                                </g:each>
+
+                            </td>
+
                         </tr>
                                            
                     </tbody>

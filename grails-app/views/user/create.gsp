@@ -59,16 +59,7 @@
                                     <input type="text" id="email" name="email" value="${fieldValue(bean:user,field:'email')}"/>
                                 </td>
                             </tr>             
-
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="userGroup">User Group:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:user,field:'userGroup','errors')}">
-                                    <g:select optionKey="id" from="${Usergroup.list()}" name="userGroup.id" value="${user?.userGroup?.id}" noSelection="['null':'']"></g:select>
-                                </td>
-                            </tr> 
-                        
+                            
                         </tbody>
                     </table>
                 </div>

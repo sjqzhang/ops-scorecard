@@ -73,8 +73,13 @@ class ServiceManagementProcess {
         }
 
         def scoreTotal = scores.values().asList().sum()
-
-        
+        def cumulative
+        if (scoreTotal>=scores.size()) {
+            cumulative= scoreTotal
+        } else {
+            cumulative = (scoreTotal/scores.size()).intValue()
+        }
+                        
         println("DEBUG: values=${scores.values}, scoreTotal=${scoreTotal}")
         scores['cumulative'] = (scoreTotal/scores.size()).intValue()
         println("DEBUG: cumulative=${scores['cumulative']}")

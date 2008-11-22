@@ -1,6 +1,6 @@
 <span class="menuButton"><g:link class="create" action="create">Add Team</g:link></span>
 
-<g:if test="${functions}">
+
 <table class="list" style="margin-top: 10px;">
     <tr>
         <td style="background-color: azure;">
@@ -11,15 +11,11 @@
     <tr>
         <td><g:link action="list" >All functions</g:link></td>
     </tr>
-    <g:each in="${functions}">
+    <g:each in="${Usergroup.constraints.function.inList}" var="function">
         <tr>
             <td>
-                <g:link action="list" params="[function:it?.name]" >it</g:link>
+                <g:link action="search" params="[function:function]" >${function}</g:link>
             </td>
         </tr>
     </g:each>
 </table>
-</g:if>
-<g:else>
-    
-</g:else>

@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-        <title>People: Individuals</title>
+        <title>People: Individuals Search results</title>
     </head>
     <body>        
         <div class="body">
@@ -24,6 +24,7 @@
                         
                    	        <g:sortableColumn property="lastName" title="Last Name" />
 
+                               <g:sortableColumn property="userGroup" title="Team" />
                                <g:sortableColumn property="email" title="Email" />
 
                         </tr>
@@ -41,15 +42,19 @@
                                </div>
                             </td>
 
-                            <td>
-                                <g:link action="show" id="${fieldValue(bean:user, field:'id')}">${fieldValue(bean:user, field:'login')}</g:link>
-                            </td>
+                            <td>${fieldValue(bean:user, field:'login')}</td>
 
                             <td>${fieldValue(bean:user, field:'firstName')}</td>
                         
                             <td>${fieldValue(bean:user, field:'lastName')}</td>
                                                 
-                            
+                            <td>
+                               <g:if test="${user?.userGroup}">                                
+                                <g:link controller="usergroup" action="show" params="[id:user.userGroup.id]">
+                                    ${fieldValue(bean:user, field:'userGroup')}
+                                </g:link>
+                               </g:if>
+                            </td>
                             <td>
                                 <a href="mailto:${fieldValue(bean:user, field:'email')}">${fieldValue(bean:user, field:'email')}</a>
                             </td>
@@ -64,8 +69,8 @@
             </div>
             </g:if>
             <g:else>
-                <h3>There are no individuals defined yet.</h3>
-                <h5>Press the &quot;Add Individual&quot; button to the right to create a new one.</h5>
+                <h3>There are no individuals that matched the search criteria.</h3>
+                <h5>Press the &quot;All Individual&quot; link to the right to any available ones.</h5>
             </g:else>
         </div>
         <div class="sidebar">

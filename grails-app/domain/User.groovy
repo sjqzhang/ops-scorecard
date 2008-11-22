@@ -1,19 +1,19 @@
 class User {
-	static belongsTo = Usergroup
+
     static optionals = ['description','userGroup']
     static constraints = {
 		login(unique:true,length:3..15)
 		firstName(blank:false)
         lastName(blank:false)
-        userGroup(nullable:true)
         email(nullable:true)
         password(nullable:true)
     }
 
-	String login
+    static belongsTo = Usergroup
+    static hasMany = [userGroups:Usergroup]
+    String login
 	String firstName
-	String lastName
-	Usergroup userGroup
+	String lastName	
     String email
     String password
 
