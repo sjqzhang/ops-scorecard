@@ -63,7 +63,13 @@
 
                             <!-- Grade -->
                             <td width="10">
-                                <g:prettyScore format="numeric" score="${cumulative / scorecards.size()}"/>
+
+                               <g:if test="${cumulative >= scorecards.size()}">
+                                   <g:prettyScore format="numeric" score="${cumulative}"/>
+                               </g:if>
+                               <g:else>
+                                   <g:prettyScore format="numeric" score="${cumulative / scorecards.size()}"/>
+                               </g:else>
                             </td>
                         </tr>
                     </g:each>

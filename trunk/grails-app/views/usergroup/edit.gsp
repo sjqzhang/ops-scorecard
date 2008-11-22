@@ -20,7 +20,7 @@
         <div class="buttons">
             <span class="button"><g:actionSubmit class="save" value="Update"/></span>
             <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete"/></span>
-            <span class="button"><g:actionSubmit class="list" value="List" /></span>            
+            <span class="button"><g:actionSubmit class="list" value="List"/></span>
         </div>
         <div class="dialog">
             <table>
@@ -43,38 +43,54 @@
                         </td>
                     </tr>
                     <tr class="prop">
-                                <td valign="top" class="function">
-                                    <label for="description">Function:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:usergroup,field:'function','errors')}">                                    
-                                    <g:select id="function" name="function" from="${usergroup.constraints.function.inList}" value="${usergroup.function}" ></g:select>
+                        <td valign="top" class="function">
+                            <label for="description">Function:</label>
+                        </td>
+                        <td valign="top" class="value ${hasErrors(bean: usergroup, field: 'function', 'errors')}">
+                            <g:select id="function" name="function" from="${usergroup.constraints.function.inList}" value="${usergroup.function}"></g:select>
 
-                                </td>
-                    </tr>           
+                        </td>
+                    </tr>
+
+
                     <tr class="prop">
                         <td valign="top" class="name">
                             <label for="users">Users:</label>
                         </td>
                         <td valign="top" class="value ${hasErrors(bean: usergroup, field: 'users', 'errors')}">
+                            <table>
 
-                            <ul>
-                                <g:each var="u" in="${usergroup?.users?}">
-                                    <li><g:link controller="user" action="show" id="${u.id}">${u?.encodeAsHTML()}</g:link></li>
+                                <g:each var="u" in="${User.list()}">
+                                    <tr>
+                                        <td>
+
+                                            <g:if test="${usergroup.users.contains(u)}">
+
+                                                <input type="checkbox" name="cb.users"
+                                                        value="${u.id}" checked="${checked}"/>
+                                            </g:if>
+                                            <g:else>
+                                                <input type="checkbox" name="cb.users"
+                                                        value="${u.id}"/>
+                                            </g:else>
+                                        </td>
+                                        <td>
+                                            ${u?.firstName} ${u?.lastName}
+                                        </td>
+                                    </tr>
                                 </g:each>
-                            </ul>
-                            <g:link controller="user" params="['usergroup.id':usergroup?.id]" action="create">Add User</g:link>
 
+                            </table>
                         </td>
                     </tr>
-
                 </tbody>
             </table>
         </div>
 
     </g:form>
 </div>
-     <div class="sidebar">
-            <g:render template="sidebar"/>
-        </div>
+<div class="sidebar">
+    <g:render template="sidebar"/>
+</div>
 </body>
 </html>

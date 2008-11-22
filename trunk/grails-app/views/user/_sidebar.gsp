@@ -16,7 +16,7 @@
     <g:each var="group" in="${groups}">
         <tr>
             <td>
-                <g:link action="list" params="[group: group.name]"> ${group.name}</g:link>
+                <g:link action="search" params="[group: group.id]"> ${group.name}</g:link>
             </td>
         </tr>
     </g:each>
