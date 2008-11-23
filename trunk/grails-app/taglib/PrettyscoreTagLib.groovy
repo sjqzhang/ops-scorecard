@@ -9,7 +9,7 @@ class PrettyscoreTagLib {
                 out << "<span class='lettergrade''>${toLetterGrade(score)}</span>"
                 break
             case 'numeric':
-                out << "<span style='color:${toColorGrade(score)}'>${score}</span>"
+                out << "<span class='score' style='color:${toColorGrade(score)}'>${score}</span>"
                 break
             default:
                 out << "<span class='score'>${score}</span>"
@@ -76,7 +76,7 @@ class PrettyscoreTagLib {
                 color = 'Green'
                 break
             case 70..75:
-                color = 'Yellow'
+                color = 'Green'
                 break
             case 65..75:
                 color = 'OrangeRed'

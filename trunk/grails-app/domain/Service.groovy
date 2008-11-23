@@ -11,6 +11,6 @@ class Service extends Resource {
     URL serviceURL
 
     String toString() {
-        return "${name} [${type.name}]"
+        return "${name}"
     }
 }

@@ -6,6 +6,7 @@ class ChangeReceipt {
             'implementationProcess','verificationProcess','escalationProcess','backoutProcess']
     static constraints = {
         title(blank:false)
+        auditDate(blank:false)
         coordinator(blank:false)
         targetedService(blank:false)
         owner(nullable:true)
@@ -36,8 +37,9 @@ class ChangeReceipt {
     }
 
 	String title
-		
-	// "What" questions
+    Date auditDate
+
+    // "What" questions
 	Service targetedService
 	String motivatingReason
 	String nonActionConsequence
@@ -77,4 +79,50 @@ class ChangeReceipt {
 
     String toString() {return title}    
 
+    static transients = ['calculateScores']
+    //
+    // map of metric groupings
+    //
+    static control_fields = ['coordinator', 'owner',
+            'changeOutcome', 'priority', 'motivatingReason',
+            'nonActionConsequence', 'isAuthorized', 'hasSecuritySignOff',
+            'changeRequestUrl']
+    static process_fields = ['targetedService', 'verificationProcess',
+            'implementationProcess', 'escalationProcess', 'backoutProcess']
+    static repeatability_fields = ['releaseEngineer', 'buildProcess', 'softwareAcceptanceProcess',
+            'releaseArtifact']
+
+
+    def Map calculateScores() {
+        def scores = ['control':0, 'process':0, 'repeatability':0, 'cumulative':0]
+        control_fields.each {
+            def val = this."${it}"
+            if (val) {
+                scores['control'] = scores['control'] + (100 / control_fields.size())
+            }
+        }
+        scores['control'] = scores['control'].intValue()
+
+        process_fields.each {
+            def val = this."${it}"
+            if (val) {
+                scores['process'] = scores['process'] + (100 / process_fields.size())
+            }
+        }
+        scores['process'] = scores['process'].intValue()
+
+        repeatability_fields.each {
+            def val = this."${it}"
+            if (val) {
+                scores['repeatability'] = scores['repeatability'] + (100 / repeatability_fields.size())
+            }
+        }
+        scores['repeatability'] = scores['repeatability'].intValue()
+
+        scores['cumulative'] = ((scores['control']
+                +scores['process']
+                +scores['repeatability'])/3).intValue()
+
+        return scores
+    }
 }

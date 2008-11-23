@@ -89,28 +89,5 @@ class ServiceManagementProcessController extends SecureController {
         results = ServiceManagementProcess.findAllWhere(queryparams)
         render(view:'search',model:[serviceManagementProcessList:results])
     }
-
-    def createScorecard = {
-        // nothing to do
-    }
-
-    def listScorecards = {
-
-        println("DEBUG: params: ${params}")
-        // Parse out the process category names. They are named like: category.include.<name>
-        def categories = []
-        params.keySet().each {key ->
-            def matcher = key =~ 'category\\.include\\.(.*)'
-            if (matcher.matches()) {
-                if ('on' == params[key]) {
-                    categories << matcher[0][1]
-                }
-            }
-        }
-
-        def results = scorecardService.listProcessScorecards(categories, params.serviceName,
-                params.resourceType.id, params.user.id)
-        println("DEBUG: results.size()=${results.size()}. keyset=${results.keySet()}")
-        render(view: 'listScorecards', model: [scorecardParams: params, processScorecardMap: results])
-    }
+ 
 }

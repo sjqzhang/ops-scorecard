@@ -1,39 +1,24 @@
 <span class="menuButton"><g:link class="create" action="create">Create Audit</g:link></span>
 
-<g:set var="groups" value="${Usergroup.list()}"/>
-<g:if test="${groups}">
+<g:set var="types" value="${ResourceType.findAllByMetatype('service')}"/>
+<g:if test="${types}">
 <table class="list" style="margin-top: 10px;">
     <tr>
         <td style="background-color: azure;">
-            <span style="color:#808080;font-weight: bold;font-size:10pt;padding-right:10px;">Groups</span>
-            <g:link controller="usergroup" action="list"><span class="controllink">Edit</span></g:link>
+            <span style="color:#808080;font-weight: bold;font-size:10pt;padding-right:10px;">Service types</span>
         </td>
     </tr>
 
     <tr>
-        <td><g:link action="list" >All teams</g:link></td>
+        <td><g:link action="list" >All types</g:link></td>
     </tr>
-    <g:each var="group" in="${groups}">
+    <g:each var="type" in="${types}">
         <tr>
             <td>
-                <g:link action="list" params="[group: group.name]"> ${group.name}</g:link>
+                <g:link action="search" params="[targetedServiceType: type.name]"> ${type.name}</g:link>
             </td>
         </tr>
     </g:each>
 </table>
 </g:if>
-<g:else>
-<table class="list" style="margin-top: 10px;">
-    <tr>
-        <td style="background-color: azure;">
-            <span style="color:#808080;font-weight: bold;font-size:10pt;padding-right:10px;">Teams</span>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <p><i>No teams defined</i>.</p>
-            <p><g:link controller="usergroup" action="create"><span class="controllink">Add a team</span></g:link></p>
-        </td>
-    </tr>
-</table>
-</g:else>
+

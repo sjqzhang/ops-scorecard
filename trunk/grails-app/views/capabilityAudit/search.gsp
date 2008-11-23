@@ -2,7 +2,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="main"/>
-    <title>Audit: CapabilityAudit List</title>
+    <title>Audit: CapabilityAudit Search Results</title>
 </head>
 <body>
 <div class="body">
@@ -68,8 +68,8 @@
         </div>
     </g:if>
     <g:else>
-        <h3>There are no capability audits defined yet.</h3>
-        <h5>Press the &quot;Create Capability Audit&quot; button to the right to create a new one.</h5>
+        <h3>No capability audits matched the search criteria.</h3>
+        <h5>Press the &quot;All Types&quot; link to the right to list any.</h5>
     </g:else>
 </div>
 <div class="sidebar">

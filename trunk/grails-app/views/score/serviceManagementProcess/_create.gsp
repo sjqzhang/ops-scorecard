@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-        <title>Process: Create Scorecard</title>
+        <title>Score: Service Management Process</title>
     </head>
     <body>  
         <div class="body">
@@ -18,7 +18,7 @@
             </g:hasErrors>
             <g:set var="services" value="${Service.list()}"/>
             <g:if test="${services}">
-            <g:form action="listScorecards" method="post" >
+            <g:form action="processList" method="post" >
                 <div class="buttons">
                     <span class="button"><input class="save" type="submit" value="Create" /></span>
                 </div>

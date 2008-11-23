@@ -59,7 +59,7 @@
                         <g:if test="${resourceType?.instances}">
                             <ul>
                                 <g:each var="i" in="${resourceType?.instances?}">
-                                    <li><g:link controller="resource" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></li>
+                                    <li><g:link controller="resource" action="show" id="${i.id}">${i?.name?.encodeAsHTML()}</g:link></li>
                                 </g:each>
                             </ul>
 

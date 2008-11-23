@@ -193,15 +193,10 @@
 
                 <tr class="prop">
                     <td valign="top" class="name">
-                        <label for="targetResource">Target Service:</label>
+                        <label for="targetedService">Target Service:</label>
                     </td>
-                    <td valign="top" class="value ${hasErrors(bean: serviceManagementProcess, field: 'targetResource', 'errors')}">
-                        <select name="targetResource.id" id="targetResource.id">
-                            <option value="null"></option>
-                            <g:each in="${Service.list()}" var="taretgetResource">
-                                <option value="${taretgetResource.id}">${taretgetResource?.name} [${taretgetResource?.type?.name}]</option>
-                            </g:each>
-                        </select>
+                    <td valign="top" class="value ${hasErrors(bean: capabilityAudit, field: 'targetedService', 'errors')}">
+                        <g:select optionKey="id" from="${Service.list()}" name="targetedService.id" value="${capabilityAudit?.targetedService?.id}" noSelection="['null':'']"></g:select>
                     </td>
                 </tr>
 

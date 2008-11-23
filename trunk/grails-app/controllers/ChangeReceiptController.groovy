@@ -1,4 +1,4 @@
-class ChangeReceiptController {
+class ChangeReceiptController extends SecureController {
     
     def index = { redirect(action:list,params:params) }
 
