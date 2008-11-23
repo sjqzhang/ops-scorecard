@@ -37,6 +37,14 @@
                             <input type="text" id="title" name="title" value="${fieldValue(bean: changeReceipt, field: 'title')}"/>
                         </td>
                     </tr>
+                    <tr class="prop">
+                        <td valign="top" class="name">
+                            <label for="auditDate">Date:</label>
+                        </td>
+                        <td valign="top" class="value ${hasErrors(bean: changeReceipt, field: 'auditDate', 'errors')}">
+                            <g:datePicker name="auditDate" value="${changeReceipt?.auditDate}"></g:datePicker>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <h3>Control</h3>

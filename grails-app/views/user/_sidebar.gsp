@@ -5,7 +5,7 @@
 <table class="list" style="margin-top: 10px;">
     <tr>
         <td style="background-color: azure;">
-            <span style="color:#808080;font-weight: bold;font-size:10pt;padding-right:10px;">Groups</span>
+            <span style="color:#808080;font-weight: bold;font-size:10pt;padding-right:10px;">Teams</span>
             <g:link controller="usergroup" action="list"><span class="controllink">Edit</span></g:link>
         </td>
     </tr>

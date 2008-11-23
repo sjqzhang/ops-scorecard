@@ -106,7 +106,7 @@ input:focus, select:focus, textarea:focus {
 
 .menuButton {
     font-size: 10px;
-    padding: 0 5px;
+    padding: 5px;
 }
 .menuButton a {
     color: #333;
@@ -325,6 +325,7 @@ th.desc a {
     margin:0 0 0 0;
     padding: 2px 2px 2px 10px;
     font-size: 10pt;
+    background: #fff;
 }
 .headright{
     position:absolute;
@@ -372,4 +373,9 @@ div.footerVersion span.desc{
     margin:0 0 0 0;
     padding: 2px 2px 2px 10px;
     font-size: 10pt;
+}
+
+span.score {
+    font-weight: bold;
+    font-size: 12px;    
 }

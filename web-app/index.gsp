@@ -10,28 +10,19 @@
    Choose from one of the tools below:
     </p>
     <table>
-        <%--
+      
         <tr>
-            <td width="120">
-                <img align="center" src="${createLinkTo(dir: 'images', file: 'text-large-audit.png')}" height="40px" alt="Audit"/>
+             <td class="toollink" width="120">
+                <a class="maintool" href="score/">
+                    <img src="${createLinkTo(dir: 'images', file: 'scorecard-medium.png')}" height="65px" alt="Scores"/>
+                    <span class="title">Score</span>
+                </a>
             </td>
-            <td width="120">
-                <img align="center" src="${createLinkTo(dir: 'images', file: 'text-large-inventory.png')}" height="40px" alt="Inventory"/>
-            </td>
-            <td width="120">
-                <img align="center" src="${createLinkTo(dir: 'images', file: 'text-large-people.png')}" height="40px" alt="People"/>
-            </td>
-            <td width="120">
-                <img align="center" src="${createLinkTo(dir: 'images', file: 'text-large-receipts.png')}" height="40px" alt="Receipts"/>
-            </td>
-        </tr>
-        --%>
-        <tr>
             <td class="toollink" width="120">
-                <a class="maintool" href="audit/">
+                <g:link class="maintool" controller="capabilityAudit">
                     <img src="${createLinkTo(dir: 'images', file: 'icon-med-audit.png')}" height="65px" alt="Audit"/>
                     <span class="title">Audit</span>
-                </a>
+                </g:link>
             </td>
             <td class="toollink" width="120">
                 <a class="maintool" href="inventory/">
@@ -40,17 +31,17 @@
                 </a>
             </td>
             <td class="toollink" width="120">
-                <a class="maintool" href="people/">
+                <g:link class="maintool" controller="user">
                     <img src="${createLinkTo(dir: 'images', file: 'icon-med-people.png')}" height="65px" alt="People"/>
                     <span class="title">People</span>
-                </a>
+                </g:link>
             </td>
             <td class="toollink" width="120">
-                <a class="maintool" href="receipts/">
+                <g:link class="maintool" controller="changeReceipt">
                     <img src="${createLinkTo(dir: 'images', file: 'icon-med-receipts.png')}" height="65px" alt="Receipts"/>
                     <span class="title">Receipts</span>
 
-                </a>
+                </g:link>
             </td>
         </tr>
     </table>

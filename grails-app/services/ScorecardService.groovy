@@ -2,7 +2,8 @@ class ScorecardService {
 
     boolean transactional = false
 
-
+    //------Capability Audits -------------------------------------------------
+    //
     def listAuditScorecards(ScorecardParams params) {
         def results = []
         def matches = []
@@ -20,8 +21,9 @@ class ScorecardService {
         }
         return results
     }
-
-    def listReceiptScorecards(ScorecardParams params) {
+    //------Change Receipts ---------------------------------------------------
+    //
+    def listChangeReceiptScorecards(ScorecardParams params) {
         def results = []
         def matches = []
         if (params?.service) {
@@ -33,13 +35,13 @@ class ScorecardService {
         }
 
         matches.each {
-            def scores = it.calculateGrades()
-            results << new ReceiptScorecard(audit: it, scores: scores)
+            def scores = it.calculateScores()
+            results << new ChangeReceiptScorecard(receipt: it, scores: scores)
         }
         return results
     }
 
-    //
+    //------Service Management Process ----------------------------------------
     // Returns a map of ProcessScorecard values keyed by Service.id
     def listProcessScorecards(categories, serviceName, resourceType, ownerResponsible) {
         def results = [:]
@@ -77,7 +79,7 @@ class AuditScorecard {
     Map scores
 }
 
-class ReceiptScorecard {
+class ChangeReceiptScorecard {
     ChangeReceipt receipt
     Map scores
 }
@@ -86,4 +88,15 @@ class ProcessScorecard {
     Service service
     ServiceManagementProcess process
     Map scores
+}
+
+
+class ScorecardParams {
+    Date startDate
+    Date endDate
+    Service service
+
+    String toString() {
+        return "ScorecardParams{startDate=${startDate},endDate=${endDate},service=${service?.id}}"
+    }
 }

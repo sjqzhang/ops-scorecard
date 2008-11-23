@@ -58,7 +58,9 @@
                         
                             <td>
                                 <g:if test="${serviceManagementProcess?.targetResource}">
-                                    ${serviceManagementProcess?.targetResource}
+                                    <g:link action="show" id="${serviceManagementProcess.targetResource.id}">
+                                    ${serviceManagementProcess.targetResource}
+                                    </g:link>
                                 </g:if>
                             </td>
                         
