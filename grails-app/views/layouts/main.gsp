@@ -16,13 +16,14 @@
 <div class="topbar">
     <div class="logo">
         <a href="/scorecard">
-
-            <img src="${createLinkTo(dir: 'images', file: 'logo.png')}" height="65px" alt="Scorecard"/>
+            <img align="middle" src="${createLinkTo(dir: 'images', file: 'logo.png')}" alt="Scorecard"/><g:message code="scorecard.app.name"/>
         </a>
     </div>
    <span class="headright">
        <g:if test="${session?.user}">
-           <span class="logininfo"><span class="user" title="User ${session.user} is currently logged in.">${session.user}</span> &raquo;
+           <span class="logininfo"><span class="user"
+                   title="User ${session.user} is currently logged in."
+           ><g:link action="show" controller="user" params="[login:session.user]">${session.user}</g:link></span> &raquo;
                <g:link action="logout" controller="user" title="Logout user: ${session.user}">logout</g:link></span>
        </g:if>
        <g:else>

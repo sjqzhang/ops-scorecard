@@ -11,7 +11,12 @@ class UserController {
     }
 
     def show = {
-        def user = User.get(params.id)
+        def user
+        if (params.id) {
+            user = User.get(params.id)
+        } else if (params.login) {
+            user = User.findByLogin(params.login)
+        }        
 
         if (!user) {
             flash.message = "Individual not found with id ${params.id}"

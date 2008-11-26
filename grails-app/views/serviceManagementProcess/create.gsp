@@ -87,7 +87,7 @@
                                     <label for="implementor">Implementor:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:serviceManagementProcess,field:'implementor','errors')}">
-                                    <g:select optionKey="id" from="${User.list()}" name="implementor.id" value="${serviceManagementProcess?.implementor?.id}" ></g:select>
+                                    <g:select optionKey="id" from="${Usergroup.list()}" name="implementor.id" value="${serviceManagementProcess?.implementor?.id}" ></g:select>
                                 </td>
                             </tr> 
          
@@ -97,7 +97,7 @@
                                     <label for="recipient">Recipient:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:serviceManagementProcess,field:'recipient','errors')}">
-                                    <g:select optionKey="id" from="${User.list()}" name="recipient.id" value="${serviceManagementProcess?.recipient?.id}" noSelection="['null':'']"></g:select>
+                                    <g:select optionKey="id" from="${Usergroup.list()}" name="recipient.id" value="${serviceManagementProcess?.recipient?.id}" noSelection="['null':'']"></g:select>
                                 </td>
                             </tr> 
 

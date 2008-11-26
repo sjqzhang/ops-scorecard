@@ -8,7 +8,7 @@ class ChangeReceipt {
         title(blank:false)
         auditDate(blank:false)
         coordinator(blank:false)
-        targetedService(blank:false)
+        targetedService(nullable:false, blank: false)
         owner(nullable:true)
         isAuthorized(nullable:false)
         hasSecuritySignOff(nullable:false)

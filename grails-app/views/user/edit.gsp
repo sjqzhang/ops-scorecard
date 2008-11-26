@@ -60,26 +60,7 @@
                         <td valign="top" class="value ${hasErrors(bean: user, field: 'email', 'errors')}">
                             <input type="text" id="email" name="email" value="${fieldValue(bean: user, field: 'email')}"/>
                         </td>
-                    </tr>
-
-                    <g:if test="${session.user==user.login}">
-                        <tr class="prop">
-                            <td valign="top" class="name">
-                                <label for="login">Password:</label>
-                            </td>
-                            <td valign="top" class="value ${hasErrors(bean: user, field: 'password', 'errors')}">
-                                <input type="password" id="password" name="password" value="${fieldValue(bean: user, field: 'password')}"/>
-                            </td>
-                        </tr>
-                        <tr class="prop">
-                            <td valign="top" class="name">
-                                <label for="login">Confirm password:</label>
-                            </td>
-                            <td valign="top" class="value ${hasErrors(bean: user, field: 'confirm', 'errors')}">
-                                <input type="password" id="confirm" name="confirm" value="${fieldValue(bean: user, field: 'confirm')}"/>
-                            </td>
-                        </tr>
-                    </g:if>
+                    </tr>                      
                  
                 </tbody>
             </table>

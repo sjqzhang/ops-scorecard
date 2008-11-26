@@ -7,7 +7,7 @@ class CapabilityAudit {
         title(blank: false)
         auditor(blank: false)
         auditDate(blank: false)
-        targetedService(blank: false)
+        targetedService(nullable:false, blank: false)
         historicalSuccessRating(inList: ['1', '2', '3', '4', '5'])
         changeCoordinator(nullable: true)
         changeOwner(nullable: true)
@@ -118,55 +118,5 @@ class CapabilityAudit {
                 +scores['repeatability'])/3).intValue()
 
         return scores
-    }
-
-    def Map calculateGrades() {
-        def grades = [:]
-        def scores = calculateScores()
-        grades['control'] = toGrade(scores['control'])
-        grades['process'] = toGrade(scores['process'])
-        grades['repeatability'] = toGrade(scores['repeatability'])
-        grades['cumulative'] = toGrade(scores['cumulative'])
-        return grades
-    }
-
-     def String toGrade(Integer score) {
-        def grade = ''
-        switch (score) {
-            case 95..100:
-                grade = 'A'
-                break
-            case 90..95:
-                grade = 'A-'
-                break
-            case 85..90:
-                grade = 'B+'
-                break
-            case 80..85:
-                grade = 'B-'
-                break
-            case 75..80:
-                grade = 'C+'
-                break
-            case 70..75:
-                grade = 'C'
-                break
-            case 65..75:
-                grade = 'C-'
-                break
-            case 60..65:
-                grade = 'D+'
-                break
-            case 55..60:
-                grade = 'D-'
-                break
-            case 50..55:
-                grade = 'F+'
-                break
-            case 0..50:
-                grade = 'F'
-                break
-        }
-        return grade
     }
 }
