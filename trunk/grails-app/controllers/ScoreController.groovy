@@ -1,41 +1,71 @@
 class ScoreController extends SecureController {
     ScorecardService scorecardService
-    
+
     def index = {
         def today = new Date()
 
-        def scorecardParams = new ScorecardParams(startDate:today -7, endDate:today, service: null)
-        def capabilityScoreCardList = scorecardService.listAuditScorecards(scorecardParams)
+        def scorecardParams = new ScorecardParams(startDate: today - 7, endDate: today, service: null)
+        def capabilityScoreCardMap = scorecardService.listAuditScorecards(scorecardParams)
         def processScorecardMap = scorecardService.listProcessScorecards(
-                ServiceManagementProcess.constraints.category.inList,  null, null, null)
+                ServiceManagementProcess.constraints.category.inList.sort(), null, null, null)
 
-        render(view: 'index', model:[scorecardParams: scorecardParams,
-                capabilityScoreCardList: capabilityScoreCardList,
-                processScorecardMap:processScorecardMap])
+        render(view: 'index', model: [scorecardParams: scorecardParams,
+                capabilityScoreCardMap: capabilityScoreCardMap,
+                processScorecardMap: processScorecardMap])
     }
+
+
+
+    def scoreServices = {ScoreServicesParams scoreServicesParams ->
+
+        println("DEBUG: ScoreController#scoreServices: scoreServicesParams=${scoreServicesParams}")
+        println("DEBUG: ScoreController#scoreServices: params=${params}")
+
+        // keyed by service id
+        def scoreMap = [:]
+        params?.service?.id.each {id ->
+            if (Service.exists(id)) {
+                def serviceScoreMap = [:]
+                def service = Service.get(id)
+                serviceScoreMap['service'] = service
+                def scorecardParams = new ScorecardParams(
+                        startDate: scoreServicesParams.startDate,
+                        endDate: scoreServicesParams.endDate, service: service)
+
+                scoreMap[id]=scorecardService.scoreByService(service, scorecardParams, scoreServicesParams.cards )
+            }
+        }
+
+
+
+        println("DEBUG: scoreMap.size=${scoreMap.size()}")
+        render(view: 'index', model:[scoreMap:scoreMap])
+    }
+
+
 
     //----------- Capability Audit --------------------------------------------
     //
-    def auditCreate = {        
-        render(template: 'capabilityAudit/create', model: [auditScorecard:new AuditScorecard()])
+    def auditCreate = {
+        render(template: 'capabilityAudit/create', model: [auditScorecard: new AuditScorecard()])
     }
 
     def auditSummary = {
         def today = new Date()
         def scorecardParams = new ScorecardParams(startDate: today - 7, endDate: today, service: null)
         def results = scorecardService.listAuditScorecards(scorecardParams)
-        render(template: 'capabilityAudit/list', model: [scorecardParams: scorecardParams, capabilityScoreCardList: results])
+        render(template: 'capabilityAudit/list', model: [scorecardParams: scorecardParams, capabilityScoreCardMap: results])
     }
 
     def auditList = {ScorecardParams scorecardParams ->
         def results = scorecardService.listAuditScorecards(scorecardParams)
-        render(template: 'capabilityAudit/list', model: [scorecardParams: scorecardParams, capabilityScoreCardList: results])
+        render(template: 'capabilityAudit/list', model: [scorecardParams: scorecardParams, capabilityScoreCardMap: results])
     }
 
     //----------- Service Management Process-----------------------------------
     //
     def processCreate = {
-        render(template: 'serviceManagementProcess/create',model:[processScorecard:new ProcessScorecard()])
+        render(template: 'serviceManagementProcess/create', model: [processScorecard: new ProcessScorecard()])
     }
     def processList = {
 
@@ -67,21 +97,32 @@ class ScoreController extends SecureController {
     }
 
     //----------- Change Receipt ----------------------------------------------
-     //
-     def changeCreate = {
-         render(template: 'changeReceipt/create', model: [changeReceiptScorecard:new ChangeReceiptScorecard()])
-     }
+    //
+    def changeCreate = {
+        render(template: 'changeReceipt/create', model: [changeReceiptScorecard: new ChangeReceiptScorecard()])
+    }
 
-     def changeSummary = {
-         def today = new Date()
-         def scorecardParams = new ScorecardParams(startDate: today - 7, endDate: today, service: null)
-         def results = scorecardService.listChangeReceiptScorecards(scorecardParams)
-         render(template: 'changeReceipt/list', model: [scorecardParams: scorecardParams, changeReceiptScorecardList: results])
-     }
+    def changeSummary = {
+        def today = new Date()
+        def scorecardParams = new ScorecardParams(startDate: today - 7, endDate: today, service: null)
+        def results = scorecardService.listChangeReceiptScorecards(scorecardParams)
+        render(template: 'changeReceipt/list', model: [scorecardParams: scorecardParams, changeReceiptScorecardList: results])
+    }
 
-     def changeList = {ScorecardParams scorecardParams ->
-         def results = scorecardService.listChangeReceiptScorecards(scorecardParams)
-         render(template: 'changeReceipt/list', model: [scorecardParams: scorecardParams, changeReceiptScorecardList: results])
-     }
+    def changeList = {ScorecardParams scorecardParams ->
+        def results = scorecardService.listChangeReceiptScorecards(scorecardParams)
+        render(template: 'changeReceipt/list', model: [scorecardParams: scorecardParams, changeReceiptScorecardList: results])
+    }
 
+}
+
+class ScoreServicesParams {
+    Date startDate
+    Date endDate
+    List services
+    List cards
+
+    String toString() {
+        return "ScorecardParams{startDate=${startDate},endDate=${endDate},services=${services},cards=${cards}"
+    }
 }

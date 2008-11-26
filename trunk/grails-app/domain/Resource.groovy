@@ -16,8 +16,9 @@ class Resource {
         nextMaintenanceWindow(nullable:true)
         ticketNumbers(nullable:true)
         reprovisioningDuration(nullable:true)
+        ciUri(nullable:true)
 
-	}
+    }
     
     String name
 	ResourceType type
@@ -36,6 +37,8 @@ class Resource {
 	boolean isMissionCritical
 	boolean isRebuildable
 	String reprovisioningDuration
+
+    URL ciUri
 
     String toString() {return name}        
 }

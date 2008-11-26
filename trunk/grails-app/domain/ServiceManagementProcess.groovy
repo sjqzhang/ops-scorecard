@@ -2,8 +2,10 @@ class ServiceManagementProcess {
     static constraints = {
         name(blank: false)
         description(blank: false)
-        category(inList: ['acceptance', 'build', 'detective', 'escalation', 'imlementation', 'release', 'verification'])
+        category(inList: ['acceptance', 'build', 'detective', 'escalation',
+                'implementation', 'release', 'deployment', 'verification'])
         automationLevel(inList: ['none', 'manual','semi', 'full'])
+        automationTool(nullable:true)
         syscontrol(inList: ['open-loop', 'closed-loop'])
         artifacts(nullable: true)
         notificationRecipients(nullable: true)
@@ -17,16 +19,20 @@ class ServiceManagementProcess {
     String description
     String category
     String automationLevel
+    String automationTool
+    
     String syscontrol
 
+    static belongsTo = Service
     static hasMany = [artifacts: ReleaseArtifact, notificationRecipients: User]
 
-    User implementor
+    Usergroup implementor
     Service targetResource
 
     String procedure
 
-    User recipient
+    Usergroup recipient
+
 
     String toString() {return name}
 

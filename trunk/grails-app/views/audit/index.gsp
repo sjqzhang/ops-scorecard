@@ -15,13 +15,7 @@
                     <span class="title">Capability</span>
 
                 </g:link>
-            </td>
-           <td class="toollink" width="120">
-                <g:link class="maintool" controller="capabilityAudit" action="summaryScorecard">
-                    <img src="${createLinkTo(dir: 'images', file: 'scorecard-medium.png')}" height="65px" alt="ScoreCard"/>
-                    <span class="title">Scorecards</span>
-                </g:link>
-            </td>            
+            </td>          
         </tr>
     </table>
 

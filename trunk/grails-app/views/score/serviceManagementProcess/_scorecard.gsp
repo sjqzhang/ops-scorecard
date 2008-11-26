@@ -1,65 +1,50 @@
-<table style="border-collapse:collapse;">
-    <thead>
-        <tr>
-            <th width="100">Service</th>
-            <th>Management Process Scorecard</th>
-            <th>Overall</th>
-        </tr>
-    </thead>
-    <tbody>
-        <g:each in="${processScorecardMap.keySet()}" status="i" var="serviceId">
-            <g:set var="scorecards" value="${processScorecardMap[serviceId]}"/>
-            <g:set var="service" value="${Service.get(serviceId)}"/>
-            <tr>
-                <!-- Targeted Service -->
-                <td>
-                    <g:link controller="service" action="show" id="${serviceId}">
-                        ${service.name}
-                    </g:link>
+<span style="font-size:12pt;font-weight:bold;">Management Process</span>
 
-                </td>
+<g:each in="${processScorecardMap.keySet()}" status="i" var="serviceId">
+    <g:set var="scorecards" value="${processScorecardMap[serviceId]}"/>
+    <g:set var="service" value="${Service.get(serviceId)}"/>
 
-                <!-- Management Process Scorecard-->
-                <td>
-                    <% def cumulative = 0 %>
+    <%
+        def cumulative = 0
+        scorecards.each {
+            cumulative += it.scores.cumulative
+        }
+        def cumAvg = cumulative / scorecards.size()
+    %>
+    <g:if test="${scorecards.size()>0}">
 
-                    <g:if test="${scorecards.size()>0}">
+        <g:render template="/common/barchart" model="[label:'Process quality', position:cumAvg]"/>
 
-                        <g:each in="${scorecards}" var="processScorecard" status="j">
-                            <table>
-                                <% cumulative += processScorecard.scores.cumulative %>
-                                <tr>
-                                    <!-- category -->
-                                    <td width="75" style="text-align:right;">
-                                        <g:link controller="serviceManagementProcess" action="show" id="${processScorecard.process.id}">
-                                            ${processScorecard?.process?.category}
-                                        </g:link>
-                                    </td>
-                                    <!-- scores -->
-                                    <td>
-                                        <g:render template="serviceManagementProcess/scores" model="[scores:processScorecard.scores]"/>
-                                    </td>
-                                </tr>
-                            </table>
-                        </g:each>
-                    </g:if>
-                    <g:else>
-                        <span style="font-style:italic;color:darkgray">This service has no management processes defined.</span>
-                    </g:else>
-                </td>
+        <h4>By process category</h4>
 
-                <!-- Overall -->
-                <td width="10">
+        <table>
+            <tbody>
+                <g:each in="${scorecards}" var="processScorecard" status="j">
 
-                    <g:if test="${cumulative >= scorecards.size()}">
-                        <g:prettyScore format="numeric" score="${cumulative}"/>
-                    </g:if>
-                    <g:else>
-                        <g:prettyScore format="numeric" score="${cumulative / scorecards.size()}"/>
-                    </g:else>
-                </td>
+                    <tr>                        
+                        <!-- scores -->
+                        <td style="padding:0;">
+                        <g:if test="${processScorecard?.process?.id}">
+                            <g:render template="/common/barchart" model="[label:processScorecard?.process?.category,
+                            position:processScorecard.scores.cumulative,
+                            url:createLink(controller:'serviceManagementProcess',action:'show',id:processScorecard.process.id),
+                            title:processScorecard.process.name]"/>
+                        </g:if>
+                        <g:else>
+                            <g:render template="/common/barchart" model="[label:processScorecard?.process?.category,
+                            position:processScorecard.scores.cumulative,
+                            title:'process has not been defined']"/>
+                        </g:else>
 
-            </tr>
-        </g:each>
-    </tbody>
-</table>
+                        </td>
+                    </tr>
+
+                </g:each>
+            </tbody>
+        </table>
+    </g:if>
+    <g:else>
+        <span style="font-style:italic;color:darkgray">This service has no management processes defined.</span>
+    </g:else>
+
+</g:each>

@@ -20,9 +20,6 @@
     </div>
     <div class="dialog">
 
-    <g:if test="${scores}">
-      <g:render template="scores"/>
-    </g:if>
         
         <table>
             <tbody>
