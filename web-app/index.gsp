@@ -15,7 +15,7 @@
              <td class="toollink" width="120">
                 <a class="maintool" href="score/">
                     <img src="${createLinkTo(dir: 'images', file: 'scorecard-medium.png')}" height="65px" alt="Scores"/>
-                    <span class="title">Score</span>
+                    <span class="title">Scores</span>
                 </a>
             </td>
             <td class="toollink" width="120">

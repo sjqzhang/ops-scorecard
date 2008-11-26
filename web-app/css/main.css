@@ -171,7 +171,7 @@ table {
 tr {
     border: 0;
 }
-td, th { 
+td, th {
     font: 11px verdana, arial, helvetica, sans-serif;
     line-height: 12px;
     padding: 5px 6px;
@@ -321,7 +321,7 @@ th.desc a {
 }
 
 .topbar{
-    height:70px;
+    height:45px;
     margin:0 0 0 0;
     padding: 2px 2px 2px 10px;
     font-size: 10pt;
@@ -378,4 +378,46 @@ div.footerVersion span.desc{
 span.score {
     font-weight: bold;
     font-size: 12px;    
+}
+
+span.resourceName {
+    font-size: 14pt;
+}
+span.resourceDescription {
+    font-size: 11pt;
+}
+
+.barchart {
+    width:400px;
+}
+.barchart table {
+    margin: 0;
+    border: 0;    
+}
+.barchart .label {
+    width: 130px;
+    line-height: 10px;
+    padding: 1px;
+    text-align: right;
+    vertical-align: middle;
+    color: #666666;
+}
+.barchart .pct {
+    width: 30px;
+    line-height: 10px;
+    padding: 1px;
+    text-align: left;
+    vertical-align: middle;
+    color: #aaa;
+}
+.barchart td.fill {
+        background-color:#C4AA93;font:8pt Arial; padding:0;
+}
+.barchart td.area {
+    background-color:#f5eee6;font:8pt Arial; padding:0;     
+}
+.barchart a a:link, a:visited, a:hover {
+    color: #666;
+    font-weight: bold;
+    text-decoration: none;
 }
