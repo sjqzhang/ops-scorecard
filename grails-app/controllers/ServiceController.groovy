@@ -22,9 +22,17 @@ class ServiceController extends SecureController {
 
     def delete = {
         def service = Service.get( params.id )
+        def sname = service.name
         if(service) {
+            def processes = ServiceManagementProcess.findAllByService(service)
+            processes.each { process ->
+                def pname = process.name
+                process.delete()
+                log.info("Deleted process ${pname}")
+            }
             service.delete()
-            flash.message = "Deleted: '${params.id}'"
+            log.info("Deleted service: ${sname}")
+            flash.message = "Deleted: '${sname}'"
             redirect(action:list)
         }
         else {
