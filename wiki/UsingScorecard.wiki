@@ -45,4 +45,9 @@ You will notice that other information can be described as you go about defining
 The Inventory area of Scorecard is a basic CMDB  where you can define physical assets and release artifacts.
 Process receipts track when a process has been executed which is useful to record when a service management process has been performed.
 
+=Stay informed=
+
+Scorecard has a simple subscription feature which lets you receive emails containing your service scorecard. Click your login name in the top right of the Scorecard page, and press the "Edit" link in the Subscriptions box. Choose the service you want emails about and press "Add".
+
+
  
