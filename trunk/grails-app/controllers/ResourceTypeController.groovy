@@ -22,9 +22,10 @@ class ResourceTypeController extends SecureController {
 
     def delete = {
         def resourceType = ResourceType.get( params.id )
+        def name = resourceType.name
         if(resourceType) {
             resourceType.delete()
-            flash.message = "Deleted: '${params.name}'"
+            flash.message = "Deleted: '${name}'"
             redirect(action:list)
         }
         else {
@@ -73,7 +74,7 @@ class ResourceTypeController extends SecureController {
         def resourceType = new ResourceType(params)
         if(!resourceType.hasErrors() && resourceType.save()) {
             flash.message = "Created: '${resourceType.name}'"
-            redirect(action:list)
+            redirect(action:show,id:resourceType.id)
         }
         else {
             render(view:'create',model:[resourceType:resourceType])

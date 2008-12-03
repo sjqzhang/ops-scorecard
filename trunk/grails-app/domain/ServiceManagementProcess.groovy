@@ -8,7 +8,7 @@ class ServiceManagementProcess {
         automationLevel(inList: ['none', 'manual','semi', 'full'])
         automationTool(nullable:true)
         syscontrol(inList: ['open-loop', 'closed-loop'])
-        artifacts(nullable: true)
+        artifactType(nullable: true)
         notificationRecipients(nullable: true)
         implementor(nullable: true)
         service(nullable: true)
@@ -26,7 +26,9 @@ class ServiceManagementProcess {
     
     String syscontrol
 
-    static hasMany = [artifacts: ReleaseArtifact, notificationRecipients: User]
+    ResourceType artifactType
+
+    static hasMany = [notificationRecipients: User]
 
     Usergroup implementor
     Service service
