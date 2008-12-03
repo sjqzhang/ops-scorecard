@@ -51,9 +51,9 @@
                             <td>${fieldValue(bean: capabilityAudit, field: 'auditDate')}</td>
 
                             <td>
-                                <g:if test="${capabilityAudit.targetedService?.name}">
-                                    <g:link controller="service" action="show" id="${capabilityAudit.targetedService.id}">
-                                        ${capabilityAudit.targetedService.name}
+                                <g:if test="${capabilityAudit.service?.name}">
+                                    <g:link controller="service" action="show" id="${capabilityAudit.service.id}">
+                                        ${capabilityAudit.service.name}
                                     </g:link>
                                 </g:if>
                             </td>
@@ -68,8 +68,10 @@
         </div>
     </g:if>
     <g:else>
+      <div class="dialog">
         <h3>No capability audits matched the search criteria.</h3>
         <h5>Press the &quot;All Types&quot; link to the right to list any.</h5>
+      </div>
     </g:else>
 </div>
 <div class="sidebar">

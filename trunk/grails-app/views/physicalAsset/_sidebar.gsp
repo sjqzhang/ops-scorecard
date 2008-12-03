@@ -1,8 +1,7 @@
-<span class="menuButton"><g:link class="create" action="create">Add Asset</g:link></span>
-
-<g:set var="resourceTypes" value="${ResourceType?.list()}"/>
+<g:set var="resourceTypes" value="${ResourceType.findAllByMetatype('asset')}"/>
 
 <g:if test="${resourceTypes}">
+    <span class="menuButton"><g:link class="create" action="create">Add Asset</g:link></span>
 <table class="list" style="margin-top: 10px;">
     <tr>
         <td style="background-color: azure;">
@@ -13,7 +12,7 @@
     <tr>
         <td><g:link action="list" >All types</g:link></td>
     </tr>
-    <g:each var="type" in="${ResourceType.findAllByMetatype('asset')}">
+    <g:each var="type" in="${resourceTypes}">
         <tr>
             <td>
                 <g:link action="list" params="[resourceType: type.name]"> ${type.name}</g:link>
@@ -32,7 +31,7 @@
     <tr>
         <td>
             <p></p><i>No types defined</i>.</p>
-            <p><g:link controller="resourceType" action="create"><span class="controllink">Add a type</span></g:link></p>
+            <p><g:link controller="resourceType" action="create" params="[metatype:'asset']"><span class="controllink">Add a type</span></g:link></p>
         </td>
     </tr>
 </table>

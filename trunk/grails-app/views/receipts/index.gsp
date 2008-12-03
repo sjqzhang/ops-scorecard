@@ -10,7 +10,7 @@
         <tr>
             <td class="toollink" width="120">
 
-                <g:link class="maintool" controller="changeReceipt">
+                <g:link class="maintool" controller="processReceipt">
                     <img src="${createLinkTo(dir: 'images', file: 'receipt-medium.png')}" height="65px" alt="Receipt"/>
                     <span class="title">Change</span>
                 </g:link>

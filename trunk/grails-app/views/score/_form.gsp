@@ -3,7 +3,7 @@
         <div class="buttons">
             <span class="button"><input class="save" type="submit" value="Score"/></span>
         </div>
-        <div class="dialog">
+        <div>
             <table>
                 <tbody>
                     <tr class="prop">
@@ -13,7 +13,7 @@
                         </tr>
                     <tr>
                         <td valign="top" class="value ${hasErrors(bean: scorecard, field: 'startDate', 'errors')}">
-                            <g:datePicker name="startDate" value="${new Date()-7}" precision="day"></g:datePicker>
+                            <g:datePicker name="startDate" value="${new Date()-6}" precision="day"></g:datePicker>
                         </td>
                     </tr>
                     <tr class="prop">
@@ -23,7 +23,7 @@
                         </tr>
                     <tr>
                         <td valign="top" class="value ${hasErrors(bean: scorecard, field: 'endDate', 'errors')}">
-                            <g:datePicker name="endDate" value="${new Date()}" precision="day"></g:datePicker>
+                            <g:datePicker name="endDate" value="${new Date()+1}" precision="day"></g:datePicker>
                         </td>
                     </tr>
 
@@ -52,7 +52,7 @@
                     <tr>
                         <td valign="top">
                             <ul>
-                                <g:each in="['audit','process','activity']" var="i">
+                                <g:each in="['audit','process','activity','inventory']" var="i">
                                     <li style="margin-left:10px;text-align: left;float: left;list-style: none;">
                                         <g:checkBox name="cards" value="${i}"/> ${i}
                                     </li>

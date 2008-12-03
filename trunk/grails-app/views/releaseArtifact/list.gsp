@@ -11,7 +11,7 @@
         <div class="message">${flash.message}</div>
     </g:if>
     <g:if test="${releaseArtifactList}">
-        <div class="list">
+        <div class="dialog">
             <table>
                 <thead>
                     <tr>
@@ -49,7 +49,7 @@
                             <td>${fieldValue(bean: releaseArtifact, field: 'description')}</td>
 
                             <td>
-                                <g:link action="show" params="[id:releaseArtifact.type.id]">
+                                <g:link action="show" controller="resourceType" params="[id:releaseArtifact.type.id]">
                                     ${fieldValue(bean: releaseArtifact, field: 'type')}
                                 </g:link>
                             </td>
@@ -72,8 +72,10 @@
         </div>
     </g:if>
     <g:else>
+       <div class="dialog">
         <h3>There are no artifacts defined yet.</h3>
         <h5>Press the &quot;Add Artifact&quot; button to the right to create a new one.</h5>
+      </div>
     </g:else>
 </div>
 <div class="sidebar">

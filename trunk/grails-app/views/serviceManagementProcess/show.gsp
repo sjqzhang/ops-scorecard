@@ -49,12 +49,12 @@
                         <tr class="prop">
                             <td valign="top" class="name">Target Service:</td>
                             <td valign="top" class="value">
-                                <g:link controller="resource" action="show" id="${serviceManagementProcess?.targetResource?.id}">
-                                    <g:if test="serviceManagementProcess?.targetResource?.name">
-                                        ${serviceManagementProcess?.targetResource?.name}
+                                <g:link controller="resource" action="show" id="${serviceManagementProcess?.service?.id}">
+                                    <g:if test="serviceManagementProcess?.service?.name">
+                                        ${serviceManagementProcess?.service?.name}
                                     </g:if>
                                     <g:else>
-                                        ${serviceManagementProcess?.targetResource?.encodeAsHTML()}
+                                        ${serviceManagementProcess?.service?.encodeAsHTML()}
                                     </g:else>
                                 </g:link>
                             </td>
@@ -66,6 +66,14 @@
                             <td valign="top" class="value">${fieldValue(bean:serviceManagementProcess, field:'automationLevel')}</td>
 
                         </tr>
+
+                        <tr class="prop">
+                            <td valign="top" class="name">Automation Tool:</td>
+
+                            <td valign="top" class="value">${fieldValue(bean:serviceManagementProcess, field:'automationTool')}</td>
+
+                        </tr>
+
                         <tr class="prop">
                             <td valign="top" class="name">System Control:</td>
 

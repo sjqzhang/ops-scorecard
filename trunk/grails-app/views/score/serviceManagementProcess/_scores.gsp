@@ -8,7 +8,7 @@
                 <g:prettyScore format="numeric" score="${scores.syscontrol}"/>
             </td>
             <td width="15">
-                <g:prettyScore format="numeric" score="${scores.targetResource}"/>
+                <g:prettyScore format="numeric" score="${scores.service}"/>
             </td>
             <td width="15">
                 <g:prettyScore format="numeric" score="${scores.implementor}"/>

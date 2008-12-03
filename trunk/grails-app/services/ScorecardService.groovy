@@ -1,11 +1,22 @@
 import groovy.text.Template
 import groovy.text.SimpleTemplateEngine
 import org.springframework.context.*
+import org.springframework.beans.factory.InitializingBean
 
-class ScorecardService implements ApplicationContextAware {
+
+class ScorecardService implements ApplicationContextAware, InitializingBean {
     ApplicationContext applicationContext
+    InventoryService inventoryService
+    def grailsApplication
 
     boolean transactional = false
+
+    def appUrl
+
+    void afterPropertiesSet() {
+        this.appUrl   = grailsApplication.config.app.url
+    }
+
 
     // Returns a map of service metric scores
     // "audit", "process", "activity"
@@ -22,8 +33,12 @@ class ScorecardService implements ApplicationContextAware {
                     service.name, service.type, null)
         }
         if (includesList.contains('activity')) {
-            serviceScoreMap['activity'] = listChangeReceiptScorecards(scorecardParams)
+            serviceScoreMap['activity'] = listProcessReceiptScorecards(scorecardParams)
         }
+        if (includesList.contains('inventory')) {
+            serviceScoreMap['inventory'] = listInventoryScorecards(scorecardParams)
+        }
+
         return serviceScoreMap
     }
 
@@ -38,7 +53,7 @@ class ScorecardService implements ApplicationContextAware {
         def templateFileName = "service-scorecard-report.gtpl"
         File tplFile = applicationContext.getResource(File.separator + "WEB-INF" + File.separator
                 + templateFileName).getFile();
-        def binding = ["service":service, "serviceScoreMap": serviceScoreMap]
+        def binding = ["service":service, "serviceScoreMap": serviceScoreMap, "appUrl":this.appUrl]
 
         def engine = new SimpleTemplateEngine()
         def template = engine.createTemplate(tplFile).make(binding)
@@ -59,13 +74,16 @@ class ScorecardService implements ApplicationContextAware {
         def services = Service.findAllWhere(querymap)
         services.each {service ->
             def scorecards = []
-            def matches = CapabilityAudit.findAllByAuditDateBetweenAndTargetedService(
+            def matches = CapabilityAudit.findAllByAuditDateBetweenAndService(
                     params.startDate, params.endDate, service)
+            println("DEBUG: listAuditScorecards: number matching=${matches.size()}")
             matches.each {
                 def scores = it.calculateScores()
                 scorecards << new AuditScorecard(service: service, audit: it, scores: scores)
+                println("DEBUG: Added '${it.title}' audit scorecard for service: ${service.name}")    
             }
             results[service.id] = scorecards
+
         }
 
         return results
@@ -73,25 +91,25 @@ class ScorecardService implements ApplicationContextAware {
 
     //------Change Receipts ---------------------------------------------------
     //
-    def listChangeReceiptScorecards(ScorecardParams params) {
+    def listProcessReceiptScorecards(ScorecardParams params) {
         def results = []
         def matches = []
         if (params?.service) {
-            println("DEBUG: ScorecardService#listChangeReceiptScorecards: service=${params.service}")
+            println("DEBUG: ScorecardService#listProcessReceiptScorecards: service=${params.service}")
 
-            matches = ChangeReceipt.findAllByAuditDateBetweenAndTargetedService(
+            matches = ProcessReceipt.findAllByDateBetweenAndService(
                     params.startDate, params.endDate, params.service)
         } else {
-            matches = ChangeReceipt.findAllByAuditDateBetween(
+            matches = ProcessReceipt.findAllByDateBetween(
                     params.startDate, params.endDate)
-            println("DEBUG: ScorecardService#listChangeReceiptScorecards: NO SERVICE")
+            println("DEBUG: ScorecardService#listProcessReceiptScorecards: NO SERVICE")
 
         }
-        println("DEBUG: ScorecardService#listChangeReceiptScorecards: matches.size()=${matches.size()}")
+        println("DEBUG: ScorecardService#listProcessReceiptScorecards: matches.size()=${matches.size()}")
 
         matches.each {
             def scores = it.calculateScores()
-            results << new ChangeReceiptScorecard(receipt: it, scores: scores)
+            results << new ProcessReceiptScorecard(receipt: it, scores: scores)
         }
         return results
     }
@@ -114,7 +132,7 @@ class ScorecardService implements ApplicationContextAware {
             // Iterate over the user chosen process categories
             // and see if there is a process for the service
             categories.each {category ->
-                def process = ServiceManagementProcess.findWhere('category': category, 'targetResource': service)
+                def process = ServiceManagementProcess.findWhere('category': category, 'service': service)
                 // if a process is defined calculate its scores
                 def scores = [:]
                 if (!process) {
@@ -130,6 +148,15 @@ class ScorecardService implements ApplicationContextAware {
         return results
     }
 
+    def  listInventoryScorecards(ScorecardParams scorecardParams) {
+        def scorecards = []
+        inventoryService.listAdded(scorecardParams.startDate, scorecardParams.endDate).each {
+            def scores = it.calculateScores()
+            scorecards << new InventoryScorecard(resource: it, scores: scores)
+        }
+        return scorecards
+    }
+
 }
 
 class BaseScorecard {
@@ -141,14 +168,17 @@ class AuditScorecard extends BaseScorecard {
     CapabilityAudit audit
 }
 
-class ChangeReceiptScorecard extends BaseScorecard {
-    ChangeReceipt receipt
+class ProcessReceiptScorecard extends BaseScorecard {
+    ProcessReceipt receipt
 }
 
 class ProcessScorecard extends BaseScorecard {
     ServiceManagementProcess process
 }
 
+class InventoryScorecard extends BaseScorecard {
+    Resource resource
+}
 
 class ScorecardParams {
     Date startDate

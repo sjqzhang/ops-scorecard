@@ -13,7 +13,7 @@
             <div class="message">${flash.message}</div>
             </g:if>
             <g:if test="${serviceManagementProcessList}">
-            <div class="list">
+            <div class="dialog">
                 <table>
                     <thead>
                         <tr>
@@ -57,9 +57,9 @@
                         
                         
                             <td>
-                                <g:if test="${serviceManagementProcess?.targetResource}">
-                                    <g:link action="show" id="${serviceManagementProcess.targetResource.id}">
-                                    ${serviceManagementProcess.targetResource}
+                                <g:if test="${serviceManagementProcess?.service}">
+                                    <g:link action="show" controller="service" id="${serviceManagementProcess.service.id}">
+                                    ${serviceManagementProcess.service}
                                     </g:link>
                                 </g:if>
                             </td>
@@ -74,8 +74,10 @@
             </div>
             </g:if>
             <g:else>
+      <div class="dialog">
                 <h3>There are no processes defined yet.</h3>
                 <h5>Press the &quot;Add Process&quot; button to the right to create a new one.</h5>
+            </div>
             </g:else>
         </div>
      <div class="sidebar">

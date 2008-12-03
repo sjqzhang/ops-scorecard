@@ -73,6 +73,7 @@ class ServiceManagementProcessController extends SecureController {
 
     def save = {
         def serviceManagementProcess = new ServiceManagementProcess(params)
+        serviceManagementProcess.setCreateDate(new Date())
         if (!serviceManagementProcess.hasErrors() && serviceManagementProcess.save()) {
             flash.message = "Created: '${serviceManagementProcess.name}'"
             redirect(action: list)

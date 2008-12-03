@@ -18,7 +18,7 @@
             </g:hasErrors>
             <g:set var="resourceTypes" value="${ResourceType.findAllByMetatype('service')}"/>
             <g:if test="${resourceTypes}">
-            <g:form action="save" method="post" >
+            <g:form action="save" method="post" >                                
                 <div class="buttons">
                     <span class="button"><input class="save" type="submit" value="Save" /></span>
                     <span class="button"><g:actionSubmit class="list" value="List" /></span>                                        
@@ -41,7 +41,10 @@
                                     <label for="type">Type:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:service,field:'type','errors')}">
-                                    <g:select optionKey="id" from="${resourceTypes}" name="type.id" value="${service?.type?.id}" ></g:select>
+                                    <g:select id="typeselect" optionKey="id" from="${resourceTypes}" name="type.id" value="${service?.type?.id}" ></g:select>
+
+                                    <span id="addlink" class="controllink" onclick="$(newTypeForm).show();$(addlink).hide()">Add a type</span>
+                                  
                                 </td>
                             </tr> 
                         
@@ -195,6 +198,8 @@
                 </div>
             </g:else>
         </div>
-        
+ <div class="sidebar">
+            <g:render template="sidebar"/>
+        </div>        
     </body>
 </html>

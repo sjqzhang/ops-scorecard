@@ -3,6 +3,7 @@ class ResourceType {
 
     static constraints = {
 		name(unique:true,length:3..30)
+        description(nullable:true)
         metatype(inList:['service','process','artifact','asset'])
     }
 	String name

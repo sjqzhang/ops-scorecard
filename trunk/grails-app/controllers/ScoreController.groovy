@@ -99,19 +99,19 @@ class ScoreController extends SecureController {
     //----------- Change Receipt ----------------------------------------------
     //
     def changeCreate = {
-        render(template: 'changeReceipt/create', model: [changeReceiptScorecard: new ChangeReceiptScorecard()])
+        render(template: 'processReceipt/create', model: [processReceiptScorecard: new ProcessReceiptScorecard()])
     }
 
     def changeSummary = {
         def today = new Date()
         def scorecardParams = new ScorecardParams(startDate: today - 7, endDate: today, service: null)
-        def results = scorecardService.listChangeReceiptScorecards(scorecardParams)
-        render(template: 'changeReceipt/list', model: [scorecardParams: scorecardParams, changeReceiptScorecardList: results])
+        def results = scorecardService.listProcessReceiptScorecards(scorecardParams)
+        render(template: 'processReceipt/list', model: [scorecardParams: scorecardParams, processReceiptScorecardList: results])
     }
 
     def changeList = {ScorecardParams scorecardParams ->
-        def results = scorecardService.listChangeReceiptScorecards(scorecardParams)
-        render(template: 'changeReceipt/list', model: [scorecardParams: scorecardParams, changeReceiptScorecardList: results])
+        def results = scorecardService.listProcessReceiptScorecards(scorecardParams)
+        render(template: 'processReceipt/list', model: [scorecardParams: scorecardParams, processReceiptScorecardList: results])
     }
 
 }

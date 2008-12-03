@@ -8,16 +8,16 @@
         </td>
     </tr>
     <tr>
-        <td><g:link controller="service" action="list">Service</g:link></td>
+        <td><g:link controller="resourceType" action="search">Service</g:link></td>
     </tr>
     <tr>
-        <td><g:link controller="releaseArtifact" action="list">Release Artifact</g:link></td>
+        <td><g:link controller="resourceType" action="search">Release Artifact</g:link></td>
     </tr>
     <tr>
-        <td><g:link controller="physicalAsset" action="list">Physical Asset</g:link></td>
+        <td><g:link controller="resourceType" action="search">Physical Asset</g:link></td>
     </tr>
     <tr>
-        <td><g:link controller="serviceManagementProcess" action="list">Process</g:link></td>
+        <td><g:link controller="resourceType" action="search">Process</g:link></td>
     </tr>
 
 </table>

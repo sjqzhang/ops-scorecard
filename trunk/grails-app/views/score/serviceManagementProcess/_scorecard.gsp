@@ -1,5 +1,8 @@
-<span style="font-size:12pt;font-weight:bold;">Management Process</span>
-
+<span style="font-size:12pt;font-weight:bold;">Process Coverage</span>
+<p>
+Are processes formalized and defined?
+</p>
+<g:if test="${processScorecardMap}">
 <g:each in="${processScorecardMap.keySet()}" status="i" var="serviceId">
     <g:set var="scorecards" value="${processScorecardMap[serviceId]}"/>
     <g:set var="service" value="${Service.get(serviceId)}"/>
@@ -13,7 +16,7 @@
     %>
     <g:if test="${scorecards.size()>0}">
 
-        <g:render template="/common/barchart" model="[label:'Process quality', position:cumAvg]"/>
+        <g:render template="/common/barchart" model="[label:'Overall average', position:cumAvg]"/>
 
         <h4>By process category</h4>
 
@@ -48,3 +51,4 @@
     </g:else>
 
 </g:each>
+</g:if>

@@ -21,7 +21,7 @@
         <g:else>
             <div class="dialog">
                 <h3>No scorecard configured</h3>
-                <p>Specify the form parameters and then press the &quot;Score&quot; button to the right.</p>
+                <p>Specify the form parameters and then press the &quot;Score&quot; button.</p>
             </div>
         </g:else>
 

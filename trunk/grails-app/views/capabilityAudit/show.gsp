@@ -53,18 +53,12 @@
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Targeted Service:</td>
+                    <td valign="top" class="name"> Service:</td>
 
-                    <td valign="top" class="value"><g:link controller="service" action="show" id="${capabilityAudit?.targetedService?.id}">${capabilityAudit?.targetedService?.encodeAsHTML()}</g:link></td>
-
-                </tr>
-
-                <tr class="prop">
-                    <td valign="top" class="name">Historical Success Rating:</td>
-
-                    <td valign="top" class="value">${fieldValue(bean: capabilityAudit, field: 'historicalSuccessRating')}</td>
+                    <td valign="top" class="value"><g:link controller="service" action="show" id="${capabilityAudit?.service?.id}">${capabilityAudit?.service?.encodeAsHTML()}</g:link></td>
 
                 </tr>
+
 
                 <tr class="prop">
                     <td valign="top" class="name">Change Coordinator:</td>
@@ -80,19 +74,7 @@
 
                 </tr>
 
-                <tr class="prop">
-                    <td valign="top" class="name">Handoff Process:</td>
 
-                    <td valign="top" class="value"><g:link controller="serviceManagementProcess" action="show" id="${capabilityAudit?.handoffProcess?.id}">${capabilityAudit?.handoffProcess?.encodeAsHTML()}</g:link></td>
-
-                </tr>
-
-                <tr class="prop">
-                    <td valign="top" class="name">Software Acceptance Process:</td>
-
-                    <td valign="top" class="value"><g:link controller="serviceManagementProcess" action="show" id="${capabilityAudit?.softwareAcceptanceProcess?.id}">${capabilityAudit?.softwareAcceptanceProcess?.encodeAsHTML()}</g:link></td>
-
-                </tr>
 
                 <tr class="prop">
                     <td valign="top" class="name">Ticket Service:</td>
@@ -101,61 +83,7 @@
 
                 </tr>
 
-                <tr class="prop">
-                    <td valign="top" class="name">Verifying Business Processes:</td>
 
-                    <td valign="top" class="value"><g:link controller="serviceManagementProcess" action="show" id="${capabilityAudit?.verifyingBusinessProcesses?.id}">${capabilityAudit?.verifyingBusinessProcesses?.encodeAsHTML()}</g:link></td>
-
-                </tr>
-
-                <tr class="prop">
-                    <td valign="top" class="name">Implementation Process:</td>
-
-                    <td valign="top" class="value"><g:link controller="serviceManagementProcess" action="show" id="${capabilityAudit?.implementationProcess?.id}">${capabilityAudit?.implementationProcess?.encodeAsHTML()}</g:link></td>
-
-                </tr>
-
-                <tr class="prop">
-                    <td valign="top" class="name">Escalation Process:</td>
-
-                    <td valign="top" class="value"><g:link controller="serviceManagementProcess" action="show" id="${capabilityAudit?.escalationProcess?.id}">${capabilityAudit?.escalationProcess?.encodeAsHTML()}</g:link></td>
-
-                </tr>
-
-                <tr class="prop">
-                    <td valign="top" class="name">Backout Process:</td>
-
-                    <td valign="top" class="value"><g:link controller="serviceManagementProcess" action="show" id="${capabilityAudit?.backoutProcess?.id}">${capabilityAudit?.backoutProcess?.encodeAsHTML()}</g:link></td>
-
-                </tr>
-
-                <tr class="prop">
-                    <td valign="top" class="name">Build Process:</td>
-
-                    <td valign="top" class="value"><g:link controller="serviceManagementProcess" action="show" id="${capabilityAudit?.buildProcess?.id}">${capabilityAudit?.buildProcess?.encodeAsHTML()}</g:link></td>
-
-                </tr>
-
-                <tr class="prop">
-                    <td valign="top" class="name">Change Detection Process:</td>
-
-                    <td valign="top" class="value"><g:link controller="serviceManagementProcess" action="show" id="${capabilityAudit?.changeDetectionProcess?.id}">${capabilityAudit?.changeDetectionProcess?.encodeAsHTML()}</g:link></td>
-
-                </tr>
-
-                <tr class="prop">
-                    <td valign="top" class="name">Release Engineers:</td>
-
-                    <td valign="top" class="value"><g:link controller="usergroup" action="show" id="${capabilityAudit?.releaseEngineers?.id}">${capabilityAudit?.releaseEngineers?.encodeAsHTML()}</g:link></td>
-
-                </tr>
-
-                <tr class="prop">
-                    <td valign="top" class="name">Release Artifact:</td>
-
-                    <td valign="top" class="value"><g:link controller="releaseArtifact" action="show" id="${capabilityAudit?.releaseArtifact?.id}">${capabilityAudit?.releaseArtifact?.encodeAsHTML()}</g:link></td>
-
-                </tr>
 
                 <tr class="prop">
                     <td valign="top" class="name">Can Assess Change Impact Level:</td>
@@ -261,18 +189,7 @@
 
                 </tr>
 
-                <tr class="prop">
-                    <td valign="top" class="name">Impacted Resources:</td>
 
-                    <td valign="top" style="text-align:left;" class="value">
-                        <ul>
-                            <g:each var="i" in="${capabilityAudit.impactedResources}">
-                                <li><g:link controller="resource" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></li>
-                            </g:each>
-                        </ul>
-                    </td>
-
-                </tr>
 
                 <tr class="prop">
                     <td valign="top" class="name">Is Build Easier Than Repair:</td>
@@ -281,19 +198,7 @@
 
                 </tr>
 
-                <tr class="prop">
-                    <td valign="top" class="name">Number Times Implementation Process Run:</td>
-
-                    <td valign="top" class="value">${fieldValue(bean: capabilityAudit, field: 'numberTimesImplementationProcessRun')}</td>
-
-                </tr>
-
-                <tr class="prop">
-                    <td valign="top" class="name">Process Deviation Percentage:</td>
-
-                    <td valign="top" class="value">${fieldValue(bean: capabilityAudit, field: 'processDeviationPercentage')}</td>
-
-                </tr>
+             
 
                 <tr class="prop">
                     <td valign="top" class="name">Security Reviewers:</td>

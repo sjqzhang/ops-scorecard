@@ -140,7 +140,60 @@
                             <td valign="top" class="value">${fieldValue(bean:service, field:'isRebuildable')}</td>
                             
                         </tr>
-                    
+
+                        <tr>
+                            <td>Processes:</td>
+                            <td>
+                                <g:set var="processes" value="${ServiceManagementProcess.findAllByService(service)}"/>
+                                <g:if test="${processes}">
+
+                                <ul>
+                                <g:each in="${processes}" var="process">
+                                   <li>
+                                       <g:link action="show" controller="serviceManagementProcess"
+                                               title="${process.category}"
+                                       id="${process.id}">${process.name} </g:link>
+                                       </li>
+                                </g:each>
+                                </ul>
+                                    </g:if>
+                                <g:else>
+                                    <i>None</i>                                    
+                                </g:else>
+                                <div style="margin-top:10px;">
+                                <span class="menuButton"><g:link class="create" action="create" controller="serviceManagementProcess"
+                                    params="['targetResource.id':service.id]">
+                                    Create one</g:link></span>
+                                </div>
+                            </td>
+                        </tr>
+
+                         <tr>
+                            <td>Audits:</td>
+                            <td>
+                                <g:set var="audits" value="${CapabilityAudit.findAllByService(service)}"/>
+                                <g:if test="${audits}">
+
+                                <ul>
+                                <g:each in="${audits}" var="audit">
+                                   <li>
+                                       <g:link action="show" controller="capabilityAudit"
+                                               title="${audit.auditDate}"
+                                       id="${audit.id}">${audit.title} </g:link>
+                                       </li>
+                                </g:each>
+                                </ul>
+                                    </g:if>
+                                <g:else>
+                                    <i>None</i>
+                                </g:else>
+                                <div style="margin-top:10px;">
+                                <span class="menuButton"><g:link class="create" action="create" controller="capabilityAudit"
+                                    params="['targetedService.id':service.id]">
+                                    Create one</g:link></span>
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

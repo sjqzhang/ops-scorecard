@@ -71,6 +71,7 @@ class PhysicalAssetController extends SecureController {
 
     def save = {
         def physicalAsset = new PhysicalAsset(params)
+        physicalAsset.setCreateDate(new Date())
         if(!physicalAsset.hasErrors() && physicalAsset.save()) {
             flash.message = "Created: '${physicalAsset.name}'"
             redirect(action:list)

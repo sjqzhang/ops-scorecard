@@ -71,6 +71,7 @@ class ServiceController extends SecureController {
 
     def save = {
         def service = new Service(params)
+        service.setCreateDate(new Date())        
         if(!service.hasErrors() && service.save()) {
             flash.message = "Created: '${service.name}'"
             redirect(action:list)
@@ -78,5 +79,23 @@ class ServiceController extends SecureController {
         else {
             render(view:'create',model:[service:service])
         }
+    }
+
+    def addServiceSelection = {
+        println("DEBUG: params=${params}")
+        def service
+        if (params.name) {
+           service = Service.findByName(params.name)
+        } else {
+            service = new Service(params)
+            service.setCreateDate(new Date())
+            if (service.hasErrors || !service.save()) {
+                render(view:'create',model:[service:service])
+            }
+        }
+
+        render {
+            option(value:service.id, "${service.name}")
+        }                                
     }
 }

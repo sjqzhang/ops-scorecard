@@ -48,8 +48,10 @@
             </div>
         </g:if>
             <g:else>
+      <div class="dialog">
                 <h3>There are no teams that matched the search criteria.</h3>
                 <h5>Press the &quot;All functions&quot; link to the right to list any available ones.</h5>
+         </div>
             </g:else>
         </div>
       <div class="sidebar">

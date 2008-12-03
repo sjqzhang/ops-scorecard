@@ -88,6 +88,7 @@ class UsergroupController extends SecureController {
 
     def save = {
         def usergroup = new Usergroup(params)
+        usergroup.setCreateDate(new Date())
         if (!usergroup.hasErrors() && usergroup.save()) {
             flash.message = "Created ${usergroup.name} "
             redirect(action: list)

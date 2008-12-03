@@ -5,13 +5,13 @@
     <title>Audit: CapabilityAudit List</title>
 </head>
 <body>
-<div class="body">
-    <g:if test="${flash.message}">
-        <div class="message">${flash.message}</div>
-    </g:if>
-    <g:if test="${capabilityAuditList}">
 
-        <div class="list">
+<g:if test="${capabilityAuditList}">
+    <div class="body">
+        <g:if test="${flash.message}">
+            <div class="message">${flash.message}</div>
+        </g:if>
+        <div class="dialog">
             <table>
                 <thead>
                     <tr>
@@ -20,12 +20,10 @@
 
                         <g:sortableColumn property="title" title="Title"/>
 
-                        <th>Auditor</th>
+                        <g:sortableColumn property="auditor" title="Auditor"/>
 
                         <g:sortableColumn property="auditDate" title="Audit Date"/>
-
                         <th>Targeted Service</th>
-
                     </tr>
                 </thead>
                 <tbody>
@@ -46,14 +44,18 @@
                                 </g:link>
                             </td>
 
-                            <td>${fieldValue(bean: capabilityAudit, field: 'auditor')}</td>
+                            <td>
+                                <g:link controller="user" action="show" id="${capabilityAudit.auditor.id}">
+                                    ${fieldValue(bean: capabilityAudit, field: 'auditor')}
+                                </g:link>
+                            </td>
 
                             <td>${fieldValue(bean: capabilityAudit, field: 'auditDate')}</td>
 
                             <td>
-                                <g:if test="${capabilityAudit.targetedService?.name}">
-                                    <g:link controller="service" action="show" id="${capabilityAudit.targetedService.id}">
-                                        ${capabilityAudit.targetedService.name}
+                                <g:if test="${capabilityAudit.service?.name}">
+                                    <g:link controller="service" action="show" id="${capabilityAudit.service.id}">
+                                        ${capabilityAudit.service.name}
                                     </g:link>
                                 </g:if>
                             </td>
@@ -66,14 +68,33 @@
         <div class="paginateButtons">
             <g:paginate total="${CapabilityAudit.count()}"/>
         </div>
+    </div>
+</g:if>
+<g:else>
+    <g:if test="${Service.count()>0}">
+        <div class="body">
+            <div class="dialog">
+                <h3>There are no capability audits defined yet.</h3>
+                <h5>Press the &quot;Create Audit&quot; button to the right to create a new one.</h5>
+            </div>
+        </div>
+        <div class="sidebar">
+            <g:render template="sidebar"/>
+        </div>
     </g:if>
     <g:else>
-        <h3>There are no capability audits defined yet.</h3>
-        <h5>Press the &quot;Create Capability Audit&quot; button to the right to create a new one.</h5>
+        <div class="body">
+            <div class="dialog">
+                <h3>There are no services defined yet.</h3>
+                <h5>Press the &quot;Create Service&quot; button to the right to create a new one.</h5>
+            </div>
+
+        </div>
+        <div class="sidebar">
+            <span class="menuButton"><g:link class="create" controller="service" action="create">Create Service</g:link></span>
+        </div>
     </g:else>
-</div>
-<div class="sidebar">
-    <g:render template="sidebar"/>
-</div>
+</g:else>
+
 </body>
 </html>

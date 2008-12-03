@@ -2,36 +2,40 @@ class ServiceManagementProcess {
     static constraints = {
         name(blank: false)
         description(blank: false)
+        createDate(nullable:false)
         category(inList: ['acceptance', 'build', 'detective', 'escalation',
-                'implementation', 'release', 'deployment', 'verification'])
+                'implementation', 'release', 'deployment','monitoring', 'verification'])
         automationLevel(inList: ['none', 'manual','semi', 'full'])
         automationTool(nullable:true)
         syscontrol(inList: ['open-loop', 'closed-loop'])
         artifacts(nullable: true)
         notificationRecipients(nullable: true)
         implementor(nullable: true)
-        targetResource(nullable: true)
+        service(nullable: true)
         recipient(nullable: true)
         procedure(nullable: true)
+        managers(nullable:true)
     }
 
     String name
     String description
+    Date createDate
     String category
     String automationLevel
     String automationTool
     
     String syscontrol
 
-    static belongsTo = Service
     static hasMany = [artifacts: ReleaseArtifact, notificationRecipients: User]
 
     Usergroup implementor
-    Service targetResource
+    Service service
 
     String procedure
 
     Usergroup recipient
+
+    Usergroup managers
 
 
     String toString() {return name}
@@ -39,10 +43,12 @@ class ServiceManagementProcess {
     static transients = ['calculateScores','zerodScores']
 
     static Map zerodScores() {
-        return ['automationLevel': 0, 'syscontrol': 0, 'targetResource': 0,
+        return ['automationLevel': 0, 'syscontrol': 0, 'service': 0,
                 'implementor': 0, 'receipient': 0, 'cumulative': 0]
     }
 
+    static metrics = ['effectiveness','reliability','deviation','impact','success']
+    
     def Map calculateScores() {
         def scores = zerodScores()
         switch (automationLevel) {
@@ -68,8 +74,8 @@ class ServiceManagementProcess {
                  break
         }
 
-        if (targetResource) {
-            scores['targetResource'] = 100
+        if (service) {
+            scores['service'] = 100
         }
         if (implementor) {
             scores['implementor'] = 100
@@ -86,9 +92,9 @@ class ServiceManagementProcess {
             cumulative = (scoreTotal/scores.size()).intValue()
         }
                         
-        println("DEBUG: values=${scores.values}, scoreTotal=${scoreTotal}")
+        //println("DEBUG: values=${scores.values}, scoreTotal=${scoreTotal}")
         scores['cumulative'] = (scoreTotal/scores.size()).intValue()
-        println("DEBUG: cumulative=${scores['cumulative']}")
+        //println("DEBUG: cumulative=${scores['cumulative']}")
         return scores
     }
-}
+}     

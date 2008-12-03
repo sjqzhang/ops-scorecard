@@ -72,8 +72,10 @@
             </div>
             </g:if>
             <g:else>
+      <div class="dialog">
                 <h3>No artifacts matched the search criteria.</h3>
                 <h5>Press the &quot;All&quot; link to the right to list existing artifacts.</h5>
+          </div>
             </g:else>
             </div>
     <div class="sidebar">

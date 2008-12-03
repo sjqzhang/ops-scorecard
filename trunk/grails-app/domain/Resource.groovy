@@ -7,7 +7,8 @@ class Resource {
     static constraints = {
         name(blank:false)
         type(blank:false)
-        description(nullable:true)
+        description(blank:false)
+        createDate(nullable:false)
         status(inList:['Installed','Ordered','Registered','Accepted','Development',
                 'Testing','Under change','DSL','DHL','Archived','Obsolete','Missing','Stolen'])
         function(nullable:true)
@@ -23,8 +24,9 @@ class Resource {
     String name
 	ResourceType type
 	String description
-	
-	String function
+    Date createDate
+
+    String function
 	User ownerResponsible
 	Date dateAcquired
 	Date nextMaintenanceWindow
@@ -40,5 +42,14 @@ class Resource {
 
     URL ciUri
 
-    String toString() {return name}        
+    String toString() {return name}
+
+    static transients = ['calculateScores']
+
+    def Map calculateScores() {
+        def scores = [:]
+        scores['cumulative'] = 100
+        return scores
+    }
+
 }
