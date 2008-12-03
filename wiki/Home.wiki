@@ -18,8 +18,11 @@ set your GRAILS_HOME and include its bin dir in your PATH
 
 svn checkout http://ops-scorecard.googlecode.com/svn/trunk scorecard
 
-3) Run the application
+3) Start the application
 
 cd scorecard
 
-grails -Dserver.port=9090 run-app
+grails -Dscorecard.config.location=`pwd`/grails-app/conf/scorecard-config.properties -Dserver.port=9090 run-app
+
+4) Use it
+See the UsingScorecard page
