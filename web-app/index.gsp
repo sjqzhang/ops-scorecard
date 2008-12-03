@@ -37,7 +37,7 @@
                 </g:link>
             </td>
             <td class="toollink" width="120">
-                <g:link class="maintool" controller="changeReceipt">
+                <g:link class="maintool" controller="processReceipt">
                     <img src="${createLinkTo(dir: 'images', file: 'icon-med-receipts.png')}" height="65px" alt="Receipts"/>
                     <span class="title">Receipts</span>
 

@@ -248,6 +248,9 @@ th.desc a {
 
 /* DIALOG */
 
+div .dialog {
+    width:600px;
+}
 .dialog table {
     padding: 5px 0;
 }
