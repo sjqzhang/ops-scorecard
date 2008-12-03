@@ -1,39 +1,27 @@
 class CapabilityAudit {
 
-    static hasMany = [stakeholders: User, changeReviewers: User, securityReviewers: User, impactedResources: Resource]
-    static optionals = ['ticketService', 'hasWorstCaseOutcome', 'hasWorstCaseOutageDuration',
-            'changeOwner', 'changeCoordinator']
+    static hasMany = [stakeholders: User, changeReviewers: User, securityReviewers: User,
+           scorecards: ServiceManagementProcessScorecard
+    ]
+  
     static constraints = {
         title(blank: false)
         auditor(blank: false)
         auditDate(blank: false)
-        targetedService(nullable:false, blank: false)
-        historicalSuccessRating(inList: ['1', '2', '3', '4', '5'])
+        service(nullable:false)
         changeCoordinator(nullable: true)
         changeOwner(nullable: true)
-        handoffProcess(nullable: true)
-        softwareAcceptanceProcess(nullable: true)
-        targetedService(nullable: true)
         ticketService(nullable: true)
-        verifyingBusinessProcesses(nullable: true)
-        implementationProcess(nullable: true)
-        escalationProcess(nullable: true)
-        backoutProcess(nullable: true)
-        buildProcess(nullable: true)
-        changeDetectionProcess(nullable: true)
-        releaseEngineers(nullable: true)
-        releaseArtifact(nullable: true)
-        numberTimesImplementationProcessRun(nullable: true)
-        processDeviationPercentage(nullable: true)
+        meanTimeToRepair(nullable:true)
+        scorecards(nullable:true)
     }
 
     // basic info
     String title
     Date auditDate
     User auditor
-    Service targetedService
+    Service service
 
-    // control questions (phase 1)
     User changeOwner
     User changeCoordinator
     URL ticketService
@@ -47,27 +35,11 @@ class CapabilityAudit {
     boolean hasPlannedStart
     boolean hasPlannedEnd
     boolean hasPlannedExpectedBenefit
-    String historicalSuccessRating
+    String meanTimeToRepair
     boolean hasWorstCaseOutcome
     boolean hasWorstCaseOutageDuration
-    Integer processDeviationPercentage
-    Integer numberTimesImplementationProcessRun
-
-    // process and inventory questions (phase 2)
-    ServiceManagementProcess verifyingBusinessProcesses
-    ServiceManagementProcess implementationProcess
-    ServiceManagementProcess escalationProcess
-    ServiceManagementProcess backoutProcess
-    ServiceManagementProcess changeDetectionProcess
-
-    // repeatability and repository questions (phase 3)
-    Usergroup releaseEngineers
-    ServiceManagementProcess buildProcess
-    ServiceManagementProcess handoffProcess
-    ServiceManagementProcess softwareAcceptanceProcess
     boolean isBuildEasierThanRepair
     boolean hasBeenPatched
-    ReleaseArtifact releaseArtifact
 
     String toString() {return title}
 
@@ -81,10 +53,8 @@ class CapabilityAudit {
             'hasSuccessCriteria', 'hasNonActionConsequence', 'hasPlannedStart',
             'hasPlannedEnd', 'hasPlannedExpectedBenefit', 'hasWorstCaseOutcome',
             'hasWorstCaseOutageDuration']
-    static process_fields = ['targetedService', 'ticketService', 'verifyingBusinessProcesses',
-            'implementationProcess', 'escalationProcess', 'backoutProcess', 'changeDetectionProcess']
-    static repeatability_fields = ['releaseEngineers', 'buildProcess', 'softwareAcceptanceProcess',
-            'isBuildEasierThanRepair', 'hasBeenPatched', 'releaseArtifact']
+    static process_fields = ['service', 'ticketService']
+    static repeatability_fields = [ 'isBuildEasierThanRepair', 'hasBeenPatched']
 
 
     def Map calculateScores() {

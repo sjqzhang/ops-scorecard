@@ -12,7 +12,7 @@
             <div class="message">${flash.message}</div>
             </g:if>
             <g:if test="${physicalAssetList}">
-            <div class="list">
+            <div class="dialog">
                 <table>
                     <thead>
                         <tr>
@@ -66,8 +66,10 @@
             </div>        
       </g:if>
       <g:else>
+      <div class="dialog">
                 <h3>There are no assets defined yet.</h3>
                 <h5>Press the &quot;Add Asset&quot; button to the right to create a new one.</h5>
+      </div>
       </g:else>
         </div>
         <div class="sidebar">

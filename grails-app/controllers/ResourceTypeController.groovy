@@ -79,4 +79,20 @@ class ResourceTypeController extends SecureController {
             render(view:'create',model:[resourceType:resourceType])
         }
     }
+
+
+    // basically the same as the save closure property except it returns a simple view
+    // and is filtered by the specified metatype
+    def addType = {
+        println("DEBUG: ResourceTypeController#save: params=${params}")
+
+        def resourceType = new ResourceType(params)
+        if(!resourceType.hasErrors() && resourceType.save()) {
+            flash.message = "Created: '${resourceType.name}'"
+        }
+        render(template:"resourceType",
+                var:"resourceType",
+                collection:ResourceType.findAllByMetatype(params.metatype))
+    }
+
 }

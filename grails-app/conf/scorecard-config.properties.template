@@ -1,0 +1,7 @@
+# Url to the scorecard webapp (eg, http://localhost:9090/scorecard)
+app.url=http://localhost:9090/scorecard 
+email.from=user@domain
+email.server=smtp
+email.username=
+email.password=
+subscription.cronExpression=0 6 * ? * *

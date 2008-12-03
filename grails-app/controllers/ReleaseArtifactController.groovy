@@ -71,6 +71,7 @@ class ReleaseArtifactController  extends SecureController {
 
     def save = {
         def releaseArtifact = new ReleaseArtifact(params)
+        releaseArtifact.setCreateDate(new Date())
         if(!releaseArtifact.hasErrors() && releaseArtifact.save()) {
             flash.message = "Created: '${releaseArtifact.name}'"
             redirect(action:list)

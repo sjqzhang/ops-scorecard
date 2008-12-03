@@ -18,7 +18,7 @@
 
                     <g:if test="${scorecards.size()>0}">
                         <!-- the chart -->
-                        <g:render template="capabilityAudit/chart" model="[scorecards:scorecards]"/>
+                        <g:render template="capabilityAudit/chart" model="[id:serviceId, scorecards:scorecards]"/>
                                                 
                         <g:render template="/common/barchart" model="[label:'Audit average',position:cumAvg]"/>
 

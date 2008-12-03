@@ -1,9 +1,11 @@
-<span style="font-size:12pt;font-weight:bold;">Capability</span>
+<span style="font-size:12pt;font-weight:bold;">Overall Capability</span>
+
 <table style="border:0;">
     <tbody>
         <g:each in="${capabilityScoreCardMap.keySet()}" var="serviceId">
             <g:set var="scorecards" value="${capabilityScoreCardMap[serviceId]}"/>
             <g:set var="service" value="${Service.get(serviceId)}"/>
+            <g:if test="${scorecards}">
             <g:set var="scorecard" value="${scorecards.get(scorecards.size()-1)}"/>            
             <tr>
                 
@@ -19,9 +21,8 @@
 
                     <g:if test="${scorecard}">
                         <!-- the chart -->
-                        <g:render template="capabilityAudit/chart" model="[scorecards:scorecards]"/>
+                        <g:render template="capabilityAudit/chart" model="[id:serviceId,scorecards:scorecards]"/>
                                                 
-                        <g:render template="/common/barchart" model="[label:'Audit average',position:cumAvg]"/>
 
                         <div style="margin-top:10px;margin-bottom:5px;">
                         <g:link action="show" controller="capabilityAudit" id="${scorecard.audit.id}" title="${scorecard.audit.title}">Last Audit: </g:link>${scorecard.audit.auditDate}
@@ -48,6 +49,7 @@
                 </td>
                 
             </tr>
+            </g:if>
         </g:each>
     </tbody>
 

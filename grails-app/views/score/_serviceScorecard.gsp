@@ -8,6 +8,7 @@
 <br/>
 
 <!-- Capability audit -->
+
 <g:if test="${serviceScoreMap['audit']}">
     <g:render template="capabilityAudit/summary" model="[capabilityScoreCardMap:serviceScoreMap['audit']]"/>
 
@@ -22,7 +23,13 @@
 
 <!-- Change activity -->
 <g:if test="${serviceScoreMap['activity']}">
-    <g:render template="changeReceipt/scorecard" model="[changeReceiptScorecardList:serviceScoreMap['activity']]"/>
+    <g:render template="processReceipt/scorecard" model="[processReceiptScorecardList:serviceScoreMap['activity']]"/>
+    <br/>
+</g:if>
+
+<!-- Inventory activity -->
+<g:if test="${serviceScoreMap['inventory']}">
+    <g:render template="inventory/scorecard" model="[inventoryScorecardList:serviceScoreMap['inventory']]"/>
     <br/>
 </g:if>
 

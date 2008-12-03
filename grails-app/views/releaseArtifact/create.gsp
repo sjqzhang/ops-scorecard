@@ -15,6 +15,8 @@
         </div>
     </g:hasErrors>
     <g:form action="save" method="post">
+        <g:hiddenField name="createDate" value="${releaseArtifact.createDate}" />
+        
         <div class="buttons">
             <span class="button"><input class="save" type="submit" value="Create"/></span>
             <span class="button"><g:actionSubmit class="list" value="List"/></span>

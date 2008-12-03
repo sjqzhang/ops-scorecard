@@ -15,7 +15,7 @@
     <g:each var="type" in="${types}">
         <tr>
             <td>
-                <g:link action="search" params="[targetedServiceType: type.name]"> ${type.name}</g:link>
+                <g:link action="search" params="[serviceType: type.name]"> ${type.name}</g:link>
             </td>
         </tr>
     </g:each>

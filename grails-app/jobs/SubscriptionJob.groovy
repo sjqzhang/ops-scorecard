@@ -1,8 +1,10 @@
+import org.codehaus.groovy.grails.commons.ConfigurationHolder
+
 class SubscriptionJob {
     def ScorecardService scorecardService
     def EmailService emailService
-
-    def cronExpression = "0 6 * ? * *"
+    
+    def cronExpression = ConfigurationHolder.config.subscription.cronExpression
 
 
 
@@ -21,17 +23,18 @@ class SubscriptionJob {
                 // generate a service report
                 def today = new Date()
                 def scorecardParams = new ScorecardParams(
-                        startDate: today - 7,
-                        endDate: today,
+                        startDate: today - 6,
+                        endDate: today + 1,
                         service: service)
                 def bodyContent = scorecardService.generateScoresReportAsText(
                         service,
                         scorecardParams,
-                        ['audit', 'activity', 'change'])
+                        ['audit', 'process', 'activity'])
 
                 // send out the email
                 if (user.email) {
-                    emailService.sendMail(user, "Scorecard report", bodyContent)
+                    emailService.sendMail(user, "Scorecard report for service: ${service.name}", bodyContent)
+                    log.info("Emailed report to user: ${user}")
                 }
 
             }

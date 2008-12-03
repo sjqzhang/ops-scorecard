@@ -59,8 +59,8 @@
                             <td>${fieldValue(bean:serviceManagementProcess, field:'implementor')}</td>
                         
                             <td>
-                                <g:if test="${serviceManagementProcess?.targetResource}">
-                                    ${serviceManagementProcess?.targetResource?.name}
+                                <g:if test="${serviceManagementProcess?.service}">
+                                    ${serviceManagementProcess?.service?.name}
                                 </g:if>
                             </td>
                         
@@ -74,8 +74,10 @@
             </div>
             </g:if>
             <g:else>
+      <div class="dialog">
                 <h3>There are no processes matching the search criteria.</h3>
                 <h5>Press the &quot;All&quot; link to the right to list existing processes.</h5>
+             </div>
             </g:else>
         </div>
      <div class="sidebar">

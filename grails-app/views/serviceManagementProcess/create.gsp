@@ -54,13 +54,13 @@
 
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="targetResource">Target Service:</label>
+                                    <label for="service">Service:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:serviceManagementProcess,field:'targetResource','errors')}">
-                                    <select name="targetResource.id" id="targetResource.id" >
+                                <td valign="top" class="value ${hasErrors(bean:serviceManagementProcess,field:'service','errors')}">
+                                    <select name="service.id" id="service.id" >
                                         <option value="null"></option>
-                                        <g:each in="${Service.list()}" var="taretgetResource">
-                                            <option value="${taretgetResource.id}">${taretgetResource?.name} [${taretgetResource?.type?.name}]</option>
+                                        <g:each in="${Service.list()}" var="service">
+                                            <option value="${service.id}">${service?.name} [${service?.type?.name}]</option>
                                         </g:each>
                                     </select>
                                 </td>
@@ -74,6 +74,15 @@
                                     <g:select id="automationLevel" name="automationLevel" from="${serviceManagementProcess.constraints.automationLevel.inList}" value="${serviceManagementProcess.automationLevel}" ></g:select>
                                 </td>
                             </tr>
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="automationTool">Automation Tool:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:serviceManagementProcess,field:'automationTool','errors')}">
+                                    <input type="text" id="automationTool" name="automationTool" value="${fieldValue(bean:serviceManagementProcess,field:'automationTool')}"/>
+                                </td>
+                            </tr>
+
                               <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="syscontrol">System Control:</label>

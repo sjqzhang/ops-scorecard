@@ -8,5 +8,13 @@ class PhysicalAsset extends Resource {
 	String operatingSystem
 	String physicalLocation
 	String platform	
-	String sourceSupplier		
+	String sourceSupplier
+
+        static transients = ['calculateScores']
+
+    def Map calculateScores() {
+        def scores = [:]
+        scores['cumulative'] = 100
+        return scores
+    }
 }
