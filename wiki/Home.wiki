@@ -3,26 +3,3 @@
 = Introduction =
 
 Welcome to Ops Scorecard
-
-
-= Building and Running =
-
-Scorecard is in its early development stages but is functional and can be used. 
-Here's the procedure to get it working:
-
-1) Download and install Grails 1.0.4
-http://www.grails.org/Download
-set your GRAILS_HOME and include its bin dir in your PATH
-
-2) Checkout the Scorecard sources
-
-svn checkout http://ops-scorecard.googlecode.com/svn/trunk scorecard
-
-3) Start the application
-
-cd scorecard
-
-grails -Dscorecard.config.location=`pwd`/grails-app/conf/scorecard-config.properties -Dserver.port=9090 run-app
-
-4) Use it
-See the UsingScorecard page
