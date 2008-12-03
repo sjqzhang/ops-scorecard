@@ -2,7 +2,7 @@
 
 = Introduction =
 
-The entire goal of Scorecard is to help you improve your capabilities of service management. The concept "service" anchors the whole system.
+The entire goal of Scorecard is to help you improve your service management capabilities.  The concept "service" anchors the whole system.
 
 A service is a resource that provides some utility to an organization or another resource. Many things can be viewed as a service in this light but the most typical example for Scorecard are business applications.
 
@@ -46,7 +46,5 @@ The Inventory area of Scorecard is a basic CMDB  where you can define physical a
 Process receipts track when a process has been executed which is useful to record when a service management process has been performed.
 
  
-
-
 
 
