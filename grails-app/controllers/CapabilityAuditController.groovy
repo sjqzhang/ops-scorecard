@@ -30,7 +30,7 @@ class CapabilityAuditController extends SecureController {
             def scorecards = ServiceManagementProcessScorecard.findAllByAudit(capabilityAudit)
             println("DEBUG: #delete: found ${scorecards.size()} scorecards")
             scorecards.each {
-                println("DEBUG: #delete: deleting scorecard:${scorecard}")
+                println("DEBUG: #delete: deleting scorecard:${it}")
                 it.delete()
             }
             capabilityAudit.delete()
