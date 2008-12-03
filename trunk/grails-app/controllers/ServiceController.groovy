@@ -30,13 +30,16 @@ class ServiceController extends SecureController {
                 process.delete()
                 log.info("Deleted process ${pname}")
             }
-            service.delete()
-            log.info("Deleted service: ${sname}")
-            flash.message = "Deleted: '${sname}'"
-            redirect(action:list)
-        }
-        else {
-            flash.message = "Service not found with id ${params.id}"
+            if (service.delete()) {
+                log.info("Deleted service: ${sname}")
+                flash.message = "Deleted: '${sname}'"
+                redirect(action:list)
+            } else {
+                flash.message = "Cannot delete. There are referring objects"
+                redirect(action:show, id:params.id)
+            }
+        } else {
+            flash.message = "Service not found with id: ${params.id}"
             redirect(action:list)
         }
     }
@@ -45,7 +48,7 @@ class ServiceController extends SecureController {
         def service = Service.get( params.id )
 
         if(!service) {
-            flash.message = "Service not found with id ${params.id}"
+            flash.message = "Cannot edit. Service not found with id ${params.id}"
             redirect(action:list)
         }
         else {
