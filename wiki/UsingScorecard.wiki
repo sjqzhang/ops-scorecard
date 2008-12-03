@@ -4,7 +4,7 @@
 
 Scorecard's goal is to help you improve your service management capabilities.  The concept "service" anchors the whole system.
 
-A service is a resource that provides some utility to an organization or another resource. Many things can be viewed as a service in this light but the most typical example for Scorecard are business applications.
+A service is a resource that provides some utility to an organization or another resource. Many things can be viewed as a service in this light but the most typical examples for Scorecard are business applications.
 
 For Scorecard, one's service management capabilities are based in the management processes that support the service. There are several categories of management processes each supporting some aspect of the ongoing operation of the service. The better you implement these processes the better your capabilities become.
 
