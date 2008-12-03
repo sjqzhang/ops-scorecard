@@ -58,7 +58,6 @@
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:serviceManagementProcess,field:'service','errors')}">
                                     <select name="service.id" id="service.id" >
-                                        <option value="null"></option>
                                         <g:each in="${Service.list()}" var="service">
                                             <option value="${service.id}">${service?.name} [${service?.type?.name}]</option>
                                         </g:each>
