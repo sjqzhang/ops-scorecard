@@ -13,41 +13,39 @@ After you define your service and current management processes, Scorecard will g
 
 = Where to begin =
 
-Register yourself as a user. 
+==Register yourself as a user==
 
 Go to the Scorecard home page and register an account. After you have created an account, log in.
 
-Define your service. 
+==Define your service==
 
 Services are maintained in the Scorecard "Inventory" accessible from the Scorecard homepage. The Inventory lets you maintain information about your services, assets, release artifacts and management processes. 
 Inside the Inventory page you will see the "Services" box. Click that and you will see a message to "Add Service". You will notice that before you can define a service, you need to register a service type. Types help you distinguish different kinds of services (eg, estore versus fulfillment).
 Click the "Create one" link to define your service. You don't need to fill out the whole form as you can go back later to answer some of those questions.
 
-Define your management processes.
+==Define your management processes==
 
 After saving your service definition, you will see links to create processes. From the "show" page of the service you will see a button to create a process. Press that.
 There are several categories of management processes (acceptance, build, deployment, detective, escalation, implementation, monitoring, release, verification), each of which supports the service at some point.
 You may not have all of these processes formalized so don't worry about defining them now. Business applications always have some form of "build" and "deployment" process so go ahead and define those the best you can.
 
-Audit your capability
+==Audit your capability==
 
 With you service and management processes preliminarily described, you have enough to audit your capability. Go to the home page and choose "Audit" and then press the "Create audit" button. The audit is a survey form that asks you a series of questions about how you manage change and process for your service. 
 Answer the questions to the best of your knowledge. 
 
-Create a scorecard
+==Create a scorecard==
 
 With your service, processes and audit information, Scorecard has enough to generate a scorecard. Go to the home page and choose "Scores"  then press the "Score" button. Scorecard will generate a scorecard for you that gives you an overall measurement and set of metrics.
 Since you minimally described your processes, you won't have a high score but you now have a point of departure. From here, you should go back and describe the rest of your processes and re-run the scorecard. Audits can be done periodically (eg, monthly or quarterly) to help track your improvement.
 
-Other information
+==Other information==
 
 You will notice that other information can be described as you go about defining your processes and service. Processes are supported by people so you will want to define individuals and teams. 
 The Inventory area of Scorecard is a basic CMDB  where you can define physical assets and release artifacts.
 Process receipts track when a process has been executed which is useful to record when a service management process has been performed.
 
  
-
-
 
 
 
