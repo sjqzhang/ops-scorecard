@@ -51,7 +51,6 @@
                             
                             <td  valign="top" style="text-align:left;" class="value">
                                 <g:if test="${resourceType.instances.size() <1}">
-                                    <p><i>None.</i></p>
                                     <%
                                        def controller
                                        switch (resourceType.metatype) {
@@ -66,7 +65,9 @@
                                     %>
 
                                     <g:link class="controllink" action="create"
-                                            controller="${controller}">Create one</g:link>
+                                            controller="${controller}"
+                                        params="[resourceType:resourceType.id]"
+                                    >Create one</g:link>
                                 </g:if>
                                 <g:else>
                                 <ul>

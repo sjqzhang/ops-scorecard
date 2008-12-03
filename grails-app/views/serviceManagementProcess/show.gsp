@@ -67,13 +67,14 @@
 
                         </tr>
 
+                        <g:if test="${'semi'.equals(serviceManagementProcess?.automationLevel) || 'full'.equals(serviceManagementProcess?.automationLevel)}">
                         <tr class="prop">
                             <td valign="top" class="name">Automation Tool:</td>
 
                             <td valign="top" class="value">${fieldValue(bean:serviceManagementProcess, field:'automationTool')}</td>
 
                         </tr>
-
+                        </g:if>
                         <tr class="prop">
                             <td valign="top" class="name">System Control:</td>
 
@@ -82,14 +83,12 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Artifacts:</td>
+                            <td valign="top" class="name">Artifact Type:</td>
                             
                             <td  valign="top" style="text-align:left;" class="value">
-                                <ul>
-                                <g:each var="a" in="${serviceManagementProcess.artifacts}">
-                                    <li><g:link controller="releaseArtifact" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></li>
-                                </g:each>
-                                </ul>
+                              <g:link controller="resourceType" action="show" id="${serviceManagementProcess?.artifactType?.id}">
+                                     ${serviceManagementProcess?.artifactType?.name}
+                                </g:link>
                             </td>
                             
                         </tr>
@@ -108,7 +107,7 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Implementor:</td>
+                            <td valign="top" class="name">Implementor team:</td>
                             
                             <td valign="top" class="value"><g:link controller="user" action="show" id="${serviceManagementProcess?.implementor?.id}">${serviceManagementProcess?.implementor?.encodeAsHTML()}</g:link></td>
                             
@@ -116,7 +115,7 @@
 
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Recipient:</td>
+                            <td valign="top" class="name">Recipient team:</td>
                             
                             <td valign="top" class="value"><g:link controller="user" action="show" id="${serviceManagementProcess?.recipient?.id}">${serviceManagementProcess?.recipient?.encodeAsHTML()}</g:link></td>
                             
@@ -134,8 +133,6 @@
             </div>
 
         </div>
-     <div class="sidebar">
-            <g:render template="sidebar"/>
-        </div>
+     
     </body>
 </html>
