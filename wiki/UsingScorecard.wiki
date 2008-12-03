@@ -31,7 +31,7 @@ You may not have all of these processes formalized so don't worry about defining
 
 ==Audit your capability==
 
-With you service and management processes preliminarily described, you have enough to audit your capability. Go to the home page and choose "Audit" and then press the "Create audit" button. The audit is a survey form that asks you a series of questions about how you manage change and process for your service. 
+With your service and management processes preliminarily described, you have enough to audit your capability. Go to the home page and choose "Audit" and then press the "Create audit" button. The audit is a survey form that asks you a series of questions about how you manage change and process for your service. 
 Answer the questions to the best of your knowledge. 
 
 ==Create a scorecard==
