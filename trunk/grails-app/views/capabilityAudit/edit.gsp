@@ -221,7 +221,8 @@
                                     <g:set var="pfx" value="scorecards_${process.id}"/>
                                     <g:hiddenField name="${pfx}.process.id" value="${process.id}"/>
                                     <g:each in="${ServiceManagementProcess.metrics.sort()}" var="metric">
-                                        <g:set var="metricbean" value="${'scorecards_'+process.id+'.'+metric}"/>
+
+
                                         <tr>
                                             <td>
                                                 ${metric}
@@ -232,7 +233,7 @@
                                             <td>
                                                 <% def prop = pfx + "."+metric+".comment"%>
                                                 <input name="${pfx}.${metric}.comment" type="text"
-                                                    value="${fieldValue(bean:pfx.metricbean, field: 'comment')}" size="40"/>
+                                                    value="" size="40"/>
                                             </td>
                                         </tr>
                                     </g:each>
