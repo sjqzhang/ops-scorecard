@@ -14,7 +14,7 @@ class ScorecardService implements ApplicationContextAware, InitializingBean {
     def appUrl
 
     void afterPropertiesSet() {
-        this.appUrl   = grailsApplication.config.app.url
+        this.appUrl = grailsApplication.config.app.url
     }
 
 
@@ -53,7 +53,7 @@ class ScorecardService implements ApplicationContextAware, InitializingBean {
         def templateFileName = "service-scorecard-report.gtpl"
         File tplFile = applicationContext.getResource(File.separator + "WEB-INF" + File.separator
                 + templateFileName).getFile();
-        def binding = ["service":service, "serviceScoreMap": serviceScoreMap, "appUrl":this.appUrl]
+        def binding = ["service": service, "serviceScoreMap": serviceScoreMap, "appUrl": this.appUrl]
 
         def engine = new SimpleTemplateEngine()
         def template = engine.createTemplate(tplFile).make(binding)
@@ -80,7 +80,7 @@ class ScorecardService implements ApplicationContextAware, InitializingBean {
             matches.each {
                 def scores = it.calculateScores()
                 scorecards << new AuditScorecard(service: service, audit: it, scores: scores)
-                println("DEBUG: Added '${it.title}' audit scorecard for service: ${service.name}")    
+                println("DEBUG: Added '${it.title}' audit scorecard for service: ${service.name}")
             }
             results[service.id] = scorecards
 
@@ -96,9 +96,15 @@ class ScorecardService implements ApplicationContextAware, InitializingBean {
         def matches = []
         if (params?.service) {
             println("DEBUG: ScorecardService#listProcessReceiptScorecards: service=${params.service}")
-
-            matches = ProcessReceipt.findAllByDateBetweenAndService(
-                    params.startDate, params.endDate, params.service)
+            def criteria = ProcessReceipt.createCriteria()
+            matches = criteria.list {
+                between('date', params.startDate, params.endDate)
+                process {
+                    service {
+                        idEq(params.service.id)
+                    }
+                }
+            }
         } else {
             matches = ProcessReceipt.findAllByDateBetween(
                     params.startDate, params.endDate)
@@ -148,7 +154,7 @@ class ScorecardService implements ApplicationContextAware, InitializingBean {
         return results
     }
 
-    def  listInventoryScorecards(ScorecardParams scorecardParams) {
+    def listInventoryScorecards(ScorecardParams scorecardParams) {
         def scorecards = []
         inventoryService.listAdded(scorecardParams.startDate, scorecardParams.endDate).each {
             def scores = it.calculateScores()
@@ -168,7 +174,8 @@ class AuditScorecard extends BaseScorecard {
     CapabilityAudit audit
 }
 
-class ProcessReceiptScorecard extends BaseScorecard {
+class ProcessReceiptScorecard {
+    Map scores
     ProcessReceipt receipt
 }
 
