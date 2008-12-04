@@ -128,9 +128,9 @@ class CapabilityAuditController extends SecureController {
     def search = {
         def criteria = CapabilityAudit.createCriteria()
         def results = criteria.list {
-            targetedService {
+            service {
                 type {
-                    ilike('name', params.targetedServiceType)
+                    ilike('name', params.serviceType)
                 }
             }
         }
