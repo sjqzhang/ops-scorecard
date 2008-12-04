@@ -225,6 +225,11 @@
                     </td>
 
                 </tr>
+                <tr>
+                    <td colspan="2">
+                        scorecards: ${capabilityAudit.scorecards}
+                    </td>
+                </tr>
 
             </tbody>
         </table>

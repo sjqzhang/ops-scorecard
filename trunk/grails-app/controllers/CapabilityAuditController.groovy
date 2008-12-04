@@ -52,12 +52,6 @@ class CapabilityAuditController extends SecureController {
         }
         else {
             def model = [capabilityAudit: capabilityAudit]
-            def scorecards = ServiceManagementProcessScorecard.findAllByAudit(capabilityAudit)
-            println("Number of scorecards found: ${scorecards.size()}")
-            scorecards.each { scorecard ->
-                model["scorecards_${scorecard.process.id}"] = scorecard
-                println("DEBUG: included scorecard for process: ${scorecard.process.name}")
-            }
             return model
         }
     }
@@ -89,8 +83,8 @@ class CapabilityAuditController extends SecureController {
                         if (scparms.containsKey(metric)) {
 
                             def score = new ServiceManagementProcessScore(scparms[metric])
-                            scorecard."${metric}" = score
-                            println("DEBUG: added ${score}")
+                            scorecard[metric] = score
+                            println("DEBUG: added ${scorecard[metric]}")
                         }
                     }                                        
                 }
