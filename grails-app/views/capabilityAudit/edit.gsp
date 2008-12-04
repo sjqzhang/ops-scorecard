@@ -204,12 +204,22 @@
 
             <table>
                 <g:each in="${ServiceManagementProcess.constraints.category.inList.sort()}" var="category">
-                    <g:set var="process" value="${ServiceManagementProcess.findByServiceAndCategory(capabilityAudit.service,category)}"/>
-                    <tr>
-                        <td valign="top" class="name">
-                            ${category}<br/>
-                        </td>
-                        <g:if test="${process}">
+                    <g:set var="processes" value="${ServiceManagementProcess.findAllByServiceAndCategory(capabilityAudit.service,category)}"/>
+                    <g:set var="scorecards" value="${capabilityAudit.scorecards.findAll{it.process.category==category}}"/>
+                        <%
+                            def scorecardsMap = [:]
+                            scorecards.each{ sc ->
+                                scorecardsMap[sc.process.id]=sc
+                            }
+                        %>
+                        <g:each in="${processes}" var="process" status="x">
+                            <g:set var="scorecard" value="${scorecardsMap[process.id]}"/>
+                            <tr>
+                            <td valign="top" class="name">
+                                <g:if test="${0==x}">
+                                    ${category}
+                                </g:if>
+                            </td>
 
                             <td valign="top">
                                 <table>
@@ -228,29 +238,36 @@
                                                 ${metric}
                                             </td>
                                             <td>
-                                                <g:select name="${pfx}.${metric}.value" value="${pfx +"."+metric+'.value'}" from="${ServiceManagementProcessScore.values}"></g:select>
+                                                <g:select name="${pfx}.${metric}.value" value="${scorecard? scorecard[metric].value: ''}" from="${ServiceManagementProcessScore.values}"></g:select>
                                             </td>
                                             <td>
                                                 <% def prop = pfx + "."+metric+".comment"%>
                                                 <input name="${pfx}.${metric}.comment" type="text"
-                                                    value="" size="40"/>
+                                                    value="${scorecard? scorecard[metric].comment: ''}" size="40"/>
                                             </td>
                                         </tr>
                                     </g:each>
 
                                 </table>
                             </td>
-                        </g:if>
-                        <g:else>
+                            </tr>
+                        </g:each>
+
+                        <g:if test="${!processes || 0==processes.size()}">
+                            <tr>
+                            <td valign="top" class="name">
+                                ${category} 
+                            </td>
+
                             <td>
                                 
                                 <g:link controller="serviceManagementProcess" action="create"
                                         params="['service.id':capabilityAudit.service.id,'category':category]">Define a process</g:link>
 
                             </td>
-                        </g:else>
+                            </tr>
+                        </g:if>
 
-                    </tr>
                 </g:each>
             </table>
         </div>
