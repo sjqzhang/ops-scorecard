@@ -1,6 +1,6 @@
 <span class="menuButton"><g:link class="create" action="create">Add Type</g:link></span>
 
-
+<!--
 <table class="list" style="margin-top: 10px;">
     <tr>
         <td style="background-color: azure;">
@@ -21,3 +21,4 @@
     </tr>
 
 </table>
+-->
