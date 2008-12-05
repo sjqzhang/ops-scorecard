@@ -36,7 +36,9 @@ Things to know about this screen:
 
 ==Register yourself as a user==
 
-Go to the Scorecard home page and register an account. After you have created an account, log in.
+Go to the Scorecard main menu. If you aren't logged in you will be taken to the login screen by selecting one of the items on the main menu page. Click on the "register here" link and create a user. Don't worry if there are no groups defined. You can add groups later.
+
+After you have created an account, log in.
 
 ==Define your service==
 
