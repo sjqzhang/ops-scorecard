@@ -17,7 +17,7 @@ After you define your service and current management processes, Scorecard will g
 
 The first screen you'll encounter is likely the main menu.
 
-{screenshot of main menu}
+http://ops-scorecard.googlecode.com/svn/trunk/web/images/main_menu_screen.png
 
 Things to know about this screen:
 1. This takes you to the Ops Scorecard reports (I know that you are excited to see results but you'll need to input some info before you can generate reports)
