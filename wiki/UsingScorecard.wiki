@@ -13,6 +13,27 @@ After you define your service and current management processes, Scorecard will g
 
 = Where to begin =
 
+==The main menu==
+
+The first screen you'll encounter is likely the main menu.
+
+[screenshot of main menu]
+
+Things to know about this screen:
+1. This takes you to the Ops Scorecard reports (I know that you are excited to see results but you'll need to input some info before you can generate reports)
+
+2. This takes you to the area of the application where you can audit you IT service management capabilities. This info feeds into your Ops Scorecard reports.
+
+3. This takes you to the inventory tool (which is basically a simple, yet effective "CMDB"). This is where you keep basic information on services, management processes, physical assets, and software artifacts. Ops Scorecard only requires minimal information about these items but, beyond that, you are free to keep as much detail as you wish in the inventory tool.
+
+4. This takes you to where you manage people and groups.
+
+5. This takes you to the area of the application where you can create and review process receipts. Process receipts track when a service management process has been executed. Process receipts aren't necessary to generate your first scorecard report (only capability audits are required), however they provide a level of objective performance detail that is essential to tracking improvement over time.
+
+6. Which user you are logged in as is displayed in the upper right corner.
+
+7. The Ops Scorecard logo is a link that always takes you back to this main menu.
+
 ==Register yourself as a user==
 
 Go to the Scorecard home page and register an account. After you have created an account, log in.
@@ -43,7 +64,7 @@ Since you minimally described your processes, you won't have a high score but yo
 
 You will notice that other information can be described as you go about defining your processes and service. Processes are supported by people so you will want to define individuals and teams. 
 The Inventory area of Scorecard is a basic CMDB  where you can define physical assets and release artifacts.
-Process receipts track when a process has been executed which is useful to record when a service management process has been performed.
+Process receipts track when a service management process has been executed.
 
 =Stay informed=
 
