@@ -82,12 +82,16 @@ http://ops-scorecard.googlecode.com/svn/trunk/web/images/define_process_screen.p
 
 ==Audit your capability==
 
-With your service and management processes preliminarily described, you have enough to audit your capability. Go to the home page and choose "Audit" and then press the "Create audit" button. The audit is a survey form that asks you a series of questions about how you manage change and process for your service. 
+With your service and management processes preliminarily described, you have enough to audit your capability. Go to the main menu and choose "Audit" and then press the "Create audit" button. The audit is a survey form that asks you a series of questions about how you manage change and process for your service. 
 Answer the questions to the best of your knowledge. 
+
+http://ops-scorecard.googlecode.com/svn/trunk/web/images/create_audit_screen.png
+
 
 ==Create a scorecard==
 
 With your service, processes and audit information, Scorecard has enough to generate a scorecard. Go to the home page and choose "Scores"  then press the "Score" button. Scorecard will generate a scorecard for you that gives you an overall measurement and set of metrics.
+
 Since you minimally described your processes, you won't have a high score but you now have a point of departure. From here, you should go back and describe the rest of your processes and re-run the scorecard. Audits can be done periodically (eg, monthly or quarterly) to help track your improvement.
 
 ==Other information==
