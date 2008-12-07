@@ -37,21 +37,48 @@ Things to know about this screen:
 
 ==Register yourself as a user==
 
-Go to the Scorecard main menu. If you aren't logged in you will be taken to the login screen by selecting one of the items on the main menu page. Click on the "register here" link and create a user. Don't worry if there are no groups defined. You can add groups later.
+Go to the Scorecard main menu. If you aren't logged in you will be taken to the login screen by selecting one of the items on the main menu page. Click on the "register here" link and create a user. Don't worry if there are no groups defined. You can add groups later. The rest of the inputs should be self-explanatory.
 
 After you have created an account, log in.
 
 ==Define your service==
 
 Services are maintained in the Scorecard "Inventory" accessible from the Scorecard homepage. The Inventory lets you maintain information about your services, assets, release artifacts and management processes. 
-Inside the Inventory page you will see the "Services" box. Click that and you will see a message to "Add Service". You will notice that before you can define a service, you need to register a service type. Types help you distinguish different kinds of services (eg, estore versus fulfillment).
-Click the "Create one" link to define your service. You don't need to fill out the whole form as you can go back later to answer some of those questions.
+Inside the Inventory page click on the "Services" box. 
 
-==Define your management processes==
+http://ops-scorecard.googlecode.com/svn/trunk/web/images/select_service_screen.png
 
-After saving your service definition, you will see links to create processes. From the "show" page of the service you will see a button to create a process. Press that.
+Since you don't have any services defined, you will see a prompt to define a service. Click on the "Add Service" link on the right to add your first service.
+
+Note: Each service must have a service type. Types help you distinguish different kinds of services (eg, estore versus fulfillment). They come in handy when you need to categorize a service or if you need to refer to multiple instances of a service (e.g. "prod" and "qa").
+
+If you haven't yet defined any service types you will automatically be taken to a form to define your first service type.
+
+http://ops-scorecard.googlecode.com/svn/trunk/web/images/create_service_type_screen.png
+
+Once you've created a service type you can now go ahead and create a service. To get back to the service creation form use the menu links in the context bar just below the Ops Scorecard logo. 
+
+http://ops-scorecard.googlecode.com/svn/trunk/web/images/select_services_menu_screen.png
+
+Select the "Add Service" link on the right. Fill out the form to define a service. It's good to not that you don't need to fill out the complete form as you can go back later to answer some of those questions.
+
+
+http://ops-scorecard.googlecode.com/svn/trunk/web/images/create_service_screen.png
+
+
+
+==Define your service management processes==
+
+After saving your service definition, you will see links to create service management processes. From the "show" page of the service you will see a button to create a process. Click that to add your first process.
+
+http://ops-scorecard.googlecode.com/svn/trunk/web/images/link_add_process_screen.png
+
 There are several categories of management processes (acceptance, build, deployment, detective, escalation, implementation, monitoring, release, verification), each of which supports the service at some point.
-You may not have all of these processes formalized so don't worry about defining them now. Business applications always have some form of "build" and "deployment" process so go ahead and define those the best you can.
+You may not have all of these processes formalized so don't worry about defining them now. Any business applications will always have some form of "build" and "deployment" process (somehow it was built and deployed, right?), so go ahead and define those the best you can.
+
+http://ops-scorecard.googlecode.com/svn/trunk/web/images/define_process_screen.png
+
+
 
 ==Audit your capability==
 
@@ -72,6 +99,3 @@ Process receipts track when a service management process has been executed.
 =Stay informed=
 
 Scorecard has a simple subscription feature which lets you receive emails containing your service scorecard. Click your login name in the top right of the Scorecard page, and press the "Edit" link in the Subscriptions box. Choose the service you want emails about and press "Add".
-
-
- 
