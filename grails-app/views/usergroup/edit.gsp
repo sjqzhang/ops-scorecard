@@ -41,21 +41,11 @@
                         <td valign="top" class="value ${hasErrors(bean: usergroup, field: 'description', 'errors')}">
                             <input type="text" id="description" name="description" value="${fieldValue(bean: usergroup, field: 'description')}"/>
                         </td>
-                    </tr>
-                    <tr class="prop">
-                        <td valign="top" class="function">
-                            <label for="description">Function:</label>
-                        </td>
-                        <td valign="top" class="value ${hasErrors(bean: usergroup, field: 'function', 'errors')}">
-                            <g:select id="function" name="function" from="${usergroup.constraints.function.inList}" value="${usergroup.function}"></g:select>
-
-                        </td>
-                    </tr>
-
+                    </tr>                    
 
                     <tr class="prop">
                         <td valign="top" class="name">
-                            <label for="users">Users:</label>
+                            <label for="users">Individuals:</label>
                         </td>
                         <td valign="top" class="value ${hasErrors(bean: usergroup, field: 'users', 'errors')}">
                             <table>

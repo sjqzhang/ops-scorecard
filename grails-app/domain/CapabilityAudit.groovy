@@ -1,19 +1,19 @@
 class CapabilityAudit {
 
     static hasMany = [stakeholders: User, changeReviewers: User, securityReviewers: User,
-           scorecards: ServiceManagementProcessScorecard
+            scorecards: ServiceManagementProcessScorecard
     ]
-  
+
     static constraints = {
         title(blank: false)
         auditor(blank: false)
         auditDate(blank: false)
-        service(nullable:false)
+        service(nullable: false)
         changeCoordinator(nullable: true)
         changeOwner(nullable: true)
         ticketService(nullable: true)
-        meanTimeToRepair(nullable:true)
-        scorecards(nullable:true)
+        meanTimeToRepair(nullable: true)
+        scorecards(nullable: true)
     }
 
     // basic info
@@ -43,7 +43,7 @@ class CapabilityAudit {
 
     String toString() {return title}
 
-    static transients = ['calculateScores','toGrade']
+    static transients = ['calculateScores', 'toGrade']
 
     //
     // map of metric groupings
@@ -52,13 +52,13 @@ class CapabilityAudit {
             'hasChangeManagementNotes', 'canAssessChangeOutcome', 'canAssessPriority',
             'hasSuccessCriteria', 'hasNonActionConsequence', 'hasPlannedStart',
             'hasPlannedEnd', 'hasPlannedExpectedBenefit', 'hasWorstCaseOutcome',
-            'hasWorstCaseOutageDuration']
-    static process_fields = ['service', 'ticketService']
-    static repeatability_fields = [ 'isBuildEasierThanRepair', 'hasBeenPatched']
+            'hasWorstCaseOutageDuration', 'service', 'ticketService']
 
 
     def Map calculateScores() {
-        def scores = ['control':0, 'process':0, 'repeatability':0, 'cumulative':0]
+        def scores = ['control': 0, 'process': 0, 'cumulative': 0]
+
+        // control
         control_fields.each {
             def val = this."${it}"
             if (val) {
@@ -67,25 +67,16 @@ class CapabilityAudit {
         }
         scores['control'] = scores['control'].intValue()
 
-        process_fields.each {
-            def val = this."${it}"
-            if (val) {
-                scores['process'] = scores['process'] + (100 / process_fields.size())
-            }
+        // process
+        def total = 0
+        scorecards.each {
+            def s = it.calculateScores()
+            def sc = s['cumulative']
+            total += sc
         }
-        scores['process'] = scores['process'].intValue()
-
-        repeatability_fields.each {
-            def val = this."${it}"
-            if (val) {
-                scores['repeatability'] = scores['repeatability'] + (100 / repeatability_fields.size())
-            }
-        }
-        scores['repeatability'] = scores['repeatability'].intValue()
-
+        scores['process'] = (total / ServiceManagementProcess.constraints.category.inList.size()).intValue()
         scores['cumulative'] = ((scores['control']
-                +scores['process']
-                +scores['repeatability'])/3).intValue()
+                + scores['process']) / 2).intValue()
 
         return scores
     }

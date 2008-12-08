@@ -30,8 +30,7 @@
     </tr>
     <tr>
         <td>
-            <p></p><i>No types defined</i>.</p>
-            <p><g:link controller="resourceType" action="create" params="[metatype:'asset']"><span class="controllink">Add a type</span></g:link></p>
+            <p><g:link controller="resourceType" action="create" params="[metatype:'asset']"><span class="controllink">Add an asset type</span></g:link></p>
         </td>
     </tr>
 </table>

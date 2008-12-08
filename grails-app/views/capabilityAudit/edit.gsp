@@ -234,7 +234,8 @@
 
 
                                         <tr>
-                                            <td>
+                                            <td style="text-align:right;">
+                                                <g:hiddenField name="${pfx}.${metric}.name" value="${scorecard? scorecard[metric].name: metric}"/>
                                                 ${metric}
                                             </td>
                                             <td>

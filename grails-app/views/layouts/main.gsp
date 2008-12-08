@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title><g:layoutTitle default="Scorecard"/></title>
+    <title><g:layoutTitle default="Ops Scorecard"/></title>
     <link rel="stylesheet" href="${createLinkTo(dir: 'css', file: 'main.css')}"/>
     <link rel="shortcut icon" href="${createLinkTo(dir: 'images', file: 'favicon.ico')}" type="image/x-icon"/>
     <g:layoutHead/>
@@ -16,7 +16,7 @@
 <div class="topbar">
     <div class="logo">
         <a href="/scorecard">
-            <img align="middle" src="${createLinkTo(dir: 'images', file: 'logo.png')}" alt="Scorecard"/><g:message code="scorecard.app.name"/>
+            <img align="middle" src="${createLinkTo(dir: 'images', file: 'logo.png')}" alt="Ops Scorecard"/>Ops Scorecard
         </a>
     </div>
    <span class="headright">

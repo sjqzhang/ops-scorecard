@@ -30,7 +30,6 @@
                                     <th>Audit</th>
                                     <th width="65">Control</th>
                                     <th width="65">Process</th>
-                                    <th width="65">Repeatability</th>
                                     <th width="65">Average</th>
                                 </tr>
                             </thead>

@@ -13,7 +13,7 @@
             <div class="message">${flash.message}</div>
             </g:if>
             <g:if test="${serviceManagementProcessList}">
-            <div class="list">
+            <div class="dialog">
                 <table>
                     <thead>
                         <tr>
@@ -26,8 +26,6 @@
                         
                    	        <g:sortableColumn property="category" title="Category" />
                         
-                               <g:sortableColumn property="implementor" title="Implementor" />
-
                    	        <th>Target Service</th>
                    	    
                         </tr>
@@ -56,8 +54,7 @@
                         
                             <td>${fieldValue(bean:serviceManagementProcess, field:'category')}</td>
                         
-                            <td>${fieldValue(bean:serviceManagementProcess, field:'implementor')}</td>
-                        
+
                             <td>
                                 <g:if test="${serviceManagementProcess?.service}">
                                     ${serviceManagementProcess?.service?.name}

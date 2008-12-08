@@ -3,7 +3,7 @@ class PrettyscoreTagLib {
     // <g:prettyScore score="1"  format="letter | numeric" />
     //
     def prettyScore = {attrs, body ->
-        def score = attrs.score.intValue()
+        def score = new Integer(attrs.score)
         switch (attrs.format) {
             case 'letter':
                 out << "<span class='lettergrade''>${toLetterGrade(score)}</span>"

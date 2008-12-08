@@ -20,7 +20,6 @@
                             <td>&nbsp;</td>
                    	        <g:sortableColumn property="name" title="Name" />
                             <g:sortableColumn property="description" title="Description" />
-                               <g:sortableColumn property="function" title="Function" />
                         </tr>
                     </thead>
                     <tbody>
@@ -37,7 +36,6 @@
                             </td>                                                    
                             <td>${fieldValue(bean:usergroup, field:'name')}</td>
                             <td>${fieldValue(bean:usergroup, field:'description')}</td>
-                            <td>${fieldValue(bean:usergroup, field:'function')}</td>
                         </tr>
                     </g:each>
                     </tbody>

@@ -1,7 +1,7 @@
 class PhysicalAsset extends Resource {
-    static optionals = ['make','model','operatingSystem','physicalLocation','platform','sourceSupplier']
+    static optionals = ['make','model','operatingSystem','physicalLocation','platform','sourceSupplier','acquisitionCost']
     static constraints = {
-	}	
+    }
 	
 	String make
 	String model
@@ -9,6 +9,7 @@ class PhysicalAsset extends Resource {
 	String physicalLocation
 	String platform	
 	String sourceSupplier
+    String acquisitionCost
 
         static transients = ['calculateScores']
 

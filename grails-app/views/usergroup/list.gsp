@@ -18,7 +18,6 @@
                         <td>&nbsp;</td>
                         <g:sortableColumn property="name" title="Name"/>
                         <g:sortableColumn property="description" title="Description"/>
-                        <g:sortableColumn property="function" title="Function"/>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +36,6 @@
                                 <g:link action="show" id="${fieldValue(bean: usergroup, field: 'id')}">${fieldValue(bean: usergroup, field: 'name')}</g:link>
                             </td>
                             <td>${fieldValue(bean: usergroup, field: 'description')}</td>
-                            <td>${fieldValue(bean: usergroup, field: 'function')}</td>
                         </tr>
                     </g:each>
                 </tbody>

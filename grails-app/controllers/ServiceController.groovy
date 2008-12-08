@@ -114,4 +114,16 @@ class ServiceController extends SecureController {
             option(value: service.id, "${service.name}")
         }
     }
+
+    def peopleCoverage = {
+        def service = Service.get(params.id)
+
+        if (!service) {
+            flash.message = "Service not found with id ${params.id}"
+            redirect(action: list)
+        }
+
+        return [service: service]
+       
+    }
 }

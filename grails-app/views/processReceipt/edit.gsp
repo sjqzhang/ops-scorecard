@@ -46,10 +46,14 @@
 
                     <tr class="prop">
                         <td valign="top" class="name">
-                            <label for="targetedService">Targeted Service:</label>
+                            <label for="targetedService">Management process:</label>
                         </td>
-                        <td valign="top" class="value ${hasErrors(bean: processReceipt, field: 'targetedService', 'errors')}">
-                            <g:select optionKey="id" from="${Service.list()}" name="targetedService.id" value="${processReceipt?.targetedService?.id}"></g:select>
+                        <td valign="top" class="value ${hasErrors(bean: processReceipt, field: 'process', 'errors')}">
+                            <select name="process.id" id="process.id">
+                                <g:each in="${ServiceManagementProcess.list()}" var="p">
+                                    <option value="${p.id}">${p?.service?.name}: ${p?.name} [${p?.category}]</option>
+                                </g:each>
+                            </select>
                         </td>
                     </tr>
 
@@ -82,24 +86,7 @@
                     </tr>
 
 
-                    <tr class="prop">
-                        <td valign="top" class="name">
-                            <label for="isAuthorized">Is Authorized:</label>
-                        </td>
-                        <td valign="top" class="value ${hasErrors(bean: processReceipt, field: 'isAuthorized', 'errors')}">
-                            <g:checkBox name="isAuthorized" value="${processReceipt?.isAuthorized}"></g:checkBox>
-                        </td>
-                    </tr>
-
-                    <tr class="prop">
-                        <td valign="top" class="name">
-                            <label for="hasSecuritySignOff">Has Security Sign Off:</label>
-                        </td>
-                        <td valign="top" class="value ${hasErrors(bean: processReceipt, field: 'hasSecuritySignOff', 'errors')}">
-                            <g:checkBox name="hasSecuritySignOff" value="${processReceipt?.hasSecuritySignOff}"></g:checkBox>
-                        </td>
-                    </tr>
-
+                   
 
                     <tr class="prop">
                         <td valign="top" class="name">
@@ -119,16 +106,6 @@
                         </td>
                     </tr>
 
-
-                    <tr class="prop">
-                        <td valign="top" class="name">
-                            <label for="worstCaseOutcome">Worst Case Outcome:</label>
-                        </td>
-                        <td valign="top" class="value ${hasErrors(bean: processReceipt, field: 'worstCaseOutcome', 'errors')}">
-                            <input type="text" id="worstCaseOutcome" name="worstCaseOutcome" value="${fieldValue(bean: processReceipt, field: 'worstCaseOutcome')}"/>
-                        </td>
-                    </tr>
-
                     <tr class="prop">
                         <td valign="top" class="name">
                             <label for="status">Change Status:</label>
@@ -140,7 +117,7 @@
 
                     <tr class="prop">
                         <td valign="top" class="name">
-                            <label for="outcome">Change Outcome:</label>
+                            <label for="outcome">Outcome:</label>
                         </td>
                         <td valign="top" class="value ${hasErrors(bean: processReceipt, field: 'outcome', 'errors')}">
                             <g:select id="outcome" name="outcome" from="${processReceipt.constraints.outcome.inList}" value="${processReceipt.outcome}"></g:select>
@@ -149,7 +126,7 @@
 
                     <tr class="prop">
                         <td valign="top" class="name">
-                            <label for="impactLevel">Change Impact Level:</label>
+                            <label for="impactLevel">Impact Level:</label>
                         </td>
                         <td valign="top" class="value ${hasErrors(bean: processReceipt, field: 'impactLevel', 'errors')}">
                             <g:select id="impactLevel" name="impactLevel" from="${processReceipt.constraints.impactLevel.inList}" value="${processReceipt.impactLevel}"></g:select>
@@ -200,17 +177,6 @@
                             <g:datePicker name="actualEnd" value="${processReceipt?.actualEnd}" noSelection="['':'']"></g:datePicker>
                         </td>
                     </tr>
-
-
-                    <tr class="prop">
-                        <td valign="top" class="name">
-                            <label for="worstCaseOutageDuration">Worst Case Outage Duration:</label>
-                        </td>
-                        <td valign="top" class="value ${hasErrors(bean: processReceipt, field: 'worstCaseOutageDuration', 'errors')}">
-                            <input type="text" id="worstCaseOutageDuration" name="worstCaseOutageDuration" value="${fieldValue(bean: processReceipt, field: 'worstCaseOutageDuration')}"/>
-                        </td>
-                    </tr>
-
 
                 </tbody>
             </table>
