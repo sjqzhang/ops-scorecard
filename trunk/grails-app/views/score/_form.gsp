@@ -1,7 +1,7 @@
 <div id="createform">
     <g:form action="scoreServices" method="post">
         <div class="buttons">
-            <span class="button"><input class="save" type="submit" value="Score"/></span>
+            <span class="button"><input class="save" type="submit" value="Generate"/></span>
         </div>
         <div>
             <table>
@@ -52,7 +52,7 @@
                     <tr>
                         <td valign="top">
                             <ul>
-                                <g:each in="['audit','process','activity','inventory']" var="i">
+                                <g:each in="['audit','process','activity','inventory','people']" var="i">
                                     <li style="margin-left:10px;text-align: left;float: left;list-style: none;">
                                         <g:checkBox name="cards" value="${i}"/> ${i}
                                     </li>

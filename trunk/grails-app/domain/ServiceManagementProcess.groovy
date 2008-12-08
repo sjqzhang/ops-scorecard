@@ -3,7 +3,7 @@ class ServiceManagementProcess {
         name(blank: false)
         description(blank: false)
         createDate(nullable:false)
-        category(inList: ['acceptance', 'build', 'detective', 'escalation',
+        category(inList: ['acceptance', 'build', 'change','configuration', 'detective', 'escalation',
                 'implementation', 'release', 'deployment','monitoring', 'verification'])
         automationLevel(inList: ['none', 'manual','semi', 'full'])
         automationTool(nullable:true)
@@ -49,7 +49,7 @@ class ServiceManagementProcess {
                 'implementor': 0, 'receipient': 0, 'cumulative': 0]
     }
 
-    static metrics = ['effectiveness','reliability','deviation','impact','success']
+    static metrics = ServiceManagementProcessScorecard.metrics
     
     def Map calculateScores() {
         def scores = zerodScores()

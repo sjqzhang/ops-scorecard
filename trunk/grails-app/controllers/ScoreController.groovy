@@ -4,14 +4,10 @@ class ScoreController extends SecureController {
     def index = {
         def today = new Date()
 
-        def scorecardParams = new ScorecardParams(startDate: today - 7, endDate: today, service: null)
-        def capabilityScoreCardMap = scorecardService.listAuditScorecards(scorecardParams)
-        def processScorecardMap = scorecardService.listProcessScorecards(
-                ServiceManagementProcess.constraints.category.inList.sort(), null, null, null)
-
+        def scorecardParams = new ScorecardParams(startDate: today - 7, endDate: today, service: null)        
         render(view: 'index', model: [scorecardParams: scorecardParams,
-                capabilityScoreCardMap: capabilityScoreCardMap,
-                processScorecardMap: processScorecardMap])
+                capabilityScoreCardMap: [:],
+                processScorecardMap: [:]])
     }
 
 
@@ -39,7 +35,7 @@ class ScoreController extends SecureController {
 
 
         println("DEBUG: scoreMap.size=${scoreMap.size()}")
-        render(view: 'index', model:[scoreMap:scoreMap])
+        render(view: 'index', model:[scoreMap:scoreMap,scoreServicesParams:scoreServicesParams])
     }
 
 

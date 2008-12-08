@@ -12,7 +12,7 @@
     </tr>
     <g:each var="category" in="${ServiceManagementProcess.constraints.category.inList}">
         <tr>
-            <td><g:link controller="serviceManagementProcess" action="search" params="[category:'${category}']">${category}</g:link></td>
+            <td><g:link controller="serviceManagementProcess" action="search" params="[category:category]">${category}</g:link></td>
         </tr>
     </g:each>
 </table>

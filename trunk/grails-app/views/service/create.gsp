@@ -123,7 +123,7 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="outageCost">Outage Cost:</label>
+                                    <label for="outageCost">Hourly Outage Cost:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:service,field:'outageCost','errors')}">
                                     <input type="text" id="outageCost" name="outageCost" value="${fieldValue(bean:service,field:'outageCost')}"/>

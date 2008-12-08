@@ -1,21 +1,24 @@
-
 <!-- control -->
-<td width="10">
-    <g:prettyScore format="numeric" score="${scorecard?.scores?.control}"/>%
+<tr>
+    <td>
+
+    <g:render template="/common/barchart" model="[label:'Control', position:scorecard?.scores?.control]"/>
 
 </td>
+</tr>
 <!-- process -->
-<td width="10">
-    <g:prettyScore format="numeric" score="${scorecard?.scores?.process}"/>%
+<tr>
+    <td>
+        <g:render template="/common/barchart" model="[label:'Process', position:scorecard?.scores?.process]"/>
 
-</td>
-<!-- repeatability -->
-<td width="10">
-    <g:prettyScore format="numeric" score="${scorecard?.scores?.repeatability}"/>%
-</td>
-<!-- cumulative -->
-<td width="10">
-    <g:set var="score" value="${scorecard?.scores?.cumulative}"/>
-    <g:prettyScore format="numeric" score="${score}"/>%
-</td>
+    </td>
+</tr>
+<tr>
+    <!-- cumulative -->
+    <td>
+        <g:set var="avg" value="${scorecard?.scores?.cumulative}"/>
+        <g:render template="/common/barchart" model="[label:'Average', position:avg]"/>
+
+    </td>
+</tr>
        

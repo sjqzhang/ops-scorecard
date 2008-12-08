@@ -39,15 +39,9 @@
                             <td valign="top" class="value">${fieldValue(bean:usergroup, field:'description')}</td>
                             
                         </tr>
-                       <tr class="prop">
-                            <td valign="top" class="name">Function:</td>
-
-                            <td valign="top" class="value">${fieldValue(bean:usergroup, field:'function')}</td>
-
-                        </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Users:</td>
+                            <td valign="top" class="name">Individuals:</td>
                             
                             <td  valign="top" style="text-align:left;" class="value">
                                 <ul>

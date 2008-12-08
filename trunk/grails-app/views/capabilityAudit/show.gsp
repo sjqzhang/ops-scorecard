@@ -25,13 +25,6 @@
             <tbody>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Id:</td>
-
-                    <td valign="top" class="value">${fieldValue(bean: capabilityAudit, field: 'id')}</td>
-
-                </tr>
-
-                <tr class="prop">
                     <td valign="top" class="name">Title:</td>
 
                     <td valign="top" class="value">${fieldValue(bean: capabilityAudit, field: 'title')}</td>
@@ -224,15 +217,54 @@
                         </ul>
                     </td>
 
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        scorecards: ${capabilityAudit.scorecards}
-                    </td>
-                </tr>
-
+                </tr>                
             </tbody>
         </table>
+
+        <h3>Process Coverage</h3>
+
+
+            <table border="0">
+
+                        <g:each in="${capabilityAudit.scorecards}" var="scorecard">
+                            <tr>
+                            <td valign="top" class="name">
+                                    ${scorecard.process.category}
+                            </td>
+
+                            <td valign="top">
+                                <table border="0">
+                                    <tr>
+                                        <td colspan="3">
+                                            Implemented as: <g:link action="show" controller="serviceManagementProcess" id="${scorecard.process.id}">${scorecard.process.name}</g:link>
+                                        </td>
+                                    </tr>
+
+                                    <g:each in="${ServiceManagementProcess.metrics.sort()}" var="metric">
+                                        <tr>
+                                            <td style="text-align:right;width:25px;">
+                                                ${metric} 
+                                            </td>
+                                            <td style="width:15px;">                                                
+                                                ${scorecard[metric].value}
+                                            </td>
+                                            <td>
+                                                <g:if test="${scorecard[metric].comment}">
+                                                    ${scorecard[metric].comment}
+                                                </g:if>
+                                                <g:else>
+                                                    <span style="color:#666;font-style:italic;">No comments</span>
+                                                </g:else>
+                                            </td>
+                                        </tr>
+                                    </g:each>
+
+                                </table>
+                            </td>
+                            </tr>
+                        </g:each>
+
+            </table>
     </div>
 
 </div>

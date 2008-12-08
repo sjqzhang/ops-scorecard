@@ -7,9 +7,7 @@ class ProcessReceipt {
         title(blank:false)
         date(blank:false)
         coordinator(blank:false)
-        service(nullable:false, blank: false)
-        isAuthorized(nullable:false)
-        hasSecuritySignOff(nullable:false)
+        process(nullable:false)
         motivatingReason(nullable:true)
         nonActionConsequence(nullable:true)
         changeRequestUrl(nullable:true)
@@ -22,14 +20,13 @@ class ProcessReceipt {
         plannedExpectedBenefit(nullable:true)
         actualStart(nullable:true)
         actualEnd(nullable:true)
-        worstCaseOutageDuration(nullable:true)
     }
 
 	String title
     Date date
 
     // "What" questions
-	Service service
+	ServiceManagementProcess process
 	String motivatingReason
 	String nonActionConsequence
 	String status
@@ -39,9 +36,6 @@ class ProcessReceipt {
 	String priority
 
 	// "Who" questions
-	boolean isAuthorized
-	boolean hasSecuritySignOff
-
 	User coordinator	
 
 	// "When" questions
@@ -51,11 +45,6 @@ class ProcessReceipt {
 	Date actualStart
 	Date actualEnd
 
-
-	String worstCaseOutcome
-	Integer worstCaseOutageDuration
-
-
     String toString() {return title}    
 
     static transients = ['calculateScores']
@@ -64,7 +53,7 @@ class ProcessReceipt {
     //
     static control_fields = ['coordinator',
             'outcome', 'priority', 'motivatingReason',
-            'nonActionConsequence', 'isAuthorized', 'hasSecuritySignOff',
+            'nonActionConsequence', 'changeReviewers', 'securityReviewers',
             'changeRequestUrl']
     static repeatability_fields = []
 

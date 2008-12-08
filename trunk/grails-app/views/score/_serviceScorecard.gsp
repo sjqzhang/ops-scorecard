@@ -1,4 +1,4 @@
-<%--<g:set var="serviceScoreMap" value="${scoreMap[serviceId]}"/>--%>
+
 
 <g:set var="service" value="${serviceScoreMap['service']}"/>
 
@@ -21,6 +21,12 @@
     <br/>
 </g:if>
 
+<!-- People coverage -->
+<g:if test="${scoreServicesParams?.cards.contains('people')}">
+    <g:render template="people/scorecard" model="[service:service]"/>
+    <br/>
+</g:if>
+
 <!-- Change activity -->
 <g:if test="${serviceScoreMap['activity']}">
     <g:render template="processReceipt/scorecard" model="[processReceiptScorecardList:serviceScoreMap['activity']]"/>
@@ -32,6 +38,7 @@
     <g:render template="inventory/scorecard" model="[inventoryScorecardList:serviceScoreMap['inventory']]"/>
     <br/>
 </g:if>
+
 
 <p>&nbsp;</p>
 <p>&nbsp;</p>

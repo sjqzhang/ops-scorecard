@@ -16,7 +16,7 @@
                     <input type="hidden" name="id" value="${service?.id}" />
                     <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
                     <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
-                    <span class="button"><g:actionSubmit class="list" value="List" /></span>                    
+                    <span class="button"><g:actionSubmit class="list" value="List" /></span>
                 </g:form>
             </div>
             <div class="dialog">
@@ -142,56 +142,53 @@
                         </tr>
 
                         <tr>
-                            <td>Processes:</td>
-                            <td>
-                                <g:set var="processes" value="${ServiceManagementProcess.findAllByService(service)}"/>
-                                <g:if test="${processes}">
-
-                                <ul>
-                                <g:each in="${processes}" var="process">
-                                   <li>
-                                       <g:link action="show" controller="serviceManagementProcess"
-                                               title="${process.category}"
-                                       id="${process.id}">${process.name} </g:link>
-                                       </li>
-                                </g:each>
-                                </ul>
-                                    </g:if>
-                                <g:else>
-                                    <i>None</i>                                    
-                                </g:else>
-                                <div style="margin-top:10px;">
+                            <td>Processes:
+                                 <div style="margin-top:10px;">
                                 <span class="menuButton"><g:link class="create" action="create" controller="serviceManagementProcess"
                                     params="['targetResource.id':service.id]">
-                                    Create one</g:link></span>
+                                    New process</g:link></span>
                                 </div>
+                            </td>
+                            <td>
+                                <g:set var="processes" value="${ServiceManagementProcess.findAllByService(service)}"/>                                
+                                <g:render template="/serviceManagementProcess/list" model="[processes:processes]"/>
+
                             </td>
                         </tr>
 
                          <tr>
-                            <td>Audits:</td>
-                            <td>
-                                <g:set var="audits" value="${CapabilityAudit.findAllByService(service)}"/>
-                                <g:if test="${audits}">
-
-                                <ul>
-                                <g:each in="${audits}" var="audit">
-                                   <li>
-                                       <g:link action="show" controller="capabilityAudit"
-                                               title="${audit.auditDate}"
-                                       id="${audit.id}">${audit.title} </g:link>
-                                       </li>
-                                </g:each>
-                                </ul>
-                                    </g:if>
-                                <g:else>
-                                    <i>None</i>
-                                </g:else>
+                            <td>Audits:
                                 <div style="margin-top:10px;">
                                 <span class="menuButton"><g:link class="create" action="create" controller="capabilityAudit"
                                     params="['targetedService.id':service.id]">
-                                    Create one</g:link></span>
+                                    New audit</g:link></span>
                                 </div>
+                            </td>
+                            <td>
+                                <g:set var="audits" value="${CapabilityAudit.findAllByService(service)}"/>
+                                <table>
+                                <thead>
+                                   <th>Title</th>
+                                    <th>Date</th>
+                                    <th>Auditor</th>
+                                    <th>Score Average</th>
+                                </thead>
+                                <tbody>
+                                <g:each in="${audits}" var="audit">
+                                    <g:set var="scores" value="${audit.calculateScores()}"/>
+                                   <tr>
+                                       <td>
+                                       <g:link action="show" controller="capabilityAudit"
+                                       id="${audit.id}">${audit.title} </g:link>
+                                       </td>
+                                       <td>${audit.auditDate}</td>
+                                       <td>${audit.auditor.login}</td>
+                                       <td><g:prettyScore score="${scores['cumulative']}" format="numeric"/></td>
+                                       </tr>
+                                </g:each>
+                                </tbody>
+                            </table>
+
                             </td>
                         </tr>
                     </tbody>

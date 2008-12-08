@@ -69,6 +69,9 @@
             <g:paginate total="${CapabilityAudit.count()}"/>
         </div>
     </div>
+    <div class="sidebar">
+            <g:render template="sidebar"/>
+        </div>
 </g:if>
 <g:else>
     <g:if test="${Service.count()>0}">
