@@ -1,3 +1,0 @@
-  *  [Building]
-  *  [Configuration]
-  *  [UsingScorecard]
