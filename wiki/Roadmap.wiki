@@ -1,0 +1,12 @@
+#summary The development roadmap.
+
+= Introduction =
+
+Ops Scorecard is truly in its earliest stages of development. We really want to see its evolution driven by its user base so we have only focussed on showing off concepts at this stage.
+
+
+Here are the goals for the 0.9 Proof of concept. 
+  * Demo and get feedback to drive data model 
+  * Discern the reporting structure
+  * Identify integration points
+
