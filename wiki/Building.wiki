@@ -21,4 +21,5 @@ cd scorecard
 grails -Dscorecard.config.location=`pwd`/grails-app/conf/scorecard-config.properties -Dserver.port=9090 run-app
 }}}
 
-
+==Use it==
+Once you have the application running, you're ready to use it. Go [http://code.google.com/p/ops-scorecard/wiki/UsingScorecard here] for user documentation.
