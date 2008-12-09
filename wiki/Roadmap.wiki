@@ -10,3 +10,7 @@ Here are the goals for the 0.9 Proof of concept.
   * Discern the reporting structure
   * Identify integration points
 
+Here are some obvious gaps that need to be filled:
+  * Optimized UI to decrease the amount of page jumps
+  * Authorization scheme to control user management 
+  * External tool integration (probably with ticketing systems)
