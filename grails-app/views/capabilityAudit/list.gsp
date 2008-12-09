@@ -23,7 +23,8 @@
                         <g:sortableColumn property="auditor" title="Auditor"/>
 
                         <g:sortableColumn property="auditDate" title="Audit Date"/>
-                        <th>Targeted Service</th>
+                        <th>Service Name</th>
+                        <th>Service Type</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,6 +59,9 @@
                                         ${capabilityAudit.service.name}
                                     </g:link>
                                 </g:if>
+                            </td>
+                            <td>
+                                ${capabilityAudit.service.type.name}
                             </td>
 
                         </tr>

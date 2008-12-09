@@ -8,9 +8,13 @@
         }
         if (it.implementor?.users) usrCnt += it.implementor.users.size()
     }
+    def indvPerProcAvg = 0
+    if (processes.size()>0) {
+       indvPerProcAvg = usrCnt / processes.size()
+    }
 %>
 <h5>Individuals</h5>
 <p>Number of individuals supporting this service: ${usrCnt}</p>
-<p>Average number of individuals supporting each process: ${usrCnt / processes.size()}</p>
+<p>Average number of individuals supporting each process: ${indvPerProcAvg}</p>
 <h5>Teams</h5>
 <p>Number of teams supporting this service: ${teams.size()}</p>

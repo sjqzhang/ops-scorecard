@@ -98,8 +98,9 @@
                         </td>
 
                         <td valign="top" class="value ${hasErrors(bean: serviceManagementProcess, field: 'artifactType', 'errors')}">
-                            <g:if test="${serviceManagementProcess?.artifactType?.id}">
-                                <g:select optionKey="id" from="${ResourceType.findAllByMetatype('artifact')}" name="type.id" value="${serviceManagementProcess?.artifactType?.id}"></g:select>
+                            <g:set var="artifactTypes" value="${ResourceType.findAllByMetatype('artifact')}"/>
+                            <g:if test="${artifactTypes}">
+                                <g:select optionKey="id" from="${artifactTypes}" name="artifactType.id" value="${serviceManagementProcess?.artifactType?.id}"></g:select>
                             </g:if>
                             <g:else>
                                 <g:link action="create" params="[metatype:'artifact']" controller="resourceType">Define a type</g:link>

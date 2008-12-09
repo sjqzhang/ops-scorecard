@@ -54,6 +54,14 @@
 
 
                 <tr class="prop">
+                    <td valign="top" class="name"> ResourceType:</td>
+
+                    <td valign="top" class="value">${capabilityAudit?.service?.type.name}</td>
+
+                </tr>
+
+
+                <tr class="prop">
                     <td valign="top" class="name">Change Coordinator:</td>
 
                     <td valign="top" class="value"><g:link controller="user" action="show" id="${capabilityAudit?.changeCoordinator?.id}">${capabilityAudit?.changeCoordinator?.encodeAsHTML()}</g:link></td>

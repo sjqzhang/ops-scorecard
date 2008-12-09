@@ -1,27 +1,32 @@
 <span style="font-size:12pt;font-weight:bold;">Capability Audits</span>
 
 
-<g:each in="${capabilityScoreCardMap.keySet()}" var="serviceId">
-    <g:set var="scorecards" value="${capabilityScoreCardMap[serviceId]}"/>
-    <g:set var="service" value="${Service.get(serviceId)}"/>
+<g:each in="${auditScoreCardMap.keySet()}" var="serviceId" status="i">
+    <!-- serviceId=${serviceId} -->
+    <g:set var="scorecards" value="${auditScoreCardMap[serviceId]}"/>
+    <%
+        def controlSum = 0
+        def processSum = 0
+        def cumulativeSum = 0
+        def cumAvg = 0
+        def ctlAvg = 0
+        def proAvg = 0
+    %>
     <g:if test="${scorecards}">
         <%
-            def controlSum = 0
-            def processSum = 0
-            def cumulativeSum = 0
             scorecards.each {
                 controlSum += it.scores.control
                 processSum += it.scores.process
                 cumulativeSum += it.scores.cumulative
             }
-            def cumAvg = cumulativeSum / scorecards.size()
-            def ctlAvg = controlSum / scorecards.size()
-            def proAvg = processSum / scorecards.size()
+            cumAvg = cumulativeSum / scorecards.size()
+            ctlAvg = controlSum / scorecards.size()
+            proAvg = processSum / scorecards.size()
         %>
 
         <!-- the chart -->
         <h5>Average scores over the last ${scorecards.size()} audits</h5>
-        <g:render template="capabilityAudit/chart" model="[id:serviceId,scorecards:scorecards]"/>
+        <g:render template="capabilityAudit/chart" model="[id:service.id,scorecards:scorecards]"/>
 
         <!-- the metrics -->
         <h5>Score averages over the last ${scorecards.size()} audits</h5>

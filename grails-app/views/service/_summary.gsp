@@ -1,4 +1,4 @@
-<span class="resourceName"><g:link action="show" controller="service" id="${service.id}">${service.name}</g:link></span>
+<span class="resourceName"><g:link action="show" controller="service" id="${service.id}">${service.name}</g:link> ${service.type.name}</span>
 <span class="resourceDescription">${service?.description}</span>
 <table>
     <tbody>
