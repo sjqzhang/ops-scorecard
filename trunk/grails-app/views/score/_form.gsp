@@ -37,7 +37,7 @@
                             <ul>
                                 <g:each in="${services}" var="s">
                                     <li style="margin-left:10px;text-align: left;float: left;list-style: none;">
-                                        <g:checkBox name="service.id" value="${s.id}"/> ${s?.name}
+                                        <g:checkBox name="service.id" value="${s.id}"/> ${s?.name} [${s.type.name}]
                                     </li>
                                 </g:each>
                             </ul>

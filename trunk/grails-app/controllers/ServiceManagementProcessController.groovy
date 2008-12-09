@@ -24,6 +24,10 @@ class ServiceManagementProcessController extends SecureController {
 
     def delete = {
         def serviceManagementProcess = ServiceManagementProcess.get(params.id)
+        def matches = ServiceManagementProcessScorecard.findByProcess(serviceManagementProcess)
+        matches.each {
+            it.delete()
+        }
         if (serviceManagementProcess) {
             serviceManagementProcess.delete()
             flash.message = "Deleted: '${params.id}'"

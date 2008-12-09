@@ -90,7 +90,7 @@ class UserController {
         def user = new User(params)
         if (!user.hasErrors() && user.save()) {
             flash.message = "Registered: '${user.login}'"
-            redirect(controller: 'capabilityScoreCard', action: 'list')
+            redirect(url: '/scorecard')
         }
         else {
             render(view: 'create', model: [user: user])

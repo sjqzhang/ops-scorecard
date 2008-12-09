@@ -11,12 +11,19 @@
     <div class="body" style="width:600px;">
         <g:if test="${scoreMap}">
             <g:each in="${scoreMap.keySet()}" var="serviceId">
+                <!-- Looking up scorecard data for service.id=${serviceId} -->
                 <g:set var="serviceScoreMap" value="${scoreMap[serviceId]}"/>
 
                 <!-- render the scorecard for the service -->
                 <g:render template="serviceScorecard" model="[serviceScoreMap:serviceScoreMap]"/>
 
             </g:each>
+
+            <!-- Inventory activity -->
+            <g:if test="${scoreServicesParams?.cards.contains('inventory')}">
+              <g:render template="inventory/scorecard" model="[service:service,inventoryScorecardList:serviceScoreMap['inventory']]"/>
+            </g:if>
+
         </g:if>
         <g:else>
             <div class="dialog">

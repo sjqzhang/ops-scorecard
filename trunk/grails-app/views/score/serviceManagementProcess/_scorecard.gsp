@@ -2,7 +2,7 @@
 <p>
 Are processes formalized and defined?
 </p>
-<g:if test="${processScorecardMap}">
+<g:if test="${processScorecardMap && processScorecardMap.size() >0}">
 <g:each in="${processScorecardMap.keySet()}" status="i" var="serviceId">
     <g:set var="scorecards" value="${processScorecardMap[serviceId]}"/>
     <g:set var="service" value="${Service.get(serviceId)}"/>
