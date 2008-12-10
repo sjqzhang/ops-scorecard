@@ -27,17 +27,15 @@
         <table>
             <tbody>
 
-
-
                 <tr class="prop">
-                    <td valign="top" class="name">Function:</td>
+                    <td valign="top" class="name ${!releaseArtifact?.function?'empty':''}">Function:</td>
 
                     <td valign="top" class="value">${fieldValue(bean: releaseArtifact, field: 'function')}</td>
 
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Status:</td>
+                    <td valign="top" class="name ${!releaseArtifact?.status?'empty':''}">Status:</td>
 
                     <td valign="top" class="value">${fieldValue(bean: releaseArtifact, field: 'status')}</td>
 
@@ -46,7 +44,7 @@
 
 
                 <tr class="prop">
-                    <td valign="top" class="name">Repository URL:</td>
+                    <td valign="top" class="name ${!releaseArtifact?.repositoryURL?'empty':''}">Repository URL:</td>
 
                     <td valign="top" class="value">${fieldValue(bean: releaseArtifact, field: 'repositoryURL')}</td>
 
@@ -55,7 +53,7 @@
 
 
                 <tr class="prop">
-                    <td valign="top" class="name">Owner Responsible:</td>
+                    <td valign="top" class="name ${!releaseArtifact?.ownerResponsible?'empty':''}">Owner Responsible:</td>
 
                     <td valign="top" class="value"><g:link controller="user" action="show" id="${releaseArtifact?.ownerResponsible?.id}">${releaseArtifact?.ownerResponsible?.encodeAsHTML()}</g:link></td>
 
@@ -65,7 +63,9 @@
                 <tr class="prop">
                     <td valign="top" class="name">Date Acquired:</td>
 
-                    <td valign="top" class="value">${fieldValue(bean: releaseArtifact, field: 'dateAcquired')}</td>
+                    <td valign="top" class="value">
+                    <g:relativeDate elapsed="${releaseArtifact?.dateAcquired}"  agoClass="ago acquired" untilClass="date aquired"/>
+                    </td>
 
                 </tr>
 
@@ -73,20 +73,22 @@
                 <tr class="prop">
                     <td valign="top" class="name">Next Maintenance Window:</td>
 
-                    <td valign="top" class="value">${fieldValue(bean: releaseArtifact, field: 'nextMaintenanceWindow')}</td>
+                    <td valign="top" class="value">
+                        <g:relativeDate elapsed="${releaseArtifact?.nextMaintenanceWindow}"  agoClass="until maintenance" untilClass="next maintenance"/>                        
+                    </td>
 
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Ticket Numbers:</td>
+                    <td valign="top" class="name ${!releaseArtifact?.ticketNumbers?'empty':''}">Ticket Numbers:</td>
 
                     <td valign="top" class="value">${fieldValue(bean: releaseArtifact, field: 'ticketNumbers')}</td>
 
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Reprovisioning Duration:</td>
-
+                    <td valign="top" class="name ${!releaseArtifact?.reprovisioningDuration?'empty':''}">Reprovisioning Duration:</td>
+                    
                     <td valign="top" class="value">${fieldValue(bean: releaseArtifact, field: 'reprovisioningDuration')}</td>
 
                 </tr>

@@ -30,14 +30,14 @@
                     <tbody>
                         
                         <tr class="prop">
-                            <td valign="top" class="name">Function:</td>
+                            <td valign="top" class="name ${!physicalAsset?.function?'empty':''}">Function:</td>                            
                             
                             <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'function')}</td>
                             
                         </tr>
 
                         <tr class="prop">
-                            <td valign="top" class="name">Status:</td>
+                            <td valign="top" class="name ${!physicalAsset?.status?'empty':''}">Status:</td>
 
                             <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'status')}</td>
                         </tr>
@@ -45,42 +45,42 @@
 
 
                         <tr class="prop">
-                            <td valign="top" class="name">Make:</td>
+                            <td valign="top" class="name ${!physicalAsset?.make?'empty':''}">Make:</td>
 
                             <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'make')}</td>
 
                         </tr>
 
                         <tr class="prop">
-                            <td valign="top" class="name">Model:</td>
+                            <td valign="top" class="name ${!physicalAsset?.model?'empty':''}">Model:</td>
 
                             <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'model')}</td>
 
                         </tr>
 
                         <tr class="prop">
-                            <td valign="top" class="name">Operating System:</td>
+                            <td valign="top" class="name ${!physicalAsset?.operatingSystem?'empty':''}">Operating System:</td>
 
                             <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'operatingSystem')}</td>
 
                         </tr>
 
                         <tr class="prop">
-                            <td valign="top" class="name">Physical Location:</td>
+                            <td valign="top" class="name ${!physicalAsset?.physicalLocation?'empty':''}">Physical Location:</td>
 
                             <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'physicalLocation')}</td>
 
                         </tr>
 
                         <tr class="prop">
-                            <td valign="top" class="name">Platform:</td>
+                            <td valign="top" class="name ${!physicalAsset?.platform?'empty':''}">Platform:</td>
 
                             <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'platform')}</td>
 
                         </tr>
 
                         <tr class="prop">
-                            <td valign="top" class="name">Source Supplier:</td>
+                            <td valign="top" class="name ${!physicalAsset?.sourceSupplier?'empty':''}">Source Supplier:</td>
 
                             <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'sourceSupplier')}</td>
 
@@ -88,8 +88,8 @@
 
                         
                         <tr class="prop">
-                            <td valign="top" class="name">Owner Responsible:</td>
-                            
+                            <td valign="top" class="name ${!physicalAsset?.ownerResponsible?'empty':''}">Owner Responsible:</td>
+
                             <td valign="top" class="value"><g:link controller="user" action="show" id="${physicalAsset?.ownerResponsible?.id}">${physicalAsset?.ownerResponsible?.encodeAsHTML()}</g:link></td>
                             
                         </tr>
@@ -98,7 +98,9 @@
                         <tr class="prop">
                             <td valign="top" class="name">Date Acquired:</td>
 
-                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'dateAcquired')}</td>
+                            <td valign="top" class="value">
+                                <g:relativeDate elapsed="${physicalAsset?.dateAcquired}" agoClass="ago acquired" untilClass="until acquired"/>
+                            </td>
 
                         </tr>
 
@@ -106,19 +108,20 @@
                         <tr class="prop">
                             <td valign="top" class="name">Next Maintenance Window:</td>
 
-                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'nextMaintenanceWindow')}</td>
-
+                            <td valign="top" class="value">
+                                <g:relativeDate elapsed="${physicalAsset?.nextMaintenanceWindow}"  agoClass="ago maintenence" untilClass="until maintenence"/> 
+                            </td>
                         </tr>
 
                         <tr class="prop">
-                            <td valign="top" class="name">Ticket Numbers:</td>
+                            <td valign="top" class="name ${!physicalAsset?.ticketNumbers?'empty':''}">Ticket Numbers:</td>
 
                             <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'ticketNumbers')}</td>
 
                         </tr>
 
                         <tr class="prop">
-                            <td valign="top" class="name">Reprovisioning Duration:</td>
+                            <td valign="top" class="name ${!physicalAsset?.reprovisioningDuration?'empty':''}">Reprovisioning Duration:</td>                            
 
                             <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'reprovisioningDuration')}</td>
 
