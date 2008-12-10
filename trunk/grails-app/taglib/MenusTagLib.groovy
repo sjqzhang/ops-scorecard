@@ -54,7 +54,7 @@ class MenusTagLib {
         }
 
 
-        def mkp = new groovy.xml.MarkupBuilder(out) //this line will be unnecessary in versions of Grails after version 1.2
+
         String tcode = "menus.${key}.title.${item}"
         def title=g.message(code:tcode)
         if(tcode==title || title==null){
@@ -65,8 +65,9 @@ class MenusTagLib {
         if(image==icode){
             image=null
         }
+        def mkp = new groovy.xml.MarkupBuilder(out) //this line will be unnecessary in versions of Grails after version 1.2
         mkp {
-            span('class':"menulink ${attrs.class?attrs.class:''}",onmousedown:"menus.doMenuToggle(this,\"${menukey}_gmenu\");return false;",'style':"padding: 4px 2px;display:inline;"){
+            span('class':"menulink  ${attrs.class?attrs.class:''}",onmousedown:"menus.doMenuToggle(this,\"${menukey}_gmenu\");return false;",'style':"padding: 4px 2px;display:inline;"){
                 if(image){
                     img('src':g.createLinkTo(dir:'images',file:image), 'class':"menuicon")
                 }
@@ -106,6 +107,19 @@ class MenusTagLib {
         mkp {
             div('id': menukey+'_gmenu','class':"gmenu ${attrs.class?attrs.class:''}",'style':"display:none;") {
                 div('class':'menuSection'){
+                    if(submenu && !attrs.dosubhead){
+                        div(style:'padding:5px'){
+                            String icode = "menus.${key}.image.${submenu}"
+                            def image=g.message(code:icode)
+                            if(image==icode){
+                                image=null
+                            }
+                            if(image){
+                                img('src':g.createLinkTo(dir:'images',file:image), 'class':"menuicon")
+                            }
+                            span(g.message(code:"menus.${key}.title.${submenu}"))
+                        }
+                    }
                     ul{
                         menulist.each{k->
                             String tcode = "menus.${key}.title.${k}"
@@ -147,7 +161,7 @@ class MenusTagLib {
                                 parms.putAll(attrs.params)
                             }
                             li{
-                                a('href':g.createLink('action':link,'controller':ctrl,params:parms), 'class':'menuitem','style':"padding:5px"){
+                                a('href':g.createLink('action':link,'controller':ctrl,params:parms), 'class':'menuitem '+(submenu?'sub':''),'style':"padding:5px"){
                                     if(image){
                                         img('src':g.createLinkTo(dir:'images',file:image), 'class':"menuicon")
                                     }
