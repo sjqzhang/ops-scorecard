@@ -27,14 +27,14 @@
             <tbody>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Coordinator:</td>
+                    <td valign="top" class="name ${!processReceipt?.coordinator?'empty':''}">Coordinator:</td>
 
                     <td valign="top" class="value"><g:link controller="user" action="show" id="${processReceipt?.coordinator?.id}">${processReceipt?.coordinator?.encodeAsHTML()}</g:link></td>
 
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Process:</td>
+                    <td valign="top" class="name ${!processReceipt?.process?'empty':''}">Process:</td>
 
                     <td valign="top" class="value"><g:link controller="serviceManagementProcess" action="show"
                             id="${processReceipt?.process?.id}"
@@ -43,7 +43,7 @@
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Service:</td>
+                    <td valign="top" class="name ${!processReceipt?.process?.service?'empty':''}">Service:</td>
 
                     <td valign="top" class="value"><g:link controller="service" action="show"
                             id="${processReceipt?.process?.service?.id}">${processReceipt?.process?.service?.name} [${processReceipt?.process?.service?.type?.name}]</g:link></td>
@@ -52,7 +52,7 @@
 
 
                 <tr class="prop">
-                    <td valign="top" class="name">Motivating Reason:</td>
+                    <td valign="top" class="name ${!processReceipt?.motivatingReason?'empty':''}">Motivating Reason:</td>
 
                     <td valign="top" class="value">${fieldValue(bean: processReceipt, field: 'motivatingReason')}</td>
 
@@ -60,7 +60,7 @@
 
 
                 <tr class="prop">
-                    <td valign="top" class="name">Change Reviewers:</td>
+                    <td valign="top" class="name ${!processReceipt?.changeReviewers?'empty':''}">Change Reviewers:</td>
 
                     <td valign="top" style="text-align:left;" class="value">
                         <g:if test="${processReceipt.changeReviewers}">
@@ -80,7 +80,7 @@
 
 
                 <tr class="prop">
-                    <td valign="top" class="name">Security Reviewers:</td>
+                    <td valign="top" class="name ${!processReceipt?.securityReviewers?'empty':''}">Security Reviewers:</td>
 
                     <td valign="top" style="text-align:left;" class="value">
                         <g:if test="${processReceipt.securityReviewers}">
@@ -98,7 +98,7 @@
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Stakeholders:</td>
+                    <td valign="top" class="name ${!processReceipt?.stakeholders?'empty':''}">Stakeholders:</td>
 
                     <td valign="top" style="text-align:left;" class="value">
                         <ul>
@@ -111,42 +111,42 @@
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Non Action Consequence:</td>
+                    <td valign="top" class="name ${!processReceipt?.nonActionConsequence?'empty':''}">Non-action Consequence:</td>
 
                     <td valign="top" class="value">${fieldValue(bean: processReceipt, field: 'nonActionConsequence')}</td>
 
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Change Request Url:</td>
+                    <td valign="top" class="name ${!processReceipt?.changeRequestUrl?'empty':''}">Change Request Url:</td>
 
                     <td valign="top" class="value">${fieldValue(bean: processReceipt, field: 'changeRequestUrl')}</td>
 
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Priority:</td>
+                    <td valign="top" class="name ${!processReceipt?.priority?'empty':''}">Priority:</td>
 
                     <td valign="top" class="value">${fieldValue(bean: processReceipt, field: 'priority')}</td>
 
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Change Status:</td>
+                    <td valign="top" class="name ${!processReceipt?.status?'empty':''}">Status:</td>
 
                     <td valign="top" class="value">${fieldValue(bean: processReceipt, field: 'status')}</td>
 
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Outcome:</td>
+                    <td valign="top" class="name ${!processReceipt?.outcome?'empty':''}">Outcome:</td>
 
                     <td valign="top" class="value">${fieldValue(bean: processReceipt, field: 'outcome')}</td>
 
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Impact Level:</td>
+                    <td valign="top" class="name ${!processReceipt?.impactLevel?'empty':''}">Impact Level:</td>
 
                     <td valign="top" class="value">${fieldValue(bean: processReceipt, field: 'impactLevel')}</td>
 
@@ -173,35 +173,45 @@
                 <tr class="prop">
                     <td valign="top" class="name">Planned Start:</td>
 
-                    <td valign="top" class="value">${fieldValue(bean: processReceipt, field: 'plannedStart')}</td>
+                    <td valign="top" class="value">
+                        <g:relativeDate elapsed="${processReceipt?.plannedStart}" agoClass="ago planned" untilClass="until planned"/>                        
+                    </td>
 
                 </tr>
 
                 <tr class="prop">
                     <td valign="top" class="name">Planned End:</td>
 
-                    <td valign="top" class="value">${fieldValue(bean: processReceipt, field: 'plannedEnd')}</td>
+                    <td valign="top" class="value">
+                        <g:relativeDate elapsed="${processReceipt?.plannedEnd}" agoClass="ago ended" untilClass="until ended"/>                        
+                    </td>
 
                 </tr>
 
                 <tr class="prop">
                     <td valign="top" class="name">Planned Expected Benefit:</td>
 
-                    <td valign="top" class="value">${fieldValue(bean: processReceipt, field: 'plannedExpectedBenefit')}</td>
+                    <td valign="top" class="value">
+                        <g:relativeDate elapsed="${processReceipt?.plannedExpectedBenefit}" agoClass="ago benefit" untilClass="until benefit"/>                                                
+                    </td>
 
                 </tr>
 
                 <tr class="prop">
                     <td valign="top" class="name">Actual Start:</td>
 
-                    <td valign="top" class="value">${fieldValue(bean: processReceipt, field: 'actualStart')}</td>
+                    <td valign="top" class="value">
+                        <g:relativeDate elapsed="${processReceipt?.actualStart}" agoClass="ago started" untilClass="until started"/>                                                
+                    </td>
 
                 </tr>
 
                 <tr class="prop">
                     <td valign="top" class="name">Actual End:</td>
 
-                    <td valign="top" class="value">${fieldValue(bean: processReceipt, field: 'actualEnd')}</td>
+                    <td valign="top" class="value">
+                        <g:relativeDate elapsed="${processReceipt?.actualEnd}" agoClass="ago ended" untilClass="until ended"/>
+                    </td>
 
                 </tr>
 
