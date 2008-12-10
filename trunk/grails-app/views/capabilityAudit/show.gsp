@@ -18,58 +18,33 @@
             <span class="button"><g:actionSubmit class="list" value="List"/></span>            
         </g:form>
     </div>
-    <div class="dialog">
+    <div class="view">
+        <div class="header audit">
+            <span class="name">${capabilityAudit?.title}</span>
+            by
+            <span class="author"><g:link controller="user" action="show" id="${capabilityAudit?.auditor?.id}">${capabilityAudit?.auditor?.encodeAsHTML()}</g:link></span>
+            
+            <span class="date"><g:relativeDate atDate="${capabilityAudit?.auditDate}" agoClass="ago audit" untilClass="until audit"/></span>
+        </div>
+        <h3>Service</h3>
+        <div class="header service">
+            <g:render template="/service/service_header" model="[service:capabilityAudit?.service]"/>
+        </div>
 
+        <h3>Control</h3>
         
         <table>
             <tbody>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Title:</td>
-
-                    <td valign="top" class="value">${fieldValue(bean: capabilityAudit, field: 'title')}</td>
-
-                </tr>
-
-                <tr class="prop">
-                    <td valign="top" class="name">Auditor:</td>
-
-                    <td valign="top" class="value"><g:link controller="user" action="show" id="${capabilityAudit?.auditor?.id}">${capabilityAudit?.auditor?.encodeAsHTML()}</g:link></td>
-
-                </tr>
-
-                <tr class="prop">
-                    <td valign="top" class="name">Audit Date:</td>
-
-                    <td valign="top" class="value">${fieldValue(bean: capabilityAudit, field: 'auditDate')}</td>
-
-                </tr>
-
-                <tr class="prop">
-                    <td valign="top" class="name"> Service:</td>
-
-                    <td valign="top" class="value"><g:link controller="service" action="show" id="${capabilityAudit?.service?.id}">${capabilityAudit?.service?.encodeAsHTML()}</g:link></td>
-
-                </tr>
-
-
-                <tr class="prop">
-                    <td valign="top" class="name"> ResourceType:</td>
-
-                    <td valign="top" class="value">${capabilityAudit?.service?.type.name}</td>
-
-                </tr>
-
-
-                <tr class="prop">
-                    <td valign="top" class="name">Change Coordinator:</td>
+                    <td valign="top" class="name ${!capabilityAudit?.changeCoordinator?'empty':''}">Change Coordinator:</td>
 
                     <td valign="top" class="value"><g:link controller="user" action="show" id="${capabilityAudit?.changeCoordinator?.id}">${capabilityAudit?.changeCoordinator?.encodeAsHTML()}</g:link></td>
 
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Change Owner:</td>
+                    <td valign="top" class="name ${!capabilityAudit?.changeOwner?'empty':''}">Change Owner:</td>
 
                     <td valign="top" class="value"><g:link controller="user" action="show" id="${capabilityAudit?.changeOwner?.id}">${capabilityAudit?.changeOwner?.encodeAsHTML()}</g:link></td>
 
@@ -78,7 +53,7 @@
 
 
                 <tr class="prop">
-                    <td valign="top" class="name">Ticket Service:</td>
+                    <td valign="top" class="name ${!capabilityAudit?.ticketService?'empty':''}">Ticket Service:</td>
 
                     <td valign="top" class="value">${fieldValue(bean: capabilityAudit, field: 'ticketService')}</td>
 
@@ -108,7 +83,7 @@
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Change Reviewers:</td>
+                    <td valign="top" class="name ${!capabilityAudit?.changeReviewers?'empty':''}">Change Reviewers:</td>
 
                     <td valign="top" style="text-align:left;" class="value">
                         <ul>
@@ -199,10 +174,10 @@
 
                 </tr>
 
-             
+
 
                 <tr class="prop">
-                    <td valign="top" class="name">Security Reviewers:</td>
+                    <td valign="top" class="name ${!capabilityAudit?.securityReviewers?'empty':''}">Security Reviewers:</td>
 
                     <td valign="top" style="text-align:left;" class="value">
                         <ul>
@@ -215,7 +190,7 @@
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Stakeholders:</td>
+                    <td valign="top" class="name ${!capabilityAudit?.stakeholders?'empty':''}">Stakeholders:</td>
 
                     <td valign="top" style="text-align:left;" class="value">
                         <ul>
@@ -225,22 +200,19 @@
                         </ul>
                     </td>
 
-                </tr>                
+                </tr>
             </tbody>
         </table>
 
         <h3>Process Coverage</h3>
 
 
-            <table border="0">
 
                         <g:each in="${capabilityAudit.scorecards}" var="scorecard">
-                            <tr>
-                            <td valign="top" class="name">
+                            <h3 class="sub">
                                     ${scorecard.process.category}
-                            </td>
+                            </h3>
 
-                            <td valign="top">
                                 <table border="0">
                                     <tr>
                                         <td colspan="3">
@@ -268,11 +240,8 @@
                                     </g:each>
 
                                 </table>
-                            </td>
-                            </tr>
                         </g:each>
 
-            </table>
     </div>
 
 </div>

@@ -208,9 +208,9 @@ td, th {
 th {
     background: #fff url(../images/skin/shadow.jpg);
     color: #666;
-    font-size: 11px;
+    /*font-size: 11px;*/
     font-weight: bold;
-    line-height: 17px;
+    line-height: 1.5em;
     padding: 2px 6px;
 }
 th a:link, th a:visited, th a:hover {
@@ -238,6 +238,16 @@ th.desc a {
     background: #fff;
 }
 
+table.summary th{
+    background: #fff;
+    text-align:right;
+    font-weight:normal;
+
+}
+table.summary td.empty{
+    color: #888;
+    font-style:italic;
+}
 /* LIST */
 
 .list table {
@@ -322,12 +332,16 @@ div.formtitle{
 }
 
 div.dialog h3, div.view h3{
-    padding:5px 5px 5px 15px;
+    padding:5px 5px 5px 10px;
     font-size:100%;
     
     border:1px solid #ccc;
     background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
     color: #666;
+}
+div.dialog h3.sub, div.view h3.sub{
+    background: #e0e0e0;
+    padding-left:20px;
 }
 div.dialog h3.section, div.view h3.section{
     font-style:italic;
@@ -348,6 +362,12 @@ div.view div.header{
     padding:10px;
     background: #eee;
 }
+div.view div.header.audit{
+    background: #dfd;
+}
+div.view div.header.service{
+    background: #eef;
+}
 div.header span.name{
     font-size: 125%;
     
@@ -359,7 +379,15 @@ div.header span.type{
 div.header span.desc{
     color: #aaa;
     display:block;
-
+}
+div.header span.author a{
+    font-weight:normal;
+    font-size:125%;
+}
+div.header span.date{
+    color: #888;
+    font-style:italic;
+    display:block;
 }
 div.view div.header + table{
     border-top: 0;
@@ -373,8 +401,21 @@ div.view h3+table{
 div.view table + div.section{
     border-top: 0;
 }
-div.view h3+div.section{
+div.view div.section + h3{
     border-top: 0;
+}
+div.view h3 + div.section{
+    border-top: 0;
+}
+div.view h3 + div.header{
+    border-top: 0;
+}
+div.view div.header + h3{
+    border-top: 0;
+}
+div.view h3 + h3{
+    border-top: 0;
+    
 }
 /* ACTION BUTTONS */
 
@@ -545,10 +586,10 @@ span.score {
 }
 
 span.resourceName {
-    font-size: 14pt;
+
 }
 span.resourceDescription {
-    font-size: 11pt;
+ 
 }
 
 .barchart {
@@ -585,3 +626,64 @@ span.resourceDescription {
     font-weight: bold;
     text-decoration: none;
 }
+
+/* SCORECARD */
+
+div.scorecard h2{
+    margin: 10px 0;
+    font-size:130%;
+}
+div.scorecard h1{
+    margin: 10px 0 10px 0;
+
+    font-weight:bold;
+    font-size:150%;
+}
+div.scorecard h5{
+    font-size:100%;
+    font-weight:normal;
+    color: #555;
+    margin: 10px;
+}
+div.scorecard div.sectiondesc{
+    margin: 0 0 10px 10px;
+    
+}
+div.scorecard div.empty{
+    color: #888;
+    font-style:italic;
+}
+div.scorecard table{
+    /*border:0;*/
+}
+
+/*div.scorecard h3{*/
+    /*padding:5px 5px 5px 10px;*/
+    /*font-size:100%;*/
+
+    /*background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;*/
+    /*color: #666;*/
+/*}*/
+/*div.scorecard h3.sub{*/
+    /*background: #ddd;*/
+    /*color: #999;*/
+/*}*/
+/*div.scorecard h3.section{*/
+    /*font-style:italic;*/
+    /*font-weight:normal;*/
+/*}*/
+/*div.scorecard div.section{*/
+    /*padding:5px 5px 5px 15px;*/
+    /*color: #666;*/
+/*}*/
+
+/*div.scorecard {*/
+    /*width:600px;*/
+/*}*/
+/*div.scorecard div.header{*/
+    /*padding:10px;*/
+    /*background: #eee;*/
+/*}*/
+/*div.scorecard div.header.audit{*/
+    /*background: #dfd;*/
+/*}*/

@@ -1,4 +1,4 @@
-<span style="font-size:12pt;font-weight:bold;">Process Activity</span>
+<h2>Process Activity</h2>
 
 <g:if test="${processReceiptScorecardList && processReceiptScorecardList.size()>0 }">
 
@@ -9,8 +9,9 @@
         }
         def cumAvg = cumulative / processReceiptScorecardList.size()
     %>
+<div class="section">
 <g:render template="/common/barchart" model="[label:'Activity quality',position:cumAvg]"/>
-
+</div>
 
 <table>
     <thead>

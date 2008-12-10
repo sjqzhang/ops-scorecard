@@ -1,4 +1,4 @@
-<span style="font-size:12pt;font-weight:bold;">New Inventory Items</span>
+<h1>New Inventory Items</h1>
 
 <table>
     <thead>
@@ -27,8 +27,8 @@
                     ${scorecard.resource.description}
                 </td>
                 <!--create date-->
-                <td>
-                ${fieldValue(bean:scorecard.resource, field:'createDate')}
+                <td title="${scorecard.resource.createDate}">
+                <g:relativeDate atDate="${scorecard.resource.createDate}"/>
                 </td>
 
 

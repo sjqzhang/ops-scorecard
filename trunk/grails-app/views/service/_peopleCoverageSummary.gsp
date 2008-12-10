@@ -14,7 +14,11 @@
     }
 %>
 <h5>Individuals</h5>
-<p>Number of individuals supporting this service: ${usrCnt}</p>
-<p>Average number of individuals supporting each process: ${indvPerProcAvg}</p>
+<div class="section">
+    <p>For this service: ${usrCnt}</p>
+    <p>Average per process: ${indvPerProcAvg}</p>
+</div>
 <h5>Teams</h5>
-<p>Number of teams supporting this service: ${teams.size()}</p>
+<div class="section">
+<p>Supporting this service: ${teams.size()}</p>
+</div>
