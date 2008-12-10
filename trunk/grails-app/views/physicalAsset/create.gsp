@@ -144,6 +144,15 @@
 
                             <tr class="prop">
                                 <td valign="top" class="name">
+                                    <label for="platform">Acquisition Cost:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:physicalAsset,field:'platform','errors')}">
+                                    <input type="text" id="acquisitionCost" name="acquisitionCost" value="${fieldValue(bean:physicalAsset,field:'acquisitionCost')}"/>
+                                </td>
+                            </tr>
+                            
+                            <tr class="prop">
+                                <td valign="top" class="name">
                                     <label for="sourceSupplier">Source Supplier:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:physicalAsset,field:'sourceSupplier','errors')}">

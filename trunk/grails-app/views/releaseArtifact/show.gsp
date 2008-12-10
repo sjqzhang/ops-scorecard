@@ -18,32 +18,15 @@
             <span class="button"><g:actionSubmit class="list" value="List"/></span>
         </g:form>
     </div>
-    <div class="dialog">
+    <div class="view">
+         <div class="header service">
+                     <span class="name"><g:link controller="releaseArtifact" action="show" id="${releaseArtifact?.id}">${releaseArtifact?.name}</g:link></span>
+                     <span class="type">[<g:link controller="releaseArtifact" action="show" id="${releaseArtifact?.type?.id}">${releaseArtifact?.type?.encodeAsHTML()}</g:link>]</span>                     
+                     <span class="desc">${releaseArtifact?.description}</span>
+                 </div>
         <table>
             <tbody>
 
-                <tr class="prop">
-                    <td valign="top" class="name">Name:</td>
-
-                    <td valign="top" class="value">${fieldValue(bean: releaseArtifact, field: 'name')}</td>
-
-                </tr>
-
-
-                <tr class="prop">
-                    <td valign="top" class="name">Type:</td>
-
-                    <td valign="top" class="value"><g:link controller="resourceType" action="show" id="${releaseArtifact?.type?.id}">${releaseArtifact?.type?.encodeAsHTML()}</g:link></td>
-
-                </tr>
-
-
-                <tr class="prop">
-                    <td valign="top" class="name">Description:</td>
-
-                    <td valign="top" class="value">${fieldValue(bean: releaseArtifact, field: 'description')}</td>
-
-                </tr>
 
 
                 <tr class="prop">
@@ -111,31 +94,25 @@
 
 
                 <tr class="prop">
-                    <td valign="top" class="name">Is Fragile:</td>
-
-                    <td valign="top" class="value">${fieldValue(bean: releaseArtifact, field: 'isFragile')}</td>
-
-                </tr>
-
-                <tr class="prop">
-                    <td valign="top" class="name">Is Mission Critical:</td>
-
-                    <td valign="top" class="value">${fieldValue(bean: releaseArtifact, field: 'isMissionCritical')}</td>
-
-                </tr>
-
-                <tr class="prop">
-                    <td valign="top" class="name">Is Monitored:</td>
-
-                    <td valign="top" class="value">${fieldValue(bean: releaseArtifact, field: 'isMonitored')}</td>
-
-                </tr>
-
-                <tr class="prop">
-                    <td valign="top" class="name">Is Rebuildable:</td>
-
-                    <td valign="top" class="value">${fieldValue(bean: releaseArtifact, field: 'isRebuildable')}</td>
-
+                    <td valign="top" class="name ${!(releaseArtifact?.isFragile || releaseArtifact?.isMissionCritical || releaseArtifact?.isMonitored || releaseArtifact?.isRebuildable)?'empty':''}">Flags:</td>
+                    <td class="value">
+                        <g:if test="${releaseArtifact.isFragile}">
+                            <img src="${createLinkTo(dir:'images/skin',file:'tick.png')}" width="16px" height="16px"/>
+                            <b>Fragile</b>
+                        </g:if>
+                        <g:if test="${releaseArtifact.isMissionCritical}">
+                            <img src="${createLinkTo(dir:'images/skin',file:'tick.png')}" width="16px" height="16px"/>
+                            <b>Mission Critical</b>
+                        </g:if>
+                        <g:if test="${releaseArtifact.isMonitored}">
+                            <img src="${createLinkTo(dir:'images/skin',file:'tick.png')}" width="16px" height="16px"/>
+                            <b>Monitored</b>
+                        </g:if>
+                        <g:if test="${releaseArtifact.isRebuildable}">
+                            <img src="${createLinkTo(dir:'images/skin',file:'tick.png')}" width="16px" height="16px"/>
+                            <b>Rebuildable</b>
+                        </g:if>
+                    </td>
                 </tr>
 
             </tbody>
