@@ -17,10 +17,10 @@
             </div>
             </g:hasErrors>
             <g:form action="saveRegistration" method="post" >
-                <div class="buttons">
-                    <span class="button"><input class="save" type="submit" value="Register" /></span>
-                </div>
                 <div class="dialog">
+                    <div class="formtitle">
+                        User Registration
+                    </div>
                     <table>
                         <tbody>
                         
@@ -35,18 +35,18 @@
 
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="login">Password:</label>
+                                    <label for="password">Password:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:user,field:'password','errors')}">
-                                    <input type="password" id="password" name="password" value="${fieldValue(bean:user,field:'password')}"/>
+                                    <input class="password" type="password" id="password" name="password" value="${fieldValue(bean:user,field:'password')}"/>
                                 </td>
                             </tr>
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="login">Confirm password:</label>
+                                    <label for="confirm">Confirm password:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:user,field:'confirm','errors')}">
-                                    <input type="password" id="confirm" name="confirm" value="${fieldValue(bean:user,field:'confirm')}"/>
+                                    <input class="password" type="password" id="confirm" name="confirm" value="${fieldValue(bean:user,field:'confirm')}"/>
                                 </td>
                             </tr>
 
@@ -85,9 +85,12 @@
                                     <input type="text" id="email" name="email" value="${fieldValue(bean:user,field:'email')}"/>
                                 </td>
                             </tr>
-                        
+
                         </tbody>
                     </table>
+                    <div class="buttons" style="text-align:right">
+                        <input type="submit" value="Register" />
+                    </div>
                 </div>
 
             </g:form>

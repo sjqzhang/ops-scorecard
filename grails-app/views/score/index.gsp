@@ -26,23 +26,19 @@
 
         </g:if>
         <g:else>
-            <div class="dialog">
                 <h3>No scorecard configured</h3>
-                <p>Specify the form parameters and then press the &quot;Score&quot; button.</p>
-            </div>
+                <div class="info">Specify the form parameters and then press the &quot;Generate&quot; button.</div>
         </g:else>
 
     </div>
-    <div class="sidebar">
+    <div class="sidebar" style="width:300px">
         <g:render template="sidebar" model="[services:services]"/>
     </div>
 </g:if>
 <g:else>
-    <div class="dialog">
         <h3>Cannot create scorecards</h3>
-        <p>No Services exist yet. Go to the Inventory manager and
-        <g:link controller="service" action="create">create a Service</g:link>.</p>
-    </div>
+        <div class="info">No Services exist yet. Go to the Inventory manager and
+        <g:link controller="service" action="create">create a Service</g:link>.</div>
 </g:else>
 </body>
 </html>

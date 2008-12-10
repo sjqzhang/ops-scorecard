@@ -17,11 +17,11 @@
             </div>
             </g:hasErrors>
             <g:form action="save" method="post" >
-                 <div class="buttons">
-                    <span class="button"><input class="save" type="submit" value="Create" /></span>
-                     <span class="button"><g:actionSubmit class="list" value="List" /></span>                                         
-                </div>
+
                 <div class="dialog">
+                    <div class="formtitle">
+                        Create Process
+                    </div>
                     <table>
                         <tbody>
                         
@@ -119,6 +119,10 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div class="buttons">
+                        <span class="button"><input  type="submit" value="Create" /></span>
+                        <span class="button"><g:actionSubmit action="list" value="Cancel" /></span>
+                    </div>
                 </div>
 
             </g:form>

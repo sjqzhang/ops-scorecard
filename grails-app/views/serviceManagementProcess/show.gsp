@@ -2,7 +2,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="main"/>
-    <title>Inventory: Show ServiceManagementProcess</title>
+    <title>Inventory: Process: ${serviceManagementProcess?.name}</title>
 </head>
 <body>
 
@@ -19,33 +19,23 @@
 
         </g:form>
     </div>
-    <div class="dialog">
+    <div class="view">
+        <div class="header process">
+            <span class="name"><g:link controller="serviceManagementProcess" action="show" id="${serviceManagementProcess?.id}">${serviceManagementProcess?.name}</g:link></span>
+            <span class="desc">${serviceManagementProcess?.description}</span>
+        </div>
         <table>
             <tbody>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Name:</td>
-
-                    <td valign="top" class="value">${fieldValue(bean: serviceManagementProcess, field: 'name')}</td>
-
-                </tr>
-
-                <tr class="prop">
-                    <td valign="top" class="name">Description:</td>
-
-                    <td valign="top" class="value">${fieldValue(bean: serviceManagementProcess, field: 'description')}</td>
-
-                </tr>
-
-                <tr class="prop">
-                    <td valign="top" class="name">Category:</td>
+                    <td valign="top" class="name ${!serviceManagementProcess?.category?'empty':''}">Category:</td>
 
                     <td valign="top" class="value">${fieldValue(bean: serviceManagementProcess, field: 'category')}</td>
 
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Service:</td>
+                    <td valign="top" class="name ${!serviceManagementProcess?.service?'empty':''}">Service:</td>
                     <td valign="top" class="value">
                         <g:link controller="service" action="show" id="${serviceManagementProcess?.service?.id}">
                             <g:if test="serviceManagementProcess?.service?.name">
@@ -59,7 +49,7 @@
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Automation Level:</td>
+                    <td valign="top" class="name ${!serviceManagementProcess?.automationLevel?'empty':''}">Automation Level:</td>
 
                     <td valign="top" class="value">${fieldValue(bean: serviceManagementProcess, field: 'automationLevel')}</td>
 
@@ -67,21 +57,21 @@
 
                 <g:if test="${'semi'.equals(serviceManagementProcess?.automationLevel) || 'full'.equals(serviceManagementProcess?.automationLevel)}">
                     <tr class="prop">
-                        <td valign="top" class="name">Automation Tool:</td>
+                        <td valign="top" class="name ${!serviceManagementProcess?.automationTool?'empty':''}">Automation Tool:</td>
 
                         <td valign="top" class="value">${fieldValue(bean: serviceManagementProcess, field: 'automationTool')}</td>
 
                     </tr>
                 </g:if>
                 <tr class="prop">
-                    <td valign="top" class="name">System Control:</td>
+                    <td valign="top" class="name ${!serviceManagementProcess?.syscontrol?'empty':''}">System Control:</td>
 
                     <td valign="top" class="value">${fieldValue(bean: serviceManagementProcess, field: 'syscontrol')}</td>
 
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Artifact Type:</td>
+                    <td valign="top" class="name ${!serviceManagementProcess?.artifactType?'empty':''}">Artifact Type:</td>
 
                     <td valign="top" style="text-align:left;" class="value">
                         <g:if test="${serviceManagementProcess?.artifactType?.id}">
@@ -90,16 +80,19 @@
                             </g:link>
                         </g:if>
                         <g:else>
-                            <g:link controller="resourceType" action="create" params="[metatype:'artifact']">
+                            <span class="info note">No Artifact Types</span>
+                            <span class="menuButton">
+                            <g:link controller="resourceType" class="create" action="create" params="[metatype:'artifact']">
                                 Define a type
                             </g:link>
+                            </span>
                         </g:else>
                     </td>
 
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Notification Recipients:</td>
+                    <td valign="top" class="name ${!serviceManagementProcess?.notificationRecipients?'empty':''}">Notification Recipients:</td>
 
                     <td valign="top" style="text-align:left;" class="value">
                         <ul>
@@ -112,58 +105,63 @@
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Implementor team:</td>
+                    <td valign="top" class="name ${!serviceManagementProcess?.implementor?'empty':''}">Implementor team:</td>
 
-                    <td valign="top" class="value"><g:link controller="user" action="show" id="${serviceManagementProcess?.implementor?.id}">${serviceManagementProcess?.implementor?.encodeAsHTML()}</g:link></td>
+                    <td valign="top" class="value"><g:link controller="usergroup" action="show" id="${serviceManagementProcess?.implementor?.id}">${serviceManagementProcess?.implementor?.encodeAsHTML()}</g:link></td>
 
                 </tr>
 
 
                 <tr class="prop">
-                    <td valign="top" class="name">Recipient team:</td>
+                    <td valign="top" class="name ${!serviceManagementProcess?.recipient?'empty':''}">Recipient team:</td>
 
-                    <td valign="top" class="value"><g:link controller="user" action="show" id="${serviceManagementProcess?.recipient?.id}">${serviceManagementProcess?.recipient?.encodeAsHTML()}</g:link></td>
+                    <td valign="top" class="value"><g:link controller="usergroup" action="show" id="${serviceManagementProcess?.recipient?.id}">${serviceManagementProcess?.recipient?.encodeAsHTML()}</g:link></td>
 
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name">Procedure:</td>
+                    <td valign="top" class="name ${!serviceManagementProcess?.procedure?'empty':''}">Procedure:</td>
 
                     <td valign="top" class="value">${fieldValue(bean: serviceManagementProcess, field: 'procedure')}</td>
 
                 </tr>
 
 
-                <tr class="prop">
-                    <td valign="top" class="name">Receipts:</td>
-
-                    <td valign="top" class="value">
-                        <table>
-                            <tr>
-                                <th>Title</th>
-                                <th>By</th>
-                                <th>Date</th>
-                                <th>Outcome</th>
-                            </tr>
-                            <g:each in="${ProcessReceipt.findAllByProcess(serviceManagementProcess)}" var="receipt">
-                                <tr>
-                                    <td>
-                                        <g:link controller="processReceipt" action="show" id="${receipt.id}">${receipt.title}</g:link>
-                                    </td>
-                                    <td>${receipt.coordinator}</td>
-                                    <td>
-                                        ${receipt?.date}
-                                    </td>
-                                    <td>${receipt?.outcome}</td>
-                                </tr>
-                            </g:each>
-                        </table>
-                    </td>
-
-                </tr>
 
             </tbody>
         </table>
+        <h3 class="section">Receipts</h3>
+
+        <g:set var="receipts" value="${ProcessReceipt.findAllByProcess(serviceManagementProcess)}"/>
+        <g:if test="receipts">
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>By</th>
+                <th>Date</th>
+                <th>Outcome</th>
+            </tr>
+            <g:each in="${ProcessReceipt.findAllByProcess(serviceManagementProcess)}" var="receipt">
+                <tr>
+                    <td>
+                        <g:link controller="processReceipt" action="show" id="${receipt.id}">${receipt.title}</g:link>
+                    </td>
+                    <td>${receipt.coordinator}</td>
+                    <td>
+                        ${receipt?.date}
+                    </td>
+                    <td>${receipt?.outcome}</td>
+                </tr>
+            </g:each>
+        </table>
+        </g:if>
+        <g:else>
+        <div class="section">
+            <div class="info note">
+                No Receipts
+            </div>
+        </div>
+        </g:else>
     </div>
 
 </div>

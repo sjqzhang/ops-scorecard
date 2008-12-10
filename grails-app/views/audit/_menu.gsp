@@ -1,4 +1,4 @@
-<div style="padding: 1px 1px 10px 1px;">
+<div class="menuBar">
     <g:menu />
     <g:menulink selected="audit" />
 </div>

@@ -16,6 +16,9 @@ class User {
 	String lastName	
     String email
     String password
+    String confirm
 
+    static transients=['confirm']
+    
     String toString() {return login}    
 }

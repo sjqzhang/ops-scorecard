@@ -18,12 +18,11 @@
             </div>
             </g:hasErrors>
             <g:form action="save" method="post" >
-                <g:hiddenField name="createDate" value="${new Date()}" />                
-                 <div class="buttons">
-                    <span class="button"><input class="save" type="submit" value="Create" /></span>
-                     <span class="button"><g:actionSubmit class="list" value="List" /></span>                                                              
-                </div>
+                <g:hiddenField name="createDate" value="${physicalAsset.createDate}" />                
                 <div class="dialog">
+                    <div class="formtitle">
+                        Create Physical Asset
+                    </div>
                     <table>
                         <tbody>
                             <tr class="prop">
@@ -213,6 +212,10 @@
 
                         </tbody>
                     </table>
+                    <div class="buttons" >
+                        <span class="button"><input  type="submit" value="Create" /></span>
+                        <span class="button"><g:actionSubmit  value="Cancel" action="list" /></span>
+                    </div>
                 </div>
 
             </g:form>

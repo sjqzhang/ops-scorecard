@@ -36,7 +36,7 @@
                             <td width="16px">
                                 <div id="controls.${processReceipt.id}" style="display:none">
                                     <g:link action="edit" params="[id:processReceipt.id]">
-                                        <img src="${createLinkTo(dir: 'images/skin', file: 'database_edit.png')}" alt="edit"/>
+                                        <img src="${createLinkTo(dir: 'images/skin', file: 'pencil.png')}" alt="edit"/>
                                     </g:link>
                                 </div>
                             </td>
@@ -77,10 +77,8 @@
 <g:else>
     <g:if test="${Service.count()>0}">
         <div class="body">
-            <div class="dialog">
                 <h3>There are no receipts yet.</h3>
-                <h5>Press the &quot;Create Receipt&quot; button to the right to create one.</h5>
-            </div>
+                <div class="info">Press the &quot;Create Receipt&quot; button to the right to create one.</div>
         </div>
         <div class="sidebar">
             <g:render template="sidebar"/>
@@ -88,10 +86,8 @@
     </g:if>
     <g:else>
         <div class="body">
-            <div class="dialog">
                 <h3>There are no services defined yet.</h3>
-                <h5>Press the &quot;Create Service&quot; button to the right to create a new one.</h5>
-            </div>
+                <div class="info">Press the &quot;Create Service&quot; button to the right to create a new one.</div>
 
         </div>
         <div class="sidebar">

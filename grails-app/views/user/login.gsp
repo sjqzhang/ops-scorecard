@@ -7,36 +7,54 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
+
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="layout" content="index"/>
     <title>Login Page</title>
-    <style type="text/css" type="text/css" media="screen">
-    form { width: 300px; }
-    input {
-    position: absolute;
-    left: 130px;
-    }
-    p { margin-left: 30px; }
-    .button { margin-top: 30px; }
-    </style>
 </head>
 <body>
-<div class="message">
-    ${flash.message}
+<div>
+    <g:if test="${flash.message}">
+        <div class="message">${flash.message}</div>
+    </g:if>
+    <h3>Welcome to Scorecard.</h3>
+    <div class="info">Login below or
+    <g:link action="register">register here</g:link>.
+    </div>
+    <form action="handleLogin">
+        <div class="dialog login">
+            <div class="formtitle">
+                Login
+            </div>
+
+            <table>
+                <tbody>
+
+                    <tr class="prop">
+                        <td valign="top" class="name">
+                            <label for="login">Login:</label>
+                        </td>
+                        <td class="value">
+                            <input type="text" name="login"/>
+                        </td>
+                    </tr>
+                    <tr class="prop">
+                        <td valign="top" class="name">
+                            <label for="password">Password:</label>
+                        </td>
+                        <td class="value">
+                            <input class="password" type="password" name="password"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="buttons" style="text-align:right">
+                <input type="submit" value="Login"/>
+            </div>
+        </div>
+    </form>
 </div>
-<p>Welcome to Scorecard. Login below or
- <g:link action="register">register here</g:link>.
-</p>
-<form action="handleLogin">
-    <p>
-        <label for="login">Login:</label>
-        <input type="text" name="login"/>
-    </p>
-    <p>
-        <label for="password">Password</label>
-        <input type="password" name="password"/>
-    </p>
-    <input type="submit" value="Login"/>
-</form>
 </body>
 </html>

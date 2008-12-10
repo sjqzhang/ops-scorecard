@@ -19,13 +19,17 @@
             </g:hasErrors>
             <g:form method="post" >
                 <input type="hidden" name="id" value="${releaseArtifact.id}" />
-                <input type="hidden" name="createDate" value="${releaseArtifact.createDate}" />
                 <div class="buttons">
-                    <span class="button"><g:actionSubmit class="save" value="Update" /></span>
                     <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
-                    <span class="button"><g:actionSubmit class="list" value="List" /></span>                    
                 </div>
+            </g:form>
+                <g:form method="post" >
+                    <input type="hidden" name="id" value="${releaseArtifact.id}" />
+                    <input type="hidden" name="createDate" value="${releaseArtifact.createDate}" />
                 <div class="dialog">
+                    <div class="formtitle">
+                        Edit Artifact
+                    </div>
                     <table>
                         <tbody>
 
@@ -179,6 +183,10 @@
 
                 </tbody>
             </table>
+            <div class="buttons">
+                <span class="button"><g:actionSubmit  value="Update" /></span>
+                <span class="button"><g:actionSubmit action="list" value="Cancel" /></span>
+            </div>
         </div>
 
             </g:form>

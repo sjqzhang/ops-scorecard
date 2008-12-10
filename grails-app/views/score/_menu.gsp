@@ -1,5 +1,4 @@
-<div style="padding: 1px 1px 10px 1px;">
-    &nbsp;
+<div class="menuBar">
     <!-- renders top level menu for key 'default'.-->
     <g:menu />
     <!-- renders link for top level menu, default key -->

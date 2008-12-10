@@ -35,7 +35,7 @@
                             <td width="16px">
                                 <div id="controls.${releaseArtifact.id}" style="display:none">
                                     <g:link action="edit" params="[id:releaseArtifact.id]">
-                                        <img src="${createLinkTo(dir: 'images/skin', file: 'database_edit.png')}" alt="edit"/>
+                                        <img src="${createLinkTo(dir: 'images/skin', file: 'pencil.png')}" alt="edit"/>
                                     </g:link>
                                 </div>
                             </td>
@@ -72,10 +72,8 @@
         </div>
     </g:if>
     <g:else>
-       <div class="dialog">
         <h3>There are no artifacts defined yet.</h3>
-        <h5>Press the &quot;Add Artifact&quot; button to the right to create a new one.</h5>
-      </div>
+        <div class="info">Press the &quot;Add Artifact&quot; button to the right to create a new one.</div>
     </g:else>
 </div>
 <div class="sidebar">

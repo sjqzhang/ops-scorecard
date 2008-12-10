@@ -24,10 +24,10 @@
            <span class="logininfo"><span class="user"
                    title="User ${session.user} is currently logged in."
            ><g:link action="show" controller="user" params="[login:session.user]">${session.user}</g:link></span> &raquo;
-               <g:link action="logout" controller="user" title="Logout user: ${session.user}">logout</g:link></span>
+               <g:link action="logout" controller="user" title="Logout user: ${session.user}" class="loginlink">logout</g:link></span>
        </g:if>
        <g:else>
-           Not logged in.
+           <g:link controller="user" action="login" class="loginlink">log in</g:link>
        </g:else>
     </span>    
 </div>

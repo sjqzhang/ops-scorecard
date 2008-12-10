@@ -4,8 +4,8 @@
 <g:if test="${types}">
 <table class="list" style="margin-top: 10px;">
     <tr>
-        <td style="background-color: azure;">
-            <span style="color:#808080;font-weight: bold;font-size:10pt;padding-right:10px;">Service types</span>
+        <td class="title">
+            Service types
         </td>
     </tr>
 
