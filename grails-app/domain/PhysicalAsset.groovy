@@ -1,6 +1,7 @@
 class PhysicalAsset extends Resource {
     static optionals = ['make','model','operatingSystem','physicalLocation','platform','sourceSupplier','acquisitionCost']
     static constraints = {
+       acquisitionCost(nullable:true)  
     }
 	
 	String make

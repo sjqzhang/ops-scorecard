@@ -20,33 +20,14 @@
                     <span class="button"><g:actionSubmit class="list" value="List" /></span>                    
                 </g:form>
             </div>
-            <div class="dialog">
+            <div class="view">
+                 <div class="header service">
+                     <span class="name"><g:link controller="physicalAsset" action="show" id="${physicalAsset?.id}">${physicalAsset?.name}</g:link></span>
+                     <span class="type">[<g:link controller="physicalAsset" action="show" id="${physicalAsset?.type?.id}">${physicalAsset?.type?.encodeAsHTML()}</g:link>]</span>                     
+                     <span class="desc">${physicalAsset?.description}</span>
+                 </div>
                 <table>
                     <tbody>
-
-                                             
-                        <tr class="prop">
-                            <td valign="top" class="name">Name:</td>
-
-                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'name')}</td>
-
-                        </tr>
-
-
-
-                        <tr class="prop">
-                            <td valign="top" class="name">Type:</td>
-
-                            <td valign="top" class="value"><g:link controller="resourceType" action="show" id="${physicalAsset?.type?.id}">${physicalAsset?.type?.encodeAsHTML()}</g:link></td>
-
-                        </tr>
-
-                        <tr class="prop">
-                            <td valign="top" class="name">Description:</td>
-
-                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'description')}</td>
-
-                        </tr>
                         
                         <tr class="prop">
                             <td valign="top" class="name">Function:</td>
@@ -141,38 +122,30 @@
 
                             <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'reprovisioningDuration')}</td>
 
-                        </tr>
-                    
+                        </tr>                   
 
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Is Fragile:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'isFragile')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Is Mission Critical:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'isMissionCritical')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Is Monitored:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'isMonitored')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Is Rebuildable:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:physicalAsset, field:'isRebuildable')}</td>
-                            
-                        </tr>
 
+                        <tr class="prop">
+                            <td valign="top" class="name ${!(physicalAsset?.isFragile || physicalAsset?.isMissionCritical || physicalAsset?.isMonitored || physicalAsset?.isRebuildable)?'empty':''}">Flags:</td>
+                            <td class="value">
+                                <g:if test="${physicalAsset.isFragile}">
+                                    <img src="${createLinkTo(dir:'images/skin',file:'tick.png')}" width="16px" height="16px"/>
+                                    <b>Fragile</b>
+                                </g:if>
+                                <g:if test="${physicalAsset.isMissionCritical}">
+                                    <img src="${createLinkTo(dir:'images/skin',file:'tick.png')}" width="16px" height="16px"/>
+                                    <b>Mission Critical</b>
+                                </g:if>
+                                <g:if test="${physicalAsset.isMonitored}">
+                                    <img src="${createLinkTo(dir:'images/skin',file:'tick.png')}" width="16px" height="16px"/>
+                                    <b>Monitored</b>
+                                </g:if>
+                                <g:if test="${physicalAsset.isRebuildable}">
+                                    <img src="${createLinkTo(dir:'images/skin',file:'tick.png')}" width="16px" height="16px"/>
+                                    <b>Rebuildable</b>
+                                </g:if>
+                            </td>
+                        </tr>
 
                     
                     </tbody>

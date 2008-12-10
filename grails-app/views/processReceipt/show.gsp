@@ -19,16 +19,12 @@
 
         </g:form>
     </div>
-    <div class="dialog">
+    <div class="view">
+        <div class="header process">
+            <span class="name"><g:link controller="processReceipt" action="show" id="${processReceipt?.id}">${processReceipt?.title}</g:link></span>
+        </div>
         <table>
             <tbody>
-
-                <tr class="prop">
-                    <td valign="top" class="name">Title:</td>
-
-                    <td valign="top" class="value">${fieldValue(bean: processReceipt, field: 'title')}</td>
-
-                </tr>
 
                 <tr class="prop">
                     <td valign="top" class="name">Coordinator:</td>
