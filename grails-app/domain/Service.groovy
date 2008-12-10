@@ -6,7 +6,7 @@ class Service extends Resource {
         serviceURL(nullable:true)
     }
 	
-	String outageCost
+	Integer outageCost   // hourly
 	User customer
     URL serviceURL
 

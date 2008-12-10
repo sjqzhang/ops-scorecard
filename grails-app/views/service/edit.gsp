@@ -73,7 +73,28 @@
                                     <input type="text" id="function" name="function" value="${fieldValue(bean:service,field:'function')}"/>
                                 </td>
                             </tr> 
-                        
+
+
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="customer">Customer:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:service,field:'customer','errors')}">
+                                    <g:select optionKey="id" from="${User.list()}" name="customer.id" value="${service?.customer?.id}" noSelection="['null':'']"></g:select>
+                                </td>
+                            </tr>
+                                                
+
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="serviceURL">Service URL:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:service,field:'serviceURL','errors')}">
+                                    <input type="text" id="serviceURL" name="serviceURL" value="${fieldValue(bean:service,field:'serviceURL')}"/>
+                                </td>
+                            </tr>
+
+
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="ownerResponsible">Owner Responsible:</label>
@@ -121,30 +142,13 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="outageCost">Outage Cost:</label>
+                                    <label for="outageCost">Hourly Outage Cost:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:service,field:'outageCost','errors')}">
                                     <input type="text" id="outageCost" name="outageCost" value="${fieldValue(bean:service,field:'outageCost')}"/>
                                 </td>
                             </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="customer">Customer:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:service,field:'customer','errors')}">
-                                    <g:select optionKey="id" from="${User.list()}" name="customer.id" value="${service?.customer?.id}" noSelection="['null':'']"></g:select>
-                                </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="serviceURL">Service URL:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:service,field:'serviceURL','errors')}">
-                                    <input type="text" id="serviceURL" name="serviceURL" value="${fieldValue(bean:service,field:'serviceURL')}"/>
-                                </td>
-                            </tr> 
+
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
