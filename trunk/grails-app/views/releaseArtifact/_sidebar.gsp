@@ -4,9 +4,9 @@
     <span class="menuButton"><g:link class="create" action="create">Add Artifact</g:link></span>
 <table class="list" style="margin-top: 10px;">
     <tr>
-        <td style="background-color: azure;">
-            <span style="color:#808080;font-weight: bold;font-size:10pt;padding-right:10px;">Types</span>
-            <g:link controller="resourceType" action="list"><span class="controllink">Edit</span></g:link>
+        <td class="title">
+            Types
+            <g:link controller="resourceType" action="list" style="display:inline"><span class="controllink">Edit</span></g:link>
         </td>
     </tr>
     <tr>
@@ -24,8 +24,8 @@
 <g:else>
 <table class="list" style="margin-top: 10px;">
     <tr>
-        <td style="background-color: azure;">
-            <span style="color:#808080;font-weight: bold;font-size:10pt;padding-right:10px;">Types</span>
+        <td class="title">
+            Types
         </td>
     </tr>
     <tr>

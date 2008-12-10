@@ -3,8 +3,8 @@
 
 <table class="list" style="margin-top: 10px;">
     <tr>
-        <td style="background-color: azure;">
-            <span style="color:#808080;font-weight: bold;font-size:10pt;padding-right:10px;">Categories</span>
+        <td class="title">
+            Categories
         </td>
     </tr>
     <tr>

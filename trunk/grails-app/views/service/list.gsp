@@ -18,13 +18,13 @@
                         <tr>
                         
                             <th>&nbsp;</th>
-                   	        <g:sortableColumn property="name" title="Name" />
+                   	        <g:sortableColumn property="name" title="Name" action="list"/>
                         
-                            <g:sortableColumn property="type" title="Type" />
+                            <g:sortableColumn property="type" title="Type" action="list"/>
 
-                   	        <g:sortableColumn property="description" title="Description" />
+                   	        <g:sortableColumn property="description" title="Description" action="list" />
                         
-                   	        <g:sortableColumn property="status" title="Status" />
+                   	        <g:sortableColumn property="status" title="Status" action="list"/>
                         
                         
                         </tr>
@@ -37,7 +37,7 @@
                             <td width="16px">
                                <div id="controls.${service.id}" style="display:none">
                                 <g:link action="edit" params="[id:service.id]">
-                                    <img src="${createLinkTo(dir:'images/skin',file:'database_edit.png')}" alt="edit" />
+                                    <img src="${createLinkTo(dir:'images/skin',file:'pencil.png')}" alt="edit" />
                                 </g:link>
                                </div>
                             </td>
@@ -66,10 +66,8 @@
             </div>        
       </g:if>
       <g:else>
-      <div class="dialog">
                 <h3>There are no services defined yet.</h3>
-                <h5>Press the &quot;Add Service&quot; button to the right to create a new one.</h5>
-      </div>
+                <div class="info">Press the &quot;Add Service&quot; button to the right to create a new one.</div>
       </g:else>
         </div>
         <div class="sidebar">

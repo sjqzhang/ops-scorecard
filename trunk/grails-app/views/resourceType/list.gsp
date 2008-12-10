@@ -16,9 +16,9 @@
 
                     <th></th>
 
-                    <g:sortableColumn property="name" title="Name"/>
-                    <g:sortableColumn property="description" title="Description"/>
-                    <g:sortableColumn property="metatype" title="Meta Type"/>
+                    <g:sortableColumn property="name" title="Name" action="list"/>
+                    <g:sortableColumn property="description" title="Description" action="list"/>
+                    <g:sortableColumn property="metatype" title="Meta Type" action="list"/>
 
                 </tr>
             </thead>
@@ -31,7 +31,7 @@
                         <td width="16px">
                             <div id="controls.${resourceType.id}" style="display:none">
                                 <g:link action="edit" params="[id:resourceType.id]">
-                                    <img src="${createLinkTo(dir: 'images/skin', file: 'database_edit.png')}" alt="edit"/>
+                                    <img src="${createLinkTo(dir: 'images/skin', file: 'pencil.png')}" alt="edit"/>
                                 </g:link>
                             </div>
                         </td>

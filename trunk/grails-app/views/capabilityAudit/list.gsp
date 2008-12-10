@@ -35,7 +35,7 @@
                             <td width="16px">
                                 <div id="controls.${capabilityAudit.id}" style="display:none">
                                     <g:link action="edit" params="[id:capabilityAudit.id]">
-                                        <img src="${createLinkTo(dir: 'images/skin', file: 'database_edit.png')}" alt="edit"/>
+                                        <img src="${createLinkTo(dir: 'images/skin', file: 'pencil.png')}" alt="edit" width="16px" height="16px"/>
                                     </g:link>
                                 </div>
                             </td>
@@ -80,10 +80,9 @@
 <g:else>
     <g:if test="${Service.count()>0}">
         <div class="body">
-            <div class="dialog">
                 <h3>There are no capability audits defined yet.</h3>
-                <h5>Press the &quot;Create Audit&quot; button to the right to create a new one.</h5>
-            </div>
+                <div class="info">Press the &quot;Create Audit&quot; button to create a new one.</div>
+                <span class="menuButton"><g:link class="create" action="create">Create Audit</g:link></span>
         </div>
         <div class="sidebar">
             <g:render template="sidebar"/>
@@ -91,10 +90,9 @@
     </g:if>
     <g:else>
         <div class="body">
-            <div class="dialog">
                 <h3>There are no services defined yet.</h3>
-                <h5>Press the &quot;Create Service&quot; button to the right to create a new one.</h5>
-            </div>
+                <div class="info">Press the &quot;Create Service&quot; button to create a new one.</div>
+                <span class="menuButton"><g:link class="create" controller="service" action="create">Create Service</g:link></span>
 
         </div>
         <div class="sidebar">

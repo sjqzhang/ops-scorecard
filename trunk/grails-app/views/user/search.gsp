@@ -37,7 +37,7 @@
                             <td width="16px">
                                <div id="controls.${user.id}" style="display:none">
                                 <g:link action="edit" params="[id:user.id]">
-                                    <img src="${createLinkTo(dir:'images/skin',file:'database_edit.png')}" alt="edit" />
+                                    <img src="${createLinkTo(dir:'images/skin',file:'pencil.png')}" alt="edit" />
                                 </g:link>
                                </div>
                             </td>
@@ -69,10 +69,8 @@
             </div>
             </g:if>
             <g:else>
-      <div class="dialog">
                 <h3>There are no individuals that matched the search criteria.</h3>
-                <h5>Press the &quot;All Individual&quot; link to the right to any available ones.</h5>
-           </div>
+                <div class="info">Press the &quot;All Individual&quot; link to the right to any available ones.</div>
             </g:else>
         </div>
         <div class="sidebar">

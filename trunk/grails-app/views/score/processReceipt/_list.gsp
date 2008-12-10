@@ -29,7 +29,7 @@
     </g:if>
     <g:else>
         <h3>No audits haven been created yet.</h3>
-        <h5>Press the &quot;Create an Receipt&quot; button to the right to create a new one.</h5>
+        <div class="info">Press the &quot;Create an Receipt&quot; button to the right to create a new one.</div>
     </g:else>
 
 </div>

@@ -17,12 +17,15 @@
     </g:hasErrors>
     <g:form method="post">
         <input type="hidden" name="id" value="${usergroup?.id}"/>
-        <div class="buttons">
-            <span class="button"><g:actionSubmit class="save" value="Update"/></span>
-            <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete"/></span>
-            <span class="button"><g:actionSubmit class="list" value="List"/></span>
-        </div>
+
+            <div class="buttons">
+                <span class="button"><g:actionSubmit class="delete" value="Delete"/></span>
+            </div>
+    </g:form>
+    <g:form method="post">
+        <input type="hidden" name="id" value="${usergroup?.id}"/>
         <div class="dialog">
+            <div class="formtitle">Edit User Group</div>
             <table>
                 <tbody>
 
@@ -52,20 +55,17 @@
 
                                 <g:each var="u" in="${User.list()}">
                                     <tr>
-                                        <td>
-
+                                        <td style="width:16px">
                                             <g:if test="${usergroup.users.contains(u)}">
-
-                                                <input type="checkbox" name="cb.users"
-                                                        value="${u.id}" checked="${checked}"/>
+                                                <input type="checkbox" name="cb.users" value="${u.id}" checked="${checked}" id="user_${u.id}"/>
                                             </g:if>
                                             <g:else>
-                                                <input type="checkbox" name="cb.users"
-                                                        value="${u.id}"/>
+                                                <input type="checkbox" name="cb.users" value="${u.id}"  id="user_${u.id}"/>
                                             </g:else>
                                         </td>
                                         <td>
-                                            ${u?.firstName} ${u?.lastName}
+                                            <label for="user_${u.id}">${u?.firstName} ${u?.lastName}</label>
+                                            (<g:link action="show" id="${u.id}">${u.login}</g:link>)
                                         </td>
                                     </tr>
                                 </g:each>
@@ -75,6 +75,11 @@
                     </tr>
                 </tbody>
             </table>
+
+            <div class="buttons">
+                <span class="button"><g:actionSubmit  value="Update"/></span>
+                <span class="button"><g:actionSubmit action="list" value="Cancel"/></span>
+            </div>
         </div>
 
     </g:form>

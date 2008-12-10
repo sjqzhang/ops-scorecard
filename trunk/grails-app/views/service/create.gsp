@@ -19,11 +19,11 @@
             <g:set var="resourceTypes" value="${ResourceType.findAllByMetatype('service')}"/>
             <g:if test="${resourceTypes}">
             <g:form action="save" method="post" >                                
-                <div class="buttons">
-                    <span class="button"><input class="save" type="submit" value="Save" /></span>
-                    <span class="button"><g:actionSubmit class="list" value="List" /></span>                                        
-                </div>
+
                 <div class="dialog">
+                    <div class="formtitle">
+                        Create a Service
+                    </div>
                     <table>
                         <tbody>
                         
@@ -186,6 +186,10 @@
                         
                         </tbody>
                     </table>
+                    <div class="buttons" >
+                        <input  type="submit" value="Create" />
+                        <g:actionSubmit  value="Cancel" action="list" />
+                    </div>
                 </div>
 
             </g:form>

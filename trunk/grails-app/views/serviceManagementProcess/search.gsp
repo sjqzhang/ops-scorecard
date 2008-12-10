@@ -38,7 +38,7 @@
                             <td width="16px">
                                <div id="controls.${serviceManagementProcess.id}" style="display:none">
                                 <g:link action="edit" params="[id:serviceManagementProcess.id]">
-                                    <img src="${createLinkTo(dir:'images/skin',file:'database_edit.png')}" alt="edit" />
+                                    <img src="${createLinkTo(dir:'images/skin',file:'pencil.png')}" alt="edit" />
                                 </g:link>
                                </div>
                             </td>
@@ -71,10 +71,8 @@
             </div>
             </g:if>
             <g:else>
-      <div class="dialog">
                 <h3>There are no processes matching the search criteria.</h3>
-                <h5>Press the &quot;All&quot; link to the right to list existing processes.</h5>
-             </div>
+                <div class="info">Press the &quot;All&quot; link to the right to list existing processes.</div>
             </g:else>
         </div>
      <div class="sidebar">

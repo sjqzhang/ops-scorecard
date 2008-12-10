@@ -18,11 +18,15 @@
     <g:form method="post">
         <input type="hidden" name="id" value="${capabilityAudit?.id}"/>
         <div class="buttons">
-            <span class="button"><g:actionSubmit class="save" value="Update"/></span>
             <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete"/></span>
-            <span class="button"><g:actionSubmit class="list" value="List"/></span>
         </div>
+    </g:form>
+    <g:form method="post">
+        <input type="hidden" name="id" value="${capabilityAudit?.id}"/>
         <div class="dialog">
+            <div class="formtitle">
+                Edit Audit
+            </div>
             <h3>General</h3>
             <table>
                 <tbody>
@@ -244,7 +248,7 @@
                                             <td>
                                                 <% def prop = pfx + "."+metric+".comment"%>
                                                 <input name="${pfx}.${metric}.comment" type="text"
-                                                    value="${scorecard? scorecard[metric].comment: ''}" size="40"/>
+                                                    value="${scorecard? scorecard[metric].comment: ''}" size="35"/>
                                             </td>
                                         </tr>
                                     </g:each>
@@ -271,6 +275,10 @@
 
                 </g:each>
             </table>
+            <div class="buttons">
+                <span class="button"><g:actionSubmit  value="Update"/></span>
+                <span class="button"><g:actionSubmit action="list" value="Cancel"/></span>
+            </div>
         </div>
 
     </g:form>

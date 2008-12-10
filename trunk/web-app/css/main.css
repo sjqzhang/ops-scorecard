@@ -4,7 +4,12 @@ html * {
 }
 
 /* GENERAL */
-
+div.pageContent{
+    padding: 10px 20px;
+}
+div.menuBar{
+    padding: 10px 20px;
+}
 .spinner {
     padding: 5px;
     position: absolute;
@@ -17,11 +22,19 @@ body {
     font: 11px verdana, arial, helvetica, sans-serif;
 }
 
-a:link, a:visited, a:hover {
-    color: #666;
+a:link, a:visited{
+    color: black;
     font-weight: bold;
     text-decoration: none;
-} 
+}
+a:hover {
+    text-decoration:underline;
+}
+a.loginlink{
+    color:blue;
+    text-decoration:underline;
+    font-weight:normal;
+}
 
 img {
     border-style: none;   
@@ -69,7 +82,7 @@ ul {
     padding-left: 15px;	
 }
 
-input, select, textarea {
+input.button, select, textarea {
     background-color: #fcfcfc;
     border: 1px solid #ccc;
     font: 11px verdana, arial, helvetica, sans-serif;
@@ -85,9 +98,6 @@ textarea {
 	vertical-align: top;
 }
 
-input:focus, select:focus, textarea:focus {
-    border: 1px solid #b2d1ff;
-}
 
 .body {
     float: left;
@@ -118,12 +128,12 @@ input:focus, select:focus, textarea:focus {
     padding-left: 25px;
 }
 .menuButton a.list {
-    background: url(../images/skin/database_table.png) center left no-repeat;
+    background: url(../images/skin/application_view_list.png) center left no-repeat;
     color: #333;
     padding-left: 25px;
 }
 .menuButton a.create {
-    background: url(../images/skin/database_add.png) center left no-repeat;
+    background: url(../images/skin/add.png) center left no-repeat;
     color: #333;
     padding-left: 25px;
 }
@@ -167,7 +177,18 @@ td.errors select {
 td.errors input {
     border: 1px solid red;
 }
+/* INFO */
 
+.info{
+    padding:5px;
+    
+}
+.info.note{
+    color:#888;
+}
+.info.warn{
+    color:red
+}
 /* TABLES */
 
 table {
@@ -193,7 +214,7 @@ th {
     padding: 2px 6px;
 }
 th a:link, th a:visited, th a:hover {
-    color: #333;
+    /*color: #333;*/
     display: block;
     font-size: 10px;
     text-decoration: none;
@@ -223,7 +244,7 @@ th.desc a {
     border-collapse: collapse;
 }
 .list th, .list td {
-    border-left: 1px solid #ddd;
+    
 }
 .list th:hover, .list tr:hover {
     background: #b2d1ff;
@@ -252,10 +273,25 @@ th.desc a {
     padding: 2px 3px;
 }
 
+/* time */
+span.until{
+    color: green;
+}
+span.ago{
+    color: gray;    
+}
+
 /* DIALOG */
 
-div .dialog {
+div.dialog {
     width:600px;
+}
+div.dialog.login{
+    width:450px;
+    
+    top:0;
+    margin: 10px auto 0 auto;
+
 }
 .dialog table {
     padding: 5px 0;
@@ -265,15 +301,81 @@ div .dialog {
     padding: 5px;
 }
 .prop .name {
-    text-align: left;
+    text-align: right;
     width: 15%;
     white-space: nowrap;
+}
+.prop .name.empty {
+    color: #888;
 }
 .prop .value {
     text-align: left;
     width: 85%;
 }
 
+div.formtitle{
+    padding:5px 5px 5px 15px;
+    font-size:150%;
+    border:1px solid #ccc;
+    background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
+    color: #666;
+}
+
+div.dialog h3, div.view h3{
+    padding:5px 5px 5px 15px;
+    font-size:100%;
+    
+    border:1px solid #ccc;
+    background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
+    color: #666;
+}
+div.dialog h3.section, div.view h3.section{
+    font-style:italic;
+    font-weight:normal;
+}
+div.dialog div.section, div.view div.section{
+    padding:5px 5px 5px 15px;
+    border:1px solid #ccc;
+    color: #666;
+}
+
+/* VIEW */
+div.view {
+    width:600px;
+}
+div.view div.header{
+    border: 1px solid #ccc;
+    padding:10px;
+    background: #eee;
+}
+div.header span.name{
+    font-size: 125%;
+    
+}
+div.header span.type{
+    font-weight:normal;
+    font-size: 125%;
+}
+div.header span.desc{
+    color: #aaa;
+    display:block;
+
+}
+div.view div.header + table{
+    border-top: 0;
+}
+div.view table + h3{
+    border-top: 0;
+}
+div.view h3+table{
+    border-top: 0;
+}
+div.view table + div.section{
+    border-top: 0;
+}
+div.view h3+div.section{
+    border-top: 0;
+}
 /* ACTION BUTTONS */
 
 .buttons {
@@ -281,37 +383,68 @@ div .dialog {
     border: 1px solid #ccc;
     color: #666;
     font-size: 10px;
-    margin-top: 5px;
     overflow: hidden;
-    padding: 0;
+    padding: 5px;
 }
 
-.buttons input {
+div.dialog table+div.buttons{
+    border-top:0;
+}
+div.dialog div.formtitle + table{
+    border-top:0;
+}
+div.dialog div.formtitle + h3{
+    border-top:0;
+}
+div.dialog h3 + table{
+    border-top:0;
+}
+div.dialog table+h3{
+    border-top:0;
+}
+
+.buttons input.delete,.buttons input.edit,.buttons input.save,.buttons input.list {
     background: #fff;
     border: 0;
     color: #333;
     cursor: pointer;
     font-size: 10px;
     font-weight: bold;
+    
     margin-left: 3px;
     overflow: visible;
-    padding: 2px 6px;
+    padding: 3px 6px;
+
+    background-color: #fcfcfc;
+    border: 1px solid #ccc;
+
 }
 .buttons input.delete {
-    background: transparent url(../images/skin/database_delete.png) 5px 50% no-repeat;
+    background-color: #fcfcfc;
+    border: 1px solid #ccc;
+    background: transparent url(../images/skin/delete.png) 5px 50% no-repeat;
     padding-left: 28px;
 }
 .buttons input.edit {
-    background: transparent url(../images/skin/database_edit.png) 5px 50% no-repeat;
+    background-color: #fcfcfc;
+    border: 1px solid #ccc;
+    background: transparent url(../images/skin/pencil.png) 5px 50% no-repeat;
     padding-left: 28px;
 }
 .buttons input.save {
-    background: transparent url(../images/skin/database_save.png) 5px 50% no-repeat;
+    background-color: #fcfcfc;
+    border: 1px solid #ccc;
+    background: transparent url(../images/skin/disk.png) 5px 50% no-repeat;
     padding-left: 28px;
 }
 .buttons input.list {
-    background: transparent url(../images/skin/database_table.png) 5px 50% no-repeat;
+    background-color: #fcfcfc;
+    border: 1px solid #ccc;
+    background: transparent url(../images/skin/application_view_list.png) 5px 50% no-repeat;
     padding-left: 28px;
+}
+input.password{
+    background:#eee;
 }
 
 .trendbuttonflat {
@@ -376,12 +509,29 @@ div.footerVersion span.desc{
     font-weight: normal;    
 }
 
-
+/* SIDEBAR */
 .sidebar{
-    position: relative; float: left; width:150px;
+    
+    float: left;
+    width:150px;
     margin:0 0 0 0;
     padding: 2px 2px 2px 10px;
     font-size: 10pt;
+}
+
+.sidebar table.list td{
+    padding:0
+}
+.sidebar table.list td.title{
+    color:#808080;
+    font-weight: bold;
+    font-size:10pt;
+    padding:5px 10px;
+    background-color: azure;
+}
+.sidebar table.list a{
+    display:block;
+    padding:5px 10px;
 }
 
 span.score {
@@ -425,8 +575,8 @@ span.resourceDescription {
 .barchart td.area {
     background-color:#f5eee6;font:8pt Arial; padding:0;     
 }
-.barchart a a:link, a:visited, a:hover {
-    color: #666;
+.barchart a:link,.barchart a:visited,.barchart a:hover {
+    /*color: #666;*/
     font-weight: bold;
     text-decoration: none;
 }

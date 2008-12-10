@@ -5,8 +5,8 @@
 <g:if test="${services}">
 <table class="list" style="margin-top: 10px;">
     <tr>
-        <td style="background-color: azure;">
-            <span style="color:#808080;font-weight: bold;font-size:10pt;padding-right:10px;">Services</span>
+        <td  class="title">
+            Services
         </td>
     </tr>
     <tr>
@@ -24,8 +24,8 @@
 <g:else>
 <table class="list" style="margin-top: 10px;">
     <tr>
-        <td style="background-color: azure;">
-            <span style="color:#808080;font-weight: bold;font-size:10pt;padding-right:10px;">Services</span>
+        <td class="title">
+            Services
         </td>
     </tr>
     <tr>

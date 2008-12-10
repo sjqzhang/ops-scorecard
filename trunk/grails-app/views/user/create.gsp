@@ -17,10 +17,8 @@
             </div>
             </g:hasErrors>
             <g:form action="save" method="post" >
-                <div class="buttons">
-                    <span class="button"><input class="save" type="submit" value="Save" /></span>
-                </div>
                 <div class="dialog">
+                    <div class="formtitle">Add User</div>
                     <table>
                         <tbody>
                         
@@ -58,10 +56,32 @@
                                 <td valign="top" class="value ${hasErrors(bean:user,field:'email','errors')}">
                                     <input type="text" id="email" name="email" value="${fieldValue(bean:user,field:'email')}"/>
                                 </td>
-                            </tr>             
+                            </tr>
+
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="password">Password:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:user,field:'password','errors')}">
+                                    <input  class="password" type="password" id="password" name="password" value=""/>
+                                </td>
+                            </tr>
+
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="confirm">Confirm Password:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:user,field:'confirm','errors')}">
+                                    <input  class="password" type="password" id="confirm" name="confirm" value=""/>
+                                </td>
+                            </tr>
                             
                         </tbody>
                     </table>
+                    <div class="buttons">
+                        <span class="button"><input  type="submit" value="Save" /></span>
+                        <span class="button"><g:actionSubmit action="list"  value="Cancel" /></span>
+                    </div>
                 </div>
 
             </g:form>
