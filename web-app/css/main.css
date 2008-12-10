@@ -494,6 +494,11 @@ div.footerVersion span.desc{
     margin: 5px 20px;
     clear:both;
 }
+.footer.additional a {
+    color: #888;
+    font-weight:normal;
+    
+}
 .logininfo {
     border: 1px solid #ddd;
     padding: 3px;
