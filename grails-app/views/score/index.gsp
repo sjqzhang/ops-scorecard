@@ -8,32 +8,43 @@
 <body>
 <g:set var="services" value="${Service.list()}"/>
 <g:if test="${services}">
-    <div class="body scorecard view" style="width:600px;">
         <g:if test="${scoreMap}">
-            <g:each in="${scoreMap.keySet()}" var="serviceId">
-                <!-- Looking up scorecard data for service.id=${serviceId} -->
-                <g:set var="serviceScoreMap" value="${scoreMap[serviceId]}"/>
 
-                <!-- render the scorecard for the service -->
-                <g:render template="serviceScorecard" model="[serviceScoreMap:serviceScoreMap]"/>
+            <div class="body scorecard view" style="width:600px;">
+                    <div class="dialog" style="display:none;" id="scoreform">
+                        <g:render template="form" model="[services:services,scoreServicesParams:scoreServicesParams,canceljs:'$(\'scoreform\').hide();$(\'sformbutton\').show();']"/>
+                    </div>
+                    <div>
+                        <span class="action link" id="sformbutton" onclick="$('scoreform').show();this.hide();">
+                            Edit Scorecard Parameters &hellip;
+                        </span>
+                    </div>
+                    <g:each in="${scoreMap.keySet()}" var="serviceId">
+                        <!-- Looking up scorecard data for service.id=${serviceId} -->
+                        <g:set var="serviceScoreMap" value="${scoreMap[serviceId]}"/>
 
-            </g:each>
+                        <!-- render the scorecard for the service -->
+                        <g:render template="serviceScorecard" model="[serviceScoreMap:serviceScoreMap]"/>
 
-            <!-- Inventory activity -->
-            <g:if test="${scoreServicesParams?.cards.contains('inventory')}">
-              <g:render template="inventory/scorecard" model="[service:service,inventoryScorecardList:serviceScoreMap['inventory']]"/>
-            </g:if>
+                    </g:each>
 
+                    <!-- Inventory activity -->
+                    <g:if test="${scoreServicesParams?.cards.contains('inventory')}">
+                      <g:render template="inventory/scorecard" model="[service:service,inventoryScorecardList:serviceScoreMap['inventory']]"/>
+                    </g:if>
+
+            </div>
         </g:if>
         <g:else>
+            <div class="info">
                 <h3>No scorecard configured</h3>
                 <div class="info">Specify the form parameters and then press the &quot;Generate&quot; button.</div>
+            </div>
+            <div class="dialog">
+                <g:render template="form" model="[services:services]"/>
+            </div>
         </g:else>
 
-    </div>
-    <div class="sidebar">
-        <g:render template="sidebar" model="[services:services]"/>
-    </div>
 </g:if>
 <g:else>
         <h3>Cannot create scorecards</h3>
