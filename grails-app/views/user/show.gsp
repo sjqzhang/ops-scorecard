@@ -18,7 +18,7 @@
             <span class="button"><g:actionSubmit class="list" value="List"/></span>
         </g:form>
     </div>
-    <div class="dialog">
+    <div class="view">
         <table>
             <tbody>
 
@@ -44,33 +44,42 @@
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="email">Email:</td>
+                    <td valign="top" class="name">Email:</td>
 
-                    <td valign="top" class="value">
+                    <td valign="top" class="email">
                         <a href="mailto:${fieldValue(bean: user, field: 'email')}">${fieldValue(bean: user, field: 'email')}</a>
                     </td>
 
                 </tr>
-
-                <tr class="prop">
-                    <td valign="top" class="email">Teams:</td>
-
-                    <td valign="top" class="value">
-
-                        <g:if test="${user?.userGroups && user.userGroups.size()>0}">
-                            <g:each in="${user?.userGroups}" var="group">
-                                <g:link action="show" controller="usergroup" id="${group.id}">${group?.name}</g:link>
-                            </g:each>
-                        </g:if>
-                        <g:else>
-                            <i>Join a <g:link controller="usergroup">Team</g:link></i>
-                        </g:else>
-                    </td>
-
-                </tr>
-
+               
             </tbody>
         </table>
+
+
+        <h3 class="section">Teams
+            <span class="menuButton"><g:link class="create" action="create" controller="usergroup">Join</g:link></span>
+        </h3>
+        <table>
+            <thead>
+                <th>Name</th>
+                <th>Description</th>
+
+            </thead>
+            <tbody>
+                <g:each in="${user?.userGroups}" var="group">
+                    <tr>
+                        <td>
+                            <g:link action="show" controller="usergroup" id="${group.id}">${group?.name}</g:link>
+
+                        </td>
+                        <td>
+                            ${group?.description}
+                        </td>
+                    </tr>
+                </g:each>
+            </tbody>
+        </table>
+
     </div>
 
 </div>
