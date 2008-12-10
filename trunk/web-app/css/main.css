@@ -35,7 +35,24 @@ a.loginlink{
     text-decoration:underline;
     font-weight:normal;
 }
-
+span.link{
+    color:black;
+    font-weight:bold;
+    text-decoration:none;
+}
+span.link:hover{
+    cursor:pointer;
+    text-decoration:underline;
+}
+a.action, span.link.action{
+    color:blue;
+    font-weight:normal;
+    text-decoration:underline;
+    padding:3px;
+}
+a.action:hover, span.link.action:hover{
+    background:#ddf;
+}
 img {
     border-style: none;   
 }
@@ -317,6 +334,9 @@ div.dialog.login{
 }
 .prop .name.empty {
     color: #888;
+}
+.prop .name.errors{
+    color:red;
 }
 .prop .value {
     text-align: left;

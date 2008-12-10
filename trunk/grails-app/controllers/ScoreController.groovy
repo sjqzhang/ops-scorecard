@@ -19,7 +19,7 @@ class ScoreController extends SecureController {
 
         // keyed by service id
         def scoreMap = [:]
-        params?.service?.id.each {id ->
+        scoreServicesParams.services.each {id ->
             if (Service.exists(id)) {
                 def serviceScoreMap = [:]
                 def service = Service.get(id)
@@ -31,8 +31,9 @@ class ScoreController extends SecureController {
                 scoreMap[id]=scorecardService.scoreByService(service, scorecardParams, scoreServicesParams.cards )
             }
         }
-
-
+        if(!scoreServicesParams.services){
+            scoreServicesParams.errors.rejectValue('services','scorecard.params.noservices')
+        }
 
         println("DEBUG: scoreMap.size=${scoreMap.size()}")
         render(view: 'index', model:[scoreMap:scoreMap,scoreServicesParams:scoreServicesParams])
