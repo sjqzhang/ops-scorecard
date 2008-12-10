@@ -32,6 +32,9 @@ div.gmenu {
     -webkit-box-shadow: 5px 5px 5px #888;
     line-height:18px;
 }
+div.gmenu img,span.menulink img, a.menulink img{
+    vertical-align:middle;
+}
 div.summarySubmenu {
     border:1px solid #aaa;
     margin:0;
@@ -145,4 +148,32 @@ a.menuitem img{
 a.menuitem:hover{
   color:blue;
 }
+a.menuitem.sub, span.menuitem.sub{
+    background: none;
+    border-bottom: 0;
+}
+a.menuitem.sub:hover, span.menuitem.sub:hover{
+    background: #ddf;
+    text-decoration:underline;
+}
+span.menuitem.sub,a.menuitem.sub{
+    display:block;
+    padding:5px 10px;
+    color:blue;
+    font-weight:normal;
+    cursor:pointer;
+}
+
+/*.menuitem.sub{*/
+    /*background: #eee url(<g:createLinkTo dir="images/menus" file="bggrad1.png"/>) repeat-x 0px 0px;*/
+/*}*/
+/*.menuitem.select{*/
+    /*background: #eee url(<g:createLinkTo dir="images/menus" file="bggrad1.png"/>) repeat-x 0px -30px;*/
+/*}*/
+/*.menuitem:hover{*/
+    /*background: #eee url(<g:createLinkTo dir="images/menus" file="bggrad1.png"/>) repeat-x 0px -20px;*/
+/*}*/
+/*span.menuitem:hover{*/
+    /*background: #eee url(<g:createLinkTo dir="images/menus" file="bggrad1.png"/>) repeat-x 0px -20px;*/
+/*}*/
 
