@@ -8,7 +8,7 @@
 <body>
 <g:set var="services" value="${Service.list()}"/>
 <g:if test="${services}">
-    <div class="body" style="width:600px;">
+    <div class="body scorecard view" style="width:600px;">
         <g:if test="${scoreMap}">
             <g:each in="${scoreMap.keySet()}" var="serviceId">
                 <!-- Looking up scorecard data for service.id=${serviceId} -->
@@ -31,7 +31,7 @@
         </g:else>
 
     </div>
-    <div class="sidebar" style="width:300px">
+    <div class="sidebar">
         <g:render template="sidebar" model="[services:services]"/>
     </div>
 </g:if>

@@ -1,7 +1,7 @@
-<span style="font-size:12pt;font-weight:bold;">Process Coverage</span>
-<p>
+<h2>Process Coverage</h2>
+<div class="sectiondesc">
 Are processes formalized and defined?
-</p>
+</div>
 <g:if test="${processScorecardMap && processScorecardMap.size() >0}">
 <g:each in="${processScorecardMap.keySet()}" status="i" var="serviceId">
     <g:set var="scorecards" value="${processScorecardMap[serviceId]}"/>
@@ -16,9 +16,11 @@ Are processes formalized and defined?
     %>
     <g:if test="${scorecards.size()>0}">
 
+        <div class="section">
         <g:render template="/common/barchart" model="[label:'Overall average', position:cumAvg]"/>
+        </div>
 
-        <h4>By process category</h4>
+        <h3>By process category</h3>
 
         <table>
             <tbody>

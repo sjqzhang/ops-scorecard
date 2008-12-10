@@ -1,4 +1,4 @@
-<span style="font-size:12pt;font-weight:bold;">Capability Audits</span>
+<h2>Capability Audits</h2>
 
 
 <g:each in="${auditScoreCardMap.keySet()}" var="serviceId" status="i">
@@ -25,11 +25,13 @@
         %>
 
         <!-- the chart -->
-        <h5>Average scores over the last ${scorecards.size()} audits</h5>
+        <h3>Average scores over the last ${scorecards.size()} audits</h3>
+        <div class="section">
         <g:render template="capabilityAudit/chart" model="[id:service.id,scorecards:scorecards]"/>
+        </div>
 
         <!-- the metrics -->
-        <h5>Score averages over the last ${scorecards.size()} audits</h5>
+        <h3>Score averages over the last ${scorecards.size()} audits</h3>
         <table>
             <tbody>
                 <tr>
@@ -50,18 +52,18 @@
                 </tr>
             </tbody>
         </table>
-        <div style="margin-top:10px;margin-bottom:5px;">
+        <div style="margin:10px;">
             <g:set var="scorecard" value="${scorecards.get(scorecards.size()-1)}"/>
             Last Audit:
             <g:link action="show" controller="capabilityAudit" id="${scorecard.audit.id}"
                     title="${scorecard.audit.title}">${scorecard.audit.title}</g:link>
-            By: <g:link action="show" controller="user" id="${scorecard.audit?.id}">${scorecard.audit?.auditor}</g:link>
-            Date: ${scorecard.audit.auditDate}
+            by <g:link action="show" controller="user" id="${scorecard.audit?.id}">${scorecard.audit?.auditor}</g:link>
+            at <span title="${scorecard.audit.auditDate.toString().encodeAsHTML()}"><g:relativeDate atDate="${scorecard.audit.auditDate}"/></span>
         </div>
 
     </g:if>
     <g:else>
-        <span style="font-style:italic;color:darkgray">This service has not been audited.</span>
+        <div class="empty sectiondesc">This service has not been audited.</div>
     </g:else>
 </g:each>
 

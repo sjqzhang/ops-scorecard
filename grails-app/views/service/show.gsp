@@ -18,10 +18,8 @@
         </g:form>
     </div>
     <div class="view service">
-        <div class="header">
-            <span class="name"><g:link controller="service" action="show" id="${service?.id}">${service?.name}</g:link></span>
-            <span class="type">[<g:link controller="resourceType" action="show" id="${service?.type?.id}">${service?.type?.encodeAsHTML()}</g:link>]</span>
-            <span class="desc">${service?.description}</span>
+        <div class="header service">
+            <g:render template="service_header" model="[service:service]"/>
         </div>
         <table>
             <tbody>
@@ -114,22 +112,7 @@
                 <tr class="prop">
                     <td valign="top" class="name ${!(service?.isFragile || service?.isMissionCritical || service?.isMonitored || service?.isRebuildable) ? 'empty' : ''}">Flags:</td>
                     <td class="value">
-                        <g:if test="${service.isFragile}">
-                            <img src="${createLinkTo(dir: 'images/skin', file: 'tick.png')}" width="16px" height="16px"/>
-                            <b>Fragile</b>
-                        </g:if>
-                        <g:if test="${service.isMissionCritical}">
-                            <img src="${createLinkTo(dir: 'images/skin', file: 'tick.png')}" width="16px" height="16px"/>
-                            <b>Mission Critical</b>
-                        </g:if>
-                        <g:if test="${service.isMonitored}">
-                            <img src="${createLinkTo(dir: 'images/skin', file: 'tick.png')}" width="16px" height="16px"/>
-                            <b>Monitored</b>
-                        </g:if>
-                        <g:if test="${service.isRebuildable}">
-                            <img src="${createLinkTo(dir: 'images/skin', file: 'tick.png')}" width="16px" height="16px"/>
-                            <b>Rebuildable</b>
-                        </g:if>
+                        <g:render template="service_flags" model="[service:service]"/>
                     </td>
                 </tr>
 
