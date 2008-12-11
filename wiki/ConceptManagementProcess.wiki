@@ -4,6 +4,7 @@
 
 = Introduction =
 
+== Fields ==
   * name:
   * description:
   * category:
@@ -19,6 +20,15 @@
 = Categories =
 
 == acceptance ==
+
+* Description *
+
+* Why? *
+
+* Possible objections *
+
+* Making improvements *
+
 
 == build ==
 
