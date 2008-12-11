@@ -4,6 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="index" />
+        <meta name="guideitem" content="individual"/>
         <title>People: Register New Individual</title>         
     </head>
     <body>  

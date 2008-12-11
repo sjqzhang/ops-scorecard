@@ -36,11 +36,11 @@
             </div>
         </g:if>
         <g:else>
-            <div class="info">
+            <div class="info" style="width:600px;">
                 <h3>No scorecard configured</h3>
                 <div class="info">Specify the form parameters and then press the &quot;Generate&quot; button.</div>
             </div>
-            <div class="dialog">
+            <div class="body dialog">
                 <g:render template="form" model="[services:services]"/>
             </div>
         </g:else>

@@ -2,10 +2,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="main"/>
+    <meta name="guideitem" content="inventory"/>
     <title>Inventory</title>
 </head>
 <body>
-<div class="body">
+<div class="body view">
     <table>
         <tr>
             <td class="toollink" width="120">

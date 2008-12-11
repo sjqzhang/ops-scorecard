@@ -54,7 +54,8 @@ a.action:hover, span.link.action:hover{
     background:#ddf;
 }
 img {
-    border-style: none;   
+    border-style: none;
+    vertical-align:middle;
 }
 h1 {
     color: #006dba;
@@ -530,11 +531,26 @@ input.password{
     font-size: 10pt;
     background: #fff;
 }
+.topbar div.logo{
+    display:inline;
+}
+.topbar span.links{
+    float:right;
+}
+.topbar span.links a{
+    color:blue;
+    text-decoration:underline;
+    font-weight:normal;
+}
 .headright{
-    position:absolute;
-    right:10px;
-    top:4px;
-    padding-top:4px;
+    float:left;
+    margin: 4px;
+    border: 1px solid #ddd;
+    padding: 4px;
+    background: #eee;
+}
+.headright.external{
+    
 }
 div.footerVersion{
     color: #aaa;
@@ -560,11 +576,9 @@ div.footerVersion span.desc{
     font-weight:normal;
     
 }
-.logininfo {
-    border: 1px solid #ddd;
-    padding: 3px;
-    background: #eee;
-
+.topbar .logininfo .user a{
+    color:black;
+    text-decoration:none;
 }
 
 
@@ -582,7 +596,6 @@ div.footerVersion span.desc{
     width:150px;
     margin:0 0 0 0;
     padding: 2px 2px 2px 10px;
-    font-size: 10pt;
 }
 
 .sidebar table.list td{
@@ -598,6 +611,60 @@ div.footerVersion span.desc{
 .sidebar table.list a{
     display:block;
     padding:5px 10px;
+}
+
+/* COMMUNITY */
+div.community{
+    border:1px solid #ccc;
+    padding:0;
+    margin:0 10px;
+}
+div.community h4{
+    text-align:center;
+    padding: 5px;
+    margin:0;
+}
+div.community ul{
+    margin:0;
+    padding:10px;
+}
+div.community ul li{
+    list-style:none;
+    margin:4px 0;
+}
+
+div.community ul li a{
+    display:block;
+    
+    padding:3px;
+    color: #555;
+}
+div.community ul li a:hover{
+    background:#ddf;
+}
+div.community div.contexthelp{
+    clear:both;
+    
+    border-bottom: 1px solid #ccc;
+}
+div.community div.contexthelp span.info{
+    color: #F00;
+    text-align:center;
+    padding:4px;
+    display:block;
+}
+div.community div.contexthelp a{
+    display:block;
+    color:blue;
+    text-decoration:underline;
+    font-weight:normal;
+    
+    padding:10px;
+    background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
+    
+}
+div.community div.contexthelp a:hover{
+    background:#ddf;
 }
 
 span.score {
