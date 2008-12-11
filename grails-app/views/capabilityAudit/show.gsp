@@ -210,16 +210,12 @@
 
                         <g:each in="${capabilityAudit.scorecards}" var="scorecard">
                             <h3 class="sub">
-                                    ${scorecard.process.category}
+                                    ${scorecard.process.category}: <g:link action="show" controller="serviceManagementProcess" id="${scorecard.process.id}">${scorecard.process.name}</g:link>
+                                    <span style="font-style:italic;font-weight:normal">${scorecard.process.description}</span>
                             </h3>
 
                                 <table border="0">
-                                    <tr>
-                                        <td colspan="3">
-                                            Implemented as: <g:link action="show" controller="serviceManagementProcess" id="${scorecard.process.id}">${scorecard.process.name}</g:link>
-                                        </td>
-                                    </tr>
-
+                                   
                                     <g:each in="${ServiceManagementProcess.metrics.sort()}" var="metric">
                                         <tr>
                                             <td style="text-align:right;width:25px;">

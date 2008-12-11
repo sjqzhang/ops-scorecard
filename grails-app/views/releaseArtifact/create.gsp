@@ -14,9 +14,7 @@
             <g:renderErrors bean="${releaseArtifact}" as="list"/>
         </div>
     </g:hasErrors>
-    <g:form action="save" method="post">
-        <g:hiddenField name="createDate" value="${releaseArtifact.createDate}" />
-        
+    <g:form action="save" method="post">        
 
         <div class="dialog">
             <div class="formtitle">
