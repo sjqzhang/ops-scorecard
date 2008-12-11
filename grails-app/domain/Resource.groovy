@@ -10,7 +10,7 @@ class Resource {
         description(blank:false)
         createDate(nullable:false)
         status(inList:['Installed','Ordered','Registered','Accepted','Development',
-                'Testing','Under change','DSL','DHL','Archived','Obsolete','Missing','Stolen'])
+                'Testing','Production','Under change','DSL','DHL','Archived','Obsolete','Missing','Stolen'])
         function(nullable:true)
         ownerResponsible(nullable:true)
         dateAcquired(nullable:true)
