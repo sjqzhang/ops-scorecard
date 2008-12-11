@@ -59,7 +59,7 @@
                             <td>
                                 <g:if test="${serviceManagementProcess?.service}">
                                     <g:link action="show" controller="service" id="${serviceManagementProcess.service.id}">
-                                    ${serviceManagementProcess.service}
+                                    ${serviceManagementProcess.service}   [${serviceManagementProcess.service.type.name}]
                                     </g:link>
                                 </g:if>
                             </td>

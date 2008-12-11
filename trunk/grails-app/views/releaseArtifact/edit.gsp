@@ -25,7 +25,6 @@
             </g:form>
                 <g:form method="post" >
                     <input type="hidden" name="id" value="${releaseArtifact.id}" />
-                    <input type="hidden" name="createDate" value="${releaseArtifact.createDate}" />
                 <div class="dialog">
                     <div class="formtitle">
                         Edit Artifact
