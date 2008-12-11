@@ -1,3 +1,41 @@
 #summary Processes
 
+<wiki:toc max_depth="2" />
+
 = Introduction =
+
+  * name:
+  * description:
+  * category:
+  * automation level:
+  * automation tool
+  * syscontrol
+  * artifact type
+  * notification recipients
+  * implementor:
+  * recipient:
+  * procedure:
+
+= Categories =
+
+== acceptance ==
+
+== build ==
+
+== change ==
+
+== configuration ==
+
+== detective ==
+
+== escalation ==
+
+== release ==
+
+== deployment ==
+
+== monitoring ==
+
+== verification ==
+
+
