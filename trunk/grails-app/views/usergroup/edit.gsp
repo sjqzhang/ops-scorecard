@@ -2,6 +2,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="main"/>
+    <meta name="guideitem" content="team"/>
     <title>People: Edit Team</title>
 </head>
 <body>
@@ -65,7 +66,7 @@
                                         </td>
                                         <td>
                                             <label for="user_${u.id}">${u?.firstName} ${u?.lastName}</label>
-                                            (<g:link action="show" id="${u.id}">${u.login}</g:link>)
+                                            (<g:link action="show" controller="user" id="${u.id}">${u.login}</g:link>)
                                         </td>
                                     </tr>
                                 </g:each>

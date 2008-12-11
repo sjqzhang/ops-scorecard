@@ -5,7 +5,7 @@
     <title>Receipts</title>
 </head>
 <body>
-<div class="body">
+<div class="body view">
     <table>
         <tr>
             <td class="toollink" width="120">

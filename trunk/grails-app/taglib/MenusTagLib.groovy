@@ -107,7 +107,7 @@ class MenusTagLib {
         mkp {
             div('id': menukey+'_gmenu','class':"gmenu ${attrs.class?attrs.class:''}",'style':"display:none;") {
                 div('class':'menuSection'){
-                    if(submenu && !attrs.dosubhead){
+                    if(submenu && !attrs.noheader){
                         div(style:'padding:5px'){
                             String icode = "menus.${key}.image.${submenu}"
                             def image=g.message(code:icode)
@@ -122,50 +122,73 @@ class MenusTagLib {
                     }
                     ul{
                         menulist.each{k->
-                            String tcode = "menus.${key}.title.${k}"
-                            def title=g.message(code:tcode)
-                            if(title==tcode || null==title){
-                                title=k
-                            }
-                            String icode = "menus.${key}.image.${k}"
-                            def image=g.message(code:icode)
-                            if(image==icode){
-                                image=null
-                            }
-                            String lcode = "menus.${key}.link.${k}"
-                            def link=g.message(code:lcode)
-                            if(link==lcode){
-                                link=null
-                            }
-                            def parms=[:]
-                            if(link && link.indexOf("?")>0){
+                            if(k=='-'){
+                                hr()
+                            }else{
+                                String tcode = "menus.${key}.title.${k}"
+                                def title=g.message(code:tcode)
+                                if(title==tcode || null==title){
+                                    title=k
+                                }
+                                String icode = "menus.${key}.image.${k}"
+                                def image=g.message(code:icode)
+                                if(image==icode){
+                                    image=null
+                                }
+                                String lcode = "menus.${key}.link.${k}"
+                                def link=g.message(code:lcode)
+                                if(link==lcode){
+                                    link=null
+                                }
+                                def parms=[:]
 
-                                def pstr = link.substring(link.indexOf("?")+1)
-                                link = link.substring(0,link.indexOf("?"))
-                                pstr.split("&").each{ pair->
-                                    if(pair.indexOf("=")>0){
-                                        parms[pair.substring(0,pair.indexOf("="))] = pair.substring(pair.indexOf("=")+1)
-                                    }else{
-                                        parms[pair]=pair
+                                def ctrl=null
+                                def href=null
+                                if(link && (link.startsWith("http:") || link.startsWith("https:") || link.startsWith("javascript:"))){
+                                    href=link
+                                }else {
+                                    if(link && link.indexOf("?")>0){
+
+                                        def pstr = link.substring(link.indexOf("?")+1)
+                                        link = link.substring(0,link.indexOf("?"))
+                                        pstr.split("&").each{ pair->
+                                            if(pair.indexOf("=")>0){
+                                                parms[pair.substring(0,pair.indexOf("="))] = pair.substring(pair.indexOf("=")+1)
+                                            }else{
+                                                parms[pair]=pair
+                                            }
+                                        }
+                                    }
+                                    if(link && (link.indexOf(":")>0) ){
+                                        ctrl=link.substring(0,link.indexOf(":"))
+                                        link=link.substring(link.indexOf(":")+1)
+                                    }else if(params.controller){
+                                        ctrl=params.controller
                                     }
                                 }
-                            }
-                            def ctrl=null
-                            if(link && (link.indexOf(":")>0)){
-                                ctrl=link.substring(0,link.indexOf(":"))
-                                link=link.substring(link.indexOf(":")+1)
-                            }else if(params.controller){
-                                ctrl=params.controller
-                            }
-                            if(attrs.params && attrs.params instanceof java.util.Map){
-                                parms.putAll(attrs.params)
-                            }
-                            li{
-                                a('href':g.createLink('action':link,'controller':ctrl,params:parms), 'class':'menuitem '+(submenu?'sub':''),'style':"padding:5px"){
-                                    if(image){
-                                        img('src':g.createLinkTo(dir:'images',file:image), 'class':"menuicon")
+                                if(attrs.params && attrs.params instanceof java.util.Map){
+                                    parms.putAll(attrs.params)
+                                }
+                                if(null==href && null!=link){
+                                    href=g.createLink('action':link,'controller':ctrl,params:parms)
+                                }
+
+                                li{
+                                    if(href){
+                                        a('href':href, 'class':'menuitem '+(submenu?'sub':''),'style':"padding:5px"){
+                                            if(image){
+                                                img('src':g.createLinkTo(dir:'images',file:image), 'class':"menuicon")
+                                            }
+                                            span(title)
+                                        }
+                                    }else{
+                                        span('class':'menuitemtitle '+(submenu?'sub':'')){
+                                            if(image){
+                                                img('src':g.createLinkTo(dir:'images',file:image), 'class':"menuicon")
+                                            }
+                                            span(title)
+                                        }
                                     }
-                                    span(title)
                                 }
                             }
                         }
@@ -188,5 +211,88 @@ Event.observe(window,'load', function(e){
 """
 
     }
+
+    def menuitemlink={attrs,body ->
+        def key='default'
+        //
+        if(attrs.key){
+            key=attrs.key
+        }
+
+        def item = attrs.item
+
+
+        String tcode = "menus.${key}.title.${item}"
+        def title=g.message(code:tcode)
+        if(tcode==title || title==null){
+            title=item
+        }
+        String icode = "menus.${key}.image.${item}"
+        def image=g.message(code:icode)
+        if(image==icode){
+            image=null
+        }
+        String lcode = "menus.${key}.link.${item}"
+        def link=g.message(code:lcode)
+        if(link==lcode){
+            link=null
+        }
+        def parms=[:]
+
+        def ctrl=null
+        def href=null
+        if(link && (link.startsWith("http:") || link.startsWith("https:") || link.startsWith("javascript:"))){
+            href=link
+        }else{
+            if(link && link.indexOf("?")>0){
+
+                def pstr = link.substring(link.indexOf("?")+1)
+                link = link.substring(0,link.indexOf("?"))
+                pstr.split("&").each{ pair->
+                    if(pair.indexOf("=")>0){
+                        parms[pair.substring(0,pair.indexOf("="))] = pair.substring(pair.indexOf("=")+1)
+                    }else{
+                        parms[pair]=pair
+                    }
+                }
+            }
+            if(link && (link.indexOf(":")>0) ){
+                ctrl=link.substring(0,link.indexOf(":"))
+                link=link.substring(link.indexOf(":")+1)
+            }else if(params.controller){
+                ctrl=params.controller
+            }
+        }
+        if(attrs.params && attrs.params instanceof java.util.Map){
+            parms.putAll(attrs.params)
+        }
+        if(null==href && null!=link){
+            href=g.createLink('action':link,'controller':ctrl,params:parms)
+        }
+
+
+        if(href){
+            def mkp = new groovy.xml.MarkupBuilder(out) //this line will be unnecessary in versions of Grails after version 1.2
+            mkp {
+                a('href':href, 'class':(attrs.class?attrs.class:''),'style':"padding:5px"){
+                    if(image){
+                        img('src':g.createLinkTo(dir:'images',file:image), 'class':"menuicon")
+                    }
+                    span(title)
+                }
+            }
+        }else{
+            def mkp = new groovy.xml.MarkupBuilder(out) //this line will be unnecessary in versions of Grails after version 1.2
+            mkp{
+                span{
+                    if(image){
+                        img('src':g.createLinkTo(dir:'images',file:image), 'class':"menuicon")
+                    }
+                    span(title)
+                }
+            }
+        }
+    }
+
 
 }
