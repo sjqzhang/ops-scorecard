@@ -21,9 +21,11 @@
 
                         <g:sortableColumn property="title" title="Title"/>
 
-                        <g:sortableColumn property="processReceipt.login" title="Coordinator"/>
+                        <th>When</th>
 
                         <g:sortableColumn property="process.name" title="Process"/>
+
+                        <th>Service</th>
 
                         <g:sortableColumn property="outcome" title="Outcome"/>
 
@@ -48,15 +50,23 @@
                             </td>
 
                             <td>
-                                <g:link controller="user" action="edit" params="[id:processReceipt?.coordinator?.id]">
-                                    ${fieldValue(bean: processReceipt, field: 'coordinator')}
+
+                                <g:relativeDate elapsed="${processReceipt?.date}" agoClass="ago " untilClass="until "/>
+
+                            </td>
+
+                            <td>
+                                <g:link controller="serviceManagementProcess" action="show" params="[id:processReceipt?.process?.id]">
+                                    ${fieldValue(bean: processReceipt, field: 'process')}
                                 </g:link>
                             </td>
 
                             <td>
-                                <g:link controller="serviceManagementProcess" action="edit" params="[id:processReceipt?.process?.id]">
-                                    ${fieldValue(bean: processReceipt, field: 'process')}
+                                <g:link controller="service" action="show" id="${processReceipt.process?.service.id}">
+                                    ${processReceipt.process?.service.name}
+                                    [${processReceipt.process?.service.type.name}]
                                 </g:link>
+
                             </td>
 
                             <td>${fieldValue(bean: processReceipt, field: 'outcome')}</td>
@@ -78,8 +88,8 @@
 <g:else>
     <g:if test="${Service.count()>0}">
         <div class="body">
-                <h3>There are no receipts yet.</h3>
-                <div class="info">Press the &quot;Create Receipt&quot; button to the right to create one.</div>
+            <h3>There are no receipts yet.</h3>
+            <div class="info">Press the &quot;Create Receipt&quot; button to the right to create one.</div>
         </div>
         <div class="sidebar">
             <g:render template="sidebar"/>
@@ -87,8 +97,8 @@
     </g:if>
     <g:else>
         <div class="body">
-                <h3>There are no services defined yet.</h3>
-                <div class="info">Press the &quot;Create Service&quot; button to the right to create a new one.</div>
+            <h3>There are no services defined yet.</h3>
+            <div class="info">Press the &quot;Create Service&quot; button to the right to create a new one.</div>
 
         </div>
         <div class="sidebar">

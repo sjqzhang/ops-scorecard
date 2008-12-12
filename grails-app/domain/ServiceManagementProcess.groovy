@@ -4,7 +4,7 @@ class ServiceManagementProcess {
         description(blank: false)
         createDate(nullable:false)
         category(inList: ['acceptance', 'build', 'change','configuration', 'detective', 'escalation',
-                'implementation', 'release', 'deployment','monitoring', 'verification'])
+                'release', 'deployment','monitoring', 'verification'])
         automationLevel(inList: ['none', 'manual','semi', 'full'])
         automationTool(nullable:true)
         syscontrol(inList: ['open-loop', 'closed-loop'])
