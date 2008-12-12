@@ -47,7 +47,7 @@
                         <td valign="top" class="value ${hasErrors(bean: processReceipt, field: 'process', 'errors')}">
                             <select name="process.id" id="process.id">
                                 <g:each in="${ServiceManagementProcess.list()}" var="p">
-                                    <option value="${p.id}" ${p.id==processReceipt.process.id?'selected="selected"':''}>${p?.service?.name}: ${p?.name} [${p?.category}]</option>
+                                    <option value="${p.id}" ${p.id==processReceipt?.process?.id?'selected="selected"':''}>${p?.service?.name}: ${p?.name} [${p?.category}]</option>
                                 </g:each>
                             </select>
                         </td>
