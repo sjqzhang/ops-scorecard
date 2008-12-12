@@ -20,6 +20,8 @@
        </g:else>
     </span>
         </span>
+
+    <div class="clear"></div>
 </div>
 
 <g:menu key="project" submenu="help" noheader="true"/>
