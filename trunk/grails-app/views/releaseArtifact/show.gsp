@@ -81,13 +81,6 @@
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name ${!releaseArtifact?.ticketNumbers?'empty':''}">Ticket Numbers:</td>
-
-                    <td valign="top" class="value">${fieldValue(bean: releaseArtifact, field: 'ticketNumbers')}</td>
-
-                </tr>
-
-                <tr class="prop">
                     <td valign="top" class="name ${!releaseArtifact?.reprovisioningDuration?'empty':''}">Reprovisioning Duration:</td>
                     
                     <td valign="top" class="value">${fieldValue(bean: releaseArtifact, field: 'reprovisioningDuration')}</td>

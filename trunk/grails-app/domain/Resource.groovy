@@ -15,7 +15,6 @@ class Resource {
         ownerResponsible(nullable:true)
         dateAcquired(nullable:true)
         nextMaintenanceWindow(nullable:true)
-        ticketNumbers(nullable:true)
         reprovisioningDuration(nullable:true)
         ciUri(nullable:true)
 
@@ -32,7 +31,6 @@ class Resource {
 	Date nextMaintenanceWindow
 	
 	String status
-	String ticketNumbers
 		
 	boolean isFragile
 	boolean isMonitored

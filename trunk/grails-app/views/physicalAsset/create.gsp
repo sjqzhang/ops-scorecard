@@ -64,15 +64,6 @@
 
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="ticketNumbers">Ticket Numbers:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:physicalAsset,field:'ticketNumbers','errors')}">
-                                    <input type="text" id="ticketNumbers" name="ticketNumbers" value="${fieldValue(bean:physicalAsset,field:'ticketNumbers')}"/>
-                                </td>
-                            </tr>
-
-                            <tr class="prop">
-                                <td valign="top" class="name">
                                     <label for="reprovisioningDuration">Reprovisioning Duration:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:physicalAsset,field:'reprovisioningDuration','errors')}">
