@@ -41,6 +41,7 @@
                         <g:link controller="service" action="show" id="${serviceManagementProcess?.service?.id}">
                             <g:if test="serviceManagementProcess?.service?.name">
                                 ${serviceManagementProcess?.service?.name}
+                                [${serviceManagementProcess?.service?.type.name}]
                             </g:if>
                             <g:else>
                                 ${serviceManagementProcess?.service?.encodeAsHTML()}
@@ -139,7 +140,7 @@
             <tr>
                 <th>Title</th>
                 <th>By</th>
-                <th>Date</th>
+                <th>When</th>
                 <th>Outcome</th>
             </tr>
             <g:each in="${ProcessReceipt.findAllByProcess(serviceManagementProcess)}" var="receipt">
@@ -149,7 +150,8 @@
                     </td>
                     <td>${receipt.coordinator}</td>
                     <td>
-                        ${receipt?.date}
+                        <g:relativeDate elapsed="${receipt?.date}" agoClass="ago " untilClass="until "/>
+
                     </td>
                     <td>${receipt?.outcome}</td>
                 </tr>
