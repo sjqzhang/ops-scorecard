@@ -6,6 +6,7 @@
     <g:layoutHead/>
     <g:javascript library="application"/>
     <g:javascript library="prototype"/>
+    <g:render template="/common/menus"/>
 </head>
 <body>
 <div id="spinner" class="spinner" style="display:none;">
