@@ -120,16 +120,7 @@
                                 <td valign="top" class="value ${hasErrors(bean:service,field:'nextMaintenanceWindow','errors')}">
                                     <g:datePicker name="nextMaintenanceWindow" value="${service?.nextMaintenanceWindow}" noSelection="['':'']"></g:datePicker>
                                 </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="ticketNumbers">Ticket Numbers:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:service,field:'ticketNumbers','errors')}">
-                                    <input type="text" id="ticketNumbers" name="ticketNumbers" value="${fieldValue(bean:service,field:'ticketNumbers')}"/>
-                                </td>
-                            </tr> 
+                            </tr>                                                  
                         
                             <tr class="prop">
                                 <td valign="top" class="name">

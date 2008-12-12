@@ -109,13 +109,6 @@
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name ${!physicalAsset?.ticketNumbers ? 'empty' : ''}">Ticket Numbers:</td>
-
-                    <td valign="top" class="value">${fieldValue(bean: physicalAsset, field: 'ticketNumbers')}</td>
-
-                </tr>
-
-                <tr class="prop">
                     <td valign="top" class="name ${!physicalAsset?.reprovisioningDuration ? 'empty' : ''}">Reprovisioning Duration:</td>
 
                     <td valign="top" class="value">${fieldValue(bean: physicalAsset, field: 'reprovisioningDuration')}</td>

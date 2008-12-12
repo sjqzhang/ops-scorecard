@@ -76,13 +76,6 @@
                 </tr>
 
                 <tr class="prop">
-                    <td valign="top" class="name ${!service?.ticketNumbers ? 'empty' : ''}">Ticket Numbers:</td>
-
-                    <td valign="top" class="value">${fieldValue(bean: service, field: 'ticketNumbers')}</td>
-
-                </tr>
-
-                <tr class="prop">
                     <td valign="top" class="name ${!service?.reprovisioningDuration ? 'empty' : ''}">Reprovisioning Duration:</td>
 
                     <td valign="top" class="value">${fieldValue(bean: service, field: 'reprovisioningDuration')}</td>

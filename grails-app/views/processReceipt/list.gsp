@@ -27,7 +27,7 @@
 
                         <th>Service</th>
 
-                        <g:sortableColumn property="outcome" title="Outcome"/>
+                        <th>&nbsp;</th>
 
                     </tr>
                 </thead>
@@ -69,7 +69,24 @@
 
                             </td>
 
-                            <td>${fieldValue(bean: processReceipt, field: 'outcome')}</td>
+                            <% def icon
+                            switch (processReceipt?.outcome) {
+                                case "successful":
+                                    icon = "tick.png"
+                                    break
+                                case "withdrawn":
+                                    icon = "cancel.png"
+                                    break
+                                case "aborted":
+                                    icon = "error.png"
+                                    break
+                            }
+                            %>
+                            <td>
+                            <img src="${createLinkTo(dir: 'images/skin', file: icon)}"
+                                    alt="${fieldValue(bean: processReceipt, field: 'outcome')}"
+                                    title="${fieldValue(bean: processReceipt, field: 'outcome')}"/>                                
+                            </td>
 
                         </tr>
                     </g:each>
