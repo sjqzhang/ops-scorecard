@@ -144,8 +144,10 @@ class MenusTagLib {
 
                                 def ctrl=null
                                 def href=null
+                                def external=false
                                 if(link && (link.startsWith("http:") || link.startsWith("https:") || link.startsWith("javascript:"))){
                                     href=link
+                                    external=true
                                 }else {
                                     if(link && link.indexOf("?")>0){
 
@@ -175,7 +177,7 @@ class MenusTagLib {
 
                                 li{
                                     if(href){
-                                        a('href':href, 'class':'menuitem '+(submenu?'sub':''),'style':"padding:5px"){
+                                        a('href':href, 'class':'menuitem '+(submenu?'sub':''),'style':"padding:5px",'target':(external && 'false'!=attrs.newwindow)?'_new':''){
                                             if(image){
                                                 img('src':g.createLinkTo(dir:'images',file:image), 'class':"menuicon")
                                             }
@@ -241,8 +243,10 @@ Event.observe(window,'load', function(e){
 
         def ctrl=null
         def href=null
+        def external=false
         if(link && (link.startsWith("http:") || link.startsWith("https:") || link.startsWith("javascript:"))){
             href=link
+            external=true
         }else{
             if(link && link.indexOf("?")>0){
 
@@ -274,7 +278,7 @@ Event.observe(window,'load', function(e){
         if(href){
             def mkp = new groovy.xml.MarkupBuilder(out) //this line will be unnecessary in versions of Grails after version 1.2
             mkp {
-                a('href':href, 'class':(attrs.class?attrs.class:''),'style':"padding:5px"){
+                a('href':href, 'class':(attrs.class?attrs.class:''),'style':"padding:5px",'target':(external && 'false'!=attrs.newwindow)?'_new':''){
                     if(image){
                         img('src':g.createLinkTo(dir:'images',file:image), 'class':"menuicon")
                     }
