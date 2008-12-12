@@ -19,7 +19,12 @@
 
 <div class="pageContent">
     <g:layoutBody/>
+    <div class="sidebar">
+    <div class="section">
+        <g:render template="sidebar"/>
+    </div>
     <g:render template="/common/community_sidebar"/>
+    </div>
 </div>
 
 

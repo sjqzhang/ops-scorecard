@@ -76,8 +76,5 @@
                 <div class="info">Press the &quot;All&quot; link to the right to list existing processes.</div>
             </g:else>
         </div>
-     <div class="sidebar">
-            <g:render template="sidebar"/>
-        </div>
     </body>
 </html>

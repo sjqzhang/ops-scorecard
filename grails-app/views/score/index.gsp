@@ -2,6 +2,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="main"/>
+    <meta name="guideitem" content="scorecard"/>
     <title>Scorecards</title>
     <g:javascript src="dojo/dojo.js"/>
 </head>

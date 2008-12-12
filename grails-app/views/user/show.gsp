@@ -84,8 +84,5 @@
     </div>
 
 </div>
-<div class="sidebar">
-    <g:render template="sidebarShow"/>
-</div>
 </body>
 </html>

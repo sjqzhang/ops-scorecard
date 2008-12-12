@@ -74,9 +74,6 @@
             <g:paginate total="${CapabilityAudit.count()}"/>
         </div>
     </div>
-    <div class="sidebar">
-            <g:render template="sidebar"/>
-        </div>
 </g:if>
 <g:else>
     <g:if test="${Service.count()>0}">
@@ -84,9 +81,6 @@
                 <h3>There are no capability audits defined yet.</h3>
                 <div class="info">Press the &quot;Create Audit&quot; button to create a new one.</div>
                 <span class="menuButton"><g:link class="create" action="create">Create Audit</g:link></span>
-        </div>
-        <div class="sidebar">
-            <g:render template="sidebar"/>
         </div>
     </g:if>
     <g:else>

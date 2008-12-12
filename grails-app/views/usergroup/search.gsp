@@ -51,8 +51,5 @@
                 <div class="info">Press the &quot;All functions&quot; link to the right to list any available ones.</div>
             </g:else>
         </div>
-      <div class="sidebar">
-            <g:render template="sidebar"/>
-        </div>
     </body>
 </html>
