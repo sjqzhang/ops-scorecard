@@ -70,7 +70,7 @@
                     <td valign="top" class="name ${!service?.nextMaintenanceWindow ? 'empty' : ''}">Next Maintenance Window:</td>
 
                     <td valign="top" class="value">
-                        <g:relativeDate elapsed="${service?.nextMaintenanceWindow}" agoClass="ago maintenence" untilClass="until maintenence"/>
+                        <g:relativeDate atDate="${service?.nextMaintenanceWindow}" />
                     </td>
 
                 </tr>
@@ -104,7 +104,7 @@
                     <td valign="top" class="name ${!service?.dateAcquired ? 'empty' : ''}">Date Acquired:</td>
 
                     <td valign="top" class="value">
-                        <g:relativeDate elapsed="${service?.dateAcquired}" agoClass="ago acquired" untilClass="until acquired"/>
+                        <g:relativeDate atDate="${service?.dateAcquired}"/>
                     </td>
 
                 </tr>
@@ -160,7 +160,7 @@
                                 <g:link action="show" controller="capabilityAudit"
                                         id="${audit.id}">${audit.title}</g:link>
                             </td>
-                            <td>${audit.auditDate}</td>
+                            <td><g:relativeDate atDate="${audit.auditDate}"/></td>
                             <td>${audit.auditor.login}</td>
                             <td><g:prettyScore score="${scores['cumulative']}" format="numeric"/></td>
                         </tr>
