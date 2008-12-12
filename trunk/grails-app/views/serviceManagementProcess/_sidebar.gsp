@@ -1,6 +1,7 @@
 <span class="menuButton"><g:link class="create" action="create">Add Process</g:link></span>
 
-
+<p>&nbsp;</p>
+<!--
 <table class="list" style="margin-top: 10px;">
     <tr>
         <td class="title">
@@ -16,4 +17,4 @@
         </tr>
     </g:each>
 </table>
-
+-->
