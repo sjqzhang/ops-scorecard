@@ -132,7 +132,10 @@
 
             </tbody>
         </table>
-        <h3 class="section">Receipts</h3>
+        <h3 class="section">Receipts
+        <span class="menuButton"><g:link class="create" action="create" controller="processReceipt"
+                    params="['process.id':serviceManagementProcess.id]">New receipt</g:link></span>
+        </h3>
 
         <g:set var="receipts" value="${ProcessReceipt.findAllByProcess(serviceManagementProcess)}"/>
         <g:if test="receipts">

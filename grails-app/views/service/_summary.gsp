@@ -41,7 +41,7 @@
         </tr>
         <tr>
             <th>Next Maint.</th><td>
-            <g:relativeDate elapsed="${service?.nextMaintenanceWindow}"/>
+            <g:relativeDate atDate="${service?.nextMaintenanceWindow}"/>
             </td>
         </tr>
         <tr>
