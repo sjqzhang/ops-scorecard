@@ -59,7 +59,36 @@
                     title="${scorecard.audit.title}">${scorecard.audit.title}</g:link>
             by <g:link action="show" controller="user" id="${scorecard.audit?.id}">${scorecard.audit?.auditor}</g:link>
             at <span title="${scorecard.audit.auditDate.toString().encodeAsHTML()}"><g:relativeDate atDate="${scorecard.audit.auditDate}"/></span>
+
+            <span class="controllink" id="auditscores_show_${service.id}"
+                    onclick="$('auditscores_${service.id}').show(); $('auditscores_show_${service.id}').hide();">Show all</span>
         </div>
+
+        <div id="auditscores_${service.id}" style="display:none;">
+            <span class="controllink"
+                    onclick="$('auditscores_${service.id}').hide();$('auditscores_show_${service.id}').show();">Hide</span>
+            <table>
+            <g:each in="${scorecards}" var="sc">
+                <tr>
+                    <td>
+                        <g:link action="show" controller="capabilityAudit" id="${sc.audit.id}">
+                        ${sc.audit.title}
+                            </g:link>
+                    </td>
+                    <td>
+                        ${sc.audit.auditor}
+                    </td>
+                    <td>
+                        <g:relativeDate atDate="${sc.audit.auditDate}"/>
+                    </td>
+                    <td>
+                        <g:prettyScore format="numeric" score="${sc.scores.cumulative}"/>                        
+                    </td>
+                </tr>
+            </g:each>
+            </table>
+        </div>
+
 
     </g:if>
     <g:else>

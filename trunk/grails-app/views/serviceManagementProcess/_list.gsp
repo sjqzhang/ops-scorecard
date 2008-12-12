@@ -35,7 +35,8 @@
                                 <tbody>
                                     <tr>
                                         <td width="100">
-                                            ${receipt?.title}
+                                            <g:link action="show" controller="processReceipt"
+                                            id="${receipt.id}">${receipt?.title}</g:link>
                                         </td>
                                         <td width="40">
                                             by: ${receipt?.coordinator}
