@@ -20,7 +20,23 @@
 
                 </td>
                 <td>
-                    ${scorecard.resource.class.name}
+                    <%
+
+                        def icon
+                        switch (scorecard.resource.class.name) {
+                            case "Service":
+                                icon="application.png"
+                            break
+                            case "PhysicalAsset":
+                                icon="server.png"
+                            break
+                            case "ReleaseArtifact":
+                                icon="cd.png"
+                            break
+                        }
+                    %>
+                    <img src="/scorecard/images/skin/${icon}" alt="${scorecard.resource.class.name}"
+                        title="${scorecard.resource.class.name}"/>
                 </td>
                 <!-- description -->
                 <td>

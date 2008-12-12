@@ -84,7 +84,7 @@ class ProcessReceiptController extends SecureController {
        println("DEBUG: params=${params}")
          def matches = []
         if (params.service && Service.exists(params.service)) {
-            matches = ProcessReceipt.findAllByTargetedService(Service.get(params.service))
+            matches = ProcessReceipt.findAllByService(Service.get(params.service))
         }
         render(view:'list', model:[ processReceiptList:matches ])
     }
