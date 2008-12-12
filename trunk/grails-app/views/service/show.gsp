@@ -122,7 +122,7 @@
         <h3 class="section">Processes
 
             <span class="menuButton"><g:link class="create" action="create" controller="serviceManagementProcess"
-                    params="['targetResource.id':service.id]">New process</g:link></span>
+                    params="['service.id':service.id]">New process</g:link></span>
         </h3>
 
 
@@ -141,7 +141,7 @@
 
         <h3 class="section">Audits
             <span class="menuButton"><g:link class="create" action="create" controller="capabilityAudit"
-                    params="['targetedService.id':service.id]">New audit</g:link></span>
+                    params="['service.id':service.id]">New audit</g:link></span>
         </h3>
         <g:set var="audits" value="${CapabilityAudit.findAllByService(service)}"/>
         <g:if test="${audits}">
