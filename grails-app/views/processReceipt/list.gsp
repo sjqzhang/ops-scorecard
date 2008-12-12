@@ -3,7 +3,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="main"/>
     <meta name="guideitem" content="receipt"/>
-    <title>Receipts: Change List</title>
+    <title>Receipts: List</title>
 </head>
 <body>
 <g:if test="${processReceiptList}">

@@ -3,7 +3,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="main"/>
     <meta name="guideitem" content="receipt"/>
-    <title>Track: Show ProcessReceipt</title>
+    <title>Receipts: Show</title>
 </head>
 <body>
 
