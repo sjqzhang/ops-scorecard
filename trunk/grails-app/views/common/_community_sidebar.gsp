@@ -1,4 +1,4 @@
-<div class="sidebar community">
+<div class=" community">
 
         <g:if test="${pageProperty(name:'meta.guideitem')}">
             <div class="contexthelp">

@@ -74,8 +74,5 @@
                 <div class="info">Press the &quot;All Individual&quot; link to the right to any available ones.</div>
             </g:else>
         </div>
-        <div class="sidebar">
-            <g:render template="sidebar"/>
-        </div>
     </body>
 </html>

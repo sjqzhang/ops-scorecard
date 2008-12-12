@@ -204,8 +204,5 @@
                 </div>
             </g:else>
         </div>
- <div class="sidebar">
-            <g:render template="sidebar"/>
-        </div>        
     </body>
 </html>

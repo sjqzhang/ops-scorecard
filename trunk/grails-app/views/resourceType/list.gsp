@@ -56,8 +56,5 @@
         <g:paginate total="${ResourceType.count()}"/>
     </div>
 </div>
-<div class="sidebar">
-    <g:render template="sidebar"/>
-</div>
 </body>
 </html>

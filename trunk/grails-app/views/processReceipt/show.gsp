@@ -221,8 +221,5 @@
     </div>
 
 </div>
-<div class="sidebar">
-    <g:render template="sidebar"/>
-</div>
 </body>
 </html>

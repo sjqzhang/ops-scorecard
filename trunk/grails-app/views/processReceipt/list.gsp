@@ -81,18 +81,12 @@
         </div>
 
     </div>
-    <div class="sidebar">
-        <g:render template="sidebar"/>
-    </div>
 </g:if>
 <g:else>
     <g:if test="${Service.count()>0}">
         <div class="body">
             <h3>There are no receipts yet.</h3>
             <div class="info">Press the &quot;Create Receipt&quot; button to the right to create one.</div>
-        </div>
-        <div class="sidebar">
-            <g:render template="sidebar"/>
         </div>
     </g:if>
     <g:else>

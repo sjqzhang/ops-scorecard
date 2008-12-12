@@ -71,8 +71,5 @@
                 <div class="info">Press the &quot;Add Asset&quot; button to the right to create a new one.</div>
       </g:else>
         </div>
-        <div class="sidebar">
-            <g:render template="sidebar"/>
-     </div>
     </body>
 </html>
