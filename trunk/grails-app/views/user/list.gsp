@@ -12,6 +12,9 @@
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
+            <div class="buttons">
+                 <span class="button"><g:actionSubmit class="create" value="Create"/></span>
+            </div>
             <g:if test="${userList}">
             <div class="dialog">
                 <table>
