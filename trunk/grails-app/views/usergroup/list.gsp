@@ -11,7 +11,9 @@
         <div class="message">${flash.message}</div>
     </g:if>
     <div class="buttons">
+        <g:form>
         <span class="button"><g:actionSubmit class="create" value="Create"/></span>
+        </g:form>
     </div>
     <g:if test="${usergroupList}">
         <div class="dialog">

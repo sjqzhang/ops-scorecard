@@ -14,8 +14,10 @@
             <div class="message">${flash.message}</div>
             </g:if>
             <g:if test="${serviceManagementProcessList}">
-                <div class="buttons">
+            <div class="buttons">
+             <g:form>
                  <span class="button"><g:actionSubmit class="create" value="Create"/></span>
+              </g:form>
             </div>
             <div class="dialog">
                 <table>
