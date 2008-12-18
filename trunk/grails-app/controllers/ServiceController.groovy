@@ -19,6 +19,9 @@ class ServiceController extends SecureController {
         }
         else {return [service: service]}
     }
+    def ajaxProcessSelect ={
+        render(template:"processSelect",model:params.id?show(params):[processes:[]])
+    }
 
     def delete = {
         def service = Service.get(params.id)

@@ -51,7 +51,20 @@ a.action, span.link.action{
     padding:3px;
 }
 a.action:hover, span.link.action:hover{
-    background:#ddf;
+    background-color:#ddf;
+}
+
+span.link.create{
+    background-image: url(../images/skin/add.png) ;
+    background-position: 4px;
+    background-repeat:no-repeat;
+    padding-left:25px;
+}
+span.link.edit {
+    background-image: url(../images/skin/pencil.png) ;
+    background-position: 4px;
+    background-repeat:no-repeat;
+    padding:3px 3px 3px 25px;
 }
 img {
     border-style: none;
@@ -218,6 +231,9 @@ table {
 }
 tr {
     border: 0;
+}
+tr.hilite{
+    background: #ff8;
 }
 td, th {
     font: 11px verdana, arial, helvetica, sans-serif;
@@ -392,9 +408,26 @@ div.view div.header.audit{
 div.view div.header.service{
     background: #eef;
 }
+div.view div.header.availabilityReceipt{
+    background: #ffd;
+}
 div.header span.name{
     font-size: 125%;
+}
+div.header.availabilityReceipt span.service{
+    font-size: 125%;
     
+}
+div.header.availabilityReceipt span.level{
+    font-size: 125%;
+    color:#f80;
+}
+div.header.availabilityReceipt span.impact{
+    display:block;
+}
+div.header.availabilityReceipt span.duration{
+    font-size: 125%;
+    font-style:italic;
 }
 div.header span.type{
     font-weight:normal;

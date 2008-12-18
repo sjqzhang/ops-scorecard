@@ -13,7 +13,7 @@ class ServiceManagementProcessController extends SecureController {
     }
 
     def show = {
-        def serviceManagementProcess = ServiceManagementProcess.get(params.id)
+        def serviceManagementProcess = ServiceManagementProcess.get(params.id.toInteger())
 
         if (!serviceManagementProcess) {
             flash.message = "ServiceManagementProcess not found with id ${params.id}"

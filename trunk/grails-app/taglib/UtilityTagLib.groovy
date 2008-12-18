@@ -74,17 +74,9 @@ class UtilityTagLib{
             return;
         }else if(null!=start && null==end){
             end = new Date()
-        }else{
-            return;
         }
-        def dms = (end.getTime() - start.getTime()).intdiv(1000)
-        def duration
-        if (dms < 60)  {
-            duration = String.valueOf( dms) + "s"
-        } else {
-            duration = String.valueOf( dms.intdiv( 60000) ) + "m"
-        }
-        out << String.valueOf(duration)
+        attrs.duration=true
+        relativeDate.call(attrs,body)
     }
 
     def relativeDate = { attrs, body ->
@@ -111,7 +103,10 @@ class UtilityTagLib{
             }else{
                 val << new SimpleDateFormat("d/M ha").format(date)
             }
+            def title=  date.toString()
+            out<<"<span title=\"${title.encodeAsHTML()}\">"
             out << val
+            out<<"</span>"
         }else if(attrs.elapsed || attrs.start && attrs.end){
             def Date date = attrs.elapsed
             def Date enddate = new Date()
@@ -159,14 +154,14 @@ class UtilityTagLib{
                 }
             }
 
-            if(diff > 0 && !attrs.end){
+            if(diff > 0 && !attrs.end && !attrs.duration){
                 out << "in "
             }
             def title= attrs.end? attrs.end.toString() : date.toString()
-            out << "<span class=\"${diff > 0 ? (attrs.untilClass?attrs.untilClass:'until') : (attrs.agoClass?attrs.agoClass:'ago')}\" title=\"${title.encodeAsHTML()}\">"
+            out << "<span class=\"${attrs.duration?(attrs.durationClass?attrs.durationClass:'duration'): diff > 0 ? (attrs.untilClass?attrs.untilClass:'until') : (attrs.agoClass?attrs.agoClass:'ago')}\" title=\"${title.encodeAsHTML()}\">"
             out << val.toString()
             out << "</span>"
-            if(diff < 0 && !attrs.end){
+            if(diff < 0 && !attrs.end && !attrs.duration){
                 out << " ago"
             }
         } else {
