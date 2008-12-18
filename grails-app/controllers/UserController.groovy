@@ -108,13 +108,23 @@ class UserController {
         if (user) {
             if (user.password == params.password) {
                 session.user = user
-                redirect(url: '/scorecard')
+                if(session.orig_ctrl && session.orig_action){
+                    def ctrl=session.orig_ctrl
+                    def act=session.orig_action
+                    def parm=session.orig_params
+                    session.orig_ctrl=null
+                    session.orig_action=null
+                    session.orig_params=null
+                    redirect(controller:ctrl,action:act,params:parm)
+                }else{
+                    redirect(url: '/scorecard')
+                }
             } else {
-                flash.message = "Incorrect password for ${params.login}"
+                flash.message = "Invalid login"
                 redirect(action: login)
             }
         } else {
-            flash.message = "User not found for login ${params.login}"
+            flash.message = "Invalid login"
             redirect(action: login)
         }
     }
