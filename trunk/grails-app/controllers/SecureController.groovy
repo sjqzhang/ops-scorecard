@@ -13,6 +13,9 @@ abstract public class SecureController {
 
     private auth() {
         if (!session.user) {
+            session.orig_ctrl=controllerName
+            session.orig_action=actionName
+            session.orig_params=params
             redirect(controller:'user', action: 'login')
             return false
         }
