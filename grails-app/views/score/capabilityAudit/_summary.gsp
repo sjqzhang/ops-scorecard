@@ -26,9 +26,7 @@
 
         <!-- the chart -->
         <h3>Average scores over the last ${scorecards.size()} audits</h3>
-        <div class="section">
-        <g:render template="capabilityAudit/chart" model="[id:service.id,scorecards:scorecards]"/>
-        </div>
+        <g:render template="capabilityAudit/chart" model="[id:service.id,scorecards:scorecards,scoreServicesParams:scoreServicesParams]"/>
 
         <!-- the metrics -->
         <h3>Score averages over the last ${scorecards.size()} audits</h3>

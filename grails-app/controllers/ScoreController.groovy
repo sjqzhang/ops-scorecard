@@ -38,6 +38,31 @@ class ScoreController extends SecureController {
         println("DEBUG: scoreMap.size=${scoreMap.size()}")
         render(view: 'index', model:[scoreMap:scoreMap,scoreServicesParams:scoreServicesParams])
     }
+    def txtAuditData = {ScoreServicesParams scoreServicesParams ->
+        def scoreData
+        if (Service.exists(params.id)) {
+            def serviceScoreMap = [:]
+            def service = Service.get(params.id)
+            serviceScoreMap['service'] = service
+            def scorecardParams = new ScorecardParams(
+                    startDate: scoreServicesParams.startDate,
+                    endDate: scoreServicesParams.endDate, service: service)
+
+            scoreData=scorecardService.scoreByService(service, scorecardParams, ["audit"] )
+            println("scoreData: ${scorecardParams}, ${scoreData}")
+            StringBuffer sb = new StringBuffer()
+            scoreData.audit[service.id].each{ entry->
+                sb<<formatDate(format:'yyyy-MM-dd HH:mm:ssZ',date:entry.audit.auditDate)
+                sb<<",${entry.scores.process},${entry.scores.control},${entry.scores.cumulative}"
+                sb<<"\n"
+            }
+            render(contentType:"text/plain",text:sb.toString())
+        }else{
+            response.setContentType("text/plain")
+            response.setStatus(400)
+            out<<"# Error: couldn't find service with id ${params.id}\n"
+        }
+    }
 
 
 

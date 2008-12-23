@@ -9,7 +9,7 @@
 <!-- Capability audit: ${service.name}[${service.type.name}] -->
 
 <g:if test="${serviceScoreMap['audit']}">
-    <g:render template="capabilityAudit/summary" model="[service:service, auditScoreCardMap:serviceScoreMap['audit']]"/>
+    <g:render template="capabilityAudit/summary" model="[service:service, auditScoreCardMap:serviceScoreMap['audit'],scoreServicesParams:scoreServicesParams]"/>
 
 </g:if>
 
