@@ -1,0 +1,15 @@
+Index: timeplot-api.js
+===================================================================
+--- timeplot-api.js	(revision 9462)
++++ timeplot-api.js	(working copy)
+@@ -28,8 +28,8 @@
+             while (node != null) {
+                 if (node.nodeType == 1 && node.tagName.toLowerCase() == "script") {
+                     var url = node.src;
+-                    if (url.indexOf("timeplot-api") >= 0) {
+-                        local = (url.indexOf("local") >= 0);
++                    if (url.indexOf("timeplot-api") >= 0 && url.indexOf("?")>=0) {
++                        local = (url.indexOf("local") >= url.indexOf("?"));
+                     }
+                 }
+                 node = node.nextSibling;
