@@ -4,8 +4,73 @@
     <meta name="layout" content="main"/>
         <meta name="guideitem" content="process"/>
     <title>Inventory: Process: ${serviceManagementProcess?.name}</title>
+    <script src="http://static.simile.mit.edu/timeplot/api/1.0/timeplot-api.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var timeplot;
+
+        function onLoad() {
+            var eventSource = new Timeplot.DefaultEventSource();
+            var valueGeometry=new Timeplot.DefaultValueGeometry({
+                        gridColor: "#000000",
+                        axisLabelsPlacement: "left",
+                        min: 0,
+                        max: 100
+                      });
+                      var timeGeometry= new Timeplot.DefaultTimeGeometry({
+                        gridColor: "#000000",
+                        axisLabelsPlacement: "top"
+                      });
+            var plotInfo = [
+                Timeplot.createPlotInfo({
+                    id: "plot_control",
+                    dataSource: new Timeplot.ColumnSource(eventSource, 1),
+                    valueGeometry:valueGeometry,
+                    timeGeometry:timeGeometry,
+                      lineColor: "#ff0000",
+                      showValues: true
+                }),
+
+                Timeplot.createPlotInfo({
+                    id: "plot_process",
+                    dataSource: new Timeplot.ColumnSource(eventSource, 2),
+                    valueGeometry:valueGeometry,
+                    timeGeometry:timeGeometry,
+                      lineColor: "#00ff00",
+                      showValues: true
+                }),
+
+                Timeplot.createPlotInfo({
+                    id: "plot_cum",
+                    dataSource: new Timeplot.ColumnSource(eventSource, 3),
+                    valueGeometry:valueGeometry,
+                    timeGeometry:timeGeometry,
+                      lineColor: "#0000ff",
+                      showValues: true
+                })
+            ];
+
+            timeplot = Timeplot.create(document.getElementById("my-timeplot"), plotInfo);
+            timeplot.loadText("${createLink(controller:'serviceManagementProcess',action:'txtAudit',id:serviceManagementProcess.id)}", ",", eventSource);
+        }
+
+        var resizeTimerID = null;
+        function onResize() {
+            if (resizeTimerID == null) {
+                resizeTimerID = window.setTimeout(function() {
+                    resizeTimerID = null;
+                    timeplot.repaint();
+                }, 100);
+            }
+        }
+
+    </script>
 </head>
 <body>
+
+<script type="text/javascript">
+        Event.observe(window,'load', function(e){ onLoad(); });
+        Event.observe(window,'resize', function(e){ onResize(); });
+</script>
 
 <div class="body">
     <g:if test="${flash.message}">
@@ -168,6 +233,7 @@
             </div>
         </div>
         </g:else>
+        <div id="my-timeplot" style="height: 150px;"></div>
     </div>
 
 </div>

@@ -22,6 +22,10 @@ class ServiceManagementProcessController extends SecureController {
         else {return [serviceManagementProcess: serviceManagementProcess]}
     }
 
+    def txtAudit = {
+        return show.call(params)
+    }
+
     def delete = {
         def serviceManagementProcess = ServiceManagementProcess.get(params.id)
         def matches = ServiceManagementProcessScorecard.findByProcess(serviceManagementProcess)

@@ -19,6 +19,9 @@ class ServiceController extends SecureController {
         }
         else {return [service: service]}
     }
+    def xmlReceipts ={
+        return show.call(params)
+    }
     def ajaxProcessSelect ={
         render(template:"processSelect",model:params.id?show(params):[processes:[]])
     }

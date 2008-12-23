@@ -98,20 +98,24 @@ class ScorecardService implements ApplicationContextAware, InitializingBean {
             println("DEBUG: ScorecardService#listProcessReceiptScorecards: service=${params.service}")
             def criteria = ProcessReceipt.createCriteria()
             matches = criteria.list {
-                between('date', params.startDate, params.endDate)
-                process {
-                    service {
-                        idEq(params.service.id)
+                and{
+                    between('date', params.startDate, params.endDate)
+                    process{
+                        service {
+                            idEq(params.service.id)
+                        }
                     }
                 }
             }
+            println("serviceid: ${params.service.id}")
         } else {
             matches = ProcessReceipt.findAllByDateBetween(
                     params.startDate, params.endDate)
             println("DEBUG: ScorecardService#listProcessReceiptScorecards: NO SERVICE")
 
         }
-        println("DEBUG: ScorecardService#listProcessReceiptScorecards: matches.size()=${matches.size()}")
+        println("DEBUG: ScorecardService#listProcessReceiptScorecards: matches.size()=${matches.size()}, matches: ${matches}")
+
 
         matches.each {
             def scores = it.calculateScores()
