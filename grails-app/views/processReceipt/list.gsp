@@ -106,18 +106,25 @@
 <g:else>
     <g:if test="${Service.count()>0}">
         <div class="body">
+            <div class="buttons">
+            <g:form>
+                <span class="button"><g:actionSubmit class="create" value="Create"/></span>
+            </g:form>
+            </div>
             <h3>There are no receipts yet.</h3>
-            <div class="info">Press the &quot;Create Receipt&quot; button to the right to create one.</div>
+            <div class="info">Press the &quot;Create&quot; button to create one.</div>
         </div>
     </g:if>
     <g:else>
         <div class="body">
+            <div class="buttons">
+            <g:form controller="service">
+                <span class="button"><g:actionSubmit class="create" value="Create Service" action="create" /></span>
+            </g:form>
+            </div>
             <h3>There are no services defined yet.</h3>
-            <div class="info">Press the &quot;Create Service&quot; button to the right to create a new one.</div>
+            <div class="info">Press the &quot;Create Service&quot; button to create a new one.</div>
 
-        </div>
-        <div class="sidebar">
-            <span class="menuButton"><g:link class="create" controller="service" action="create">Create Service</g:link></span>
         </div>
     </g:else>
 </g:else>
