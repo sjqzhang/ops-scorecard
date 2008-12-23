@@ -4,8 +4,53 @@
     <meta name="layout" content="main"/>
     <meta name="guideitem" content="service"/>
     <title>Inventory: Service: ${service?.name}</title>
+    <script src="http://static.simile.mit.edu/timeline/api-2.0/timeline-api.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var tl;
+        var test=1;
+        function onLoad() {
+            var eventSource = new Timeline.DefaultEventSource();
+          var bandInfos = [
+            Timeline.createBandInfo({
+                eventSource:    eventSource,
+                timeZone:-8,
+                width:          "70%", 
+                intervalUnit:   test==1?Timeline.DateTime.HOUR:Timeline.DateTime.DAY,
+                intervalPixels: 80
+            }),
+            Timeline.createBandInfo({
+                eventSource:    eventSource,
+                showEventText:  false,
+                timeZone:-8,
+                trackHeight:    0.5,
+                trackGap:       0.2,
+                width:          "30%",
+                intervalUnit:   test==1?Timeline.DateTime.DAY:Timeline.DateTime.WEEK,
+                intervalPixels: 200
+            })
+          ];
+          bandInfos[1].syncWith = 0;
+          bandInfos[1].highlight = true;
+          tl = Timeline.create(document.getElementById("my-timeline"), bandInfos);
+          Timeline.loadXML("${createLink(action:'xmlReceipts',id:service.id)}", function(xml, url) { eventSource.loadXML(xml, url); })
+        }
+ 
+        var resizeTimerID = null;
+        function onResize() {
+            if (resizeTimerID == null) {
+                resizeTimerID = window.setTimeout(function() {
+                    resizeTimerID = null;
+                    tl.layout();
+                }, 500);
+            }
+        }
+    </script>
 </head>
-<body>
+<body >
+<script type="text/javascript">
+        Event.observe(window,'load', function(e){ onLoad(); });
+        Event.observe(window,'resize', function(e){ onResize(); });
+</script>
 <div class="body">
     <g:if test="${flash.message}">
         <div class="message">${flash.message}</div>
@@ -116,6 +161,7 @@
 
             <span class="menuButton"><g:link class="create" action="create" controller="serviceManagementProcess"
                     params="['service.id':service.id]">New process</g:link></span>
+            <span class="link action" onclick="test*=-1;onLoad();">test</span>
         </h3>
 
 
@@ -130,6 +176,7 @@
                 </div>
             </div>
         </g:else>
+        <div id="my-timeline" style="height: 250px; border: 1px solid #ccc"></div>
 
 
         <h3 class="section">Audits
