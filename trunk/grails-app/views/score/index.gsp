@@ -4,7 +4,7 @@
     <meta name="layout" content="main"/>
     <meta name="guideitem" content="scorecard"/>
     <title>Scorecards</title>
-    <g:javascript src="dojo/dojo.js"/>
+    <script src="http://static.simile.mit.edu/timeplot/api/1.0/timeplot-api.js" type="text/javascript"></script>
 </head>
 <body>
 <g:set var="services" value="${Service.list()}"/>
@@ -25,7 +25,7 @@
                         <g:set var="serviceScoreMap" value="${scoreMap[serviceId]}"/>
 
                         <!-- render the scorecard for the service -->
-                        <g:render template="serviceScorecard" model="[serviceScoreMap:serviceScoreMap]"/>
+                        <g:render template="serviceScorecard" model="[serviceScoreMap:serviceScoreMap,scoreServicesParams:scoreServicesParams]"/>
 
                     </g:each>
 
