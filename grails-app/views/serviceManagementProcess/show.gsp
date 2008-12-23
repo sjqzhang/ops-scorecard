@@ -4,7 +4,13 @@
     <meta name="layout" content="main"/>
         <meta name="guideitem" content="process"/>
     <title>Inventory: Process: ${serviceManagementProcess?.name}</title>
-    <script src="http://static.simile.mit.edu/timeplot/api/1.0/timeplot-api.js" type="text/javascript"></script>
+
+    <g:javascript>
+        var Timeplot_urlPrefix="${createLinkTo(dir:'js',file:'/timeplot/api/1.0/')}";
+    </g:javascript>
+    <g:javascript src="ajax/api-2.0/simile-ajax-api.js"/>
+    <g:javascript src="timeline/api-2.0/timeline-api.js"/>
+    <g:javascript src="timeplot/api/1.0/timeplot-api.js"/>
     <script type="text/javascript">
         var timeplot;
 

@@ -4,7 +4,8 @@
     <meta name="layout" content="main"/>
     <meta name="guideitem" content="service"/>
     <title>Inventory: Service: ${service?.name}</title>
-    <script src="http://static.simile.mit.edu/timeline/api-2.0/timeline-api.js" type="text/javascript"></script>
+    <g:javascript src="ajax/api-2.0/simile-ajax-api.js"/>
+    <g:javascript src="timeline/api-2.0/timeline-api.js"/>
     <script type="text/javascript">
         var tl;
         var test=1;
@@ -187,10 +188,12 @@
         <g:if test="${audits}">
             <table>
                 <thead>
+                    <tr>
                     <th>Title</th>
                     <th>Date</th>
                     <th>Auditor</th>
                     <th>Score Average</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <g:each in="${audits}" var="audit">
