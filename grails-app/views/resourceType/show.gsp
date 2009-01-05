@@ -72,7 +72,7 @@
                 <g:each var="i" in="${resourceType.instances}">
                     <tr>
                         <td>
-                            <g:link controller="resource" action="show" id="${i.id}">${i?.name?.encodeAsHTML()}</g:link>
+                            <g:link controller="${controller}" action="show" id="${i.id}">${i?.name?.encodeAsHTML()}</g:link>
                         </td>
                         <td>
                             ${i?.description?.encodeAsHTML()}
