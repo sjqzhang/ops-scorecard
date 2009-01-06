@@ -62,7 +62,7 @@
                             </td>
                             <td>
                                 <g:if test="${availabilityReceipt.process?.name}">
-                                    <g:link controller="service" action="show" id="${availabilityReceipt.process.id}">
+                                    <g:link controller="serviceManagementProcess" action="show" id="${availabilityReceipt.process.id}">
                                         ${availabilityReceipt.process.name}
                                     </g:link>
                                 </g:if>
