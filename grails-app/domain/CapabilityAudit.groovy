@@ -74,7 +74,7 @@ class CapabilityAudit {
             def sc = s['cumulative']
             total += sc
         }
-        scores['process'] = (total / ServiceManagementProcess.constraints.category.inList.size()).intValue()
+        scores['process'] = (total / ServiceManagementProcess.processCategories.size()).intValue()
         scores['cumulative'] = ((scores['control']
                 + scores['process']) / 2).intValue()
 
