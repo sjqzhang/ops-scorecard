@@ -11,7 +11,7 @@ class ServiceController extends SecureController {
     }
 
     def show = {
-        def service = Service.get(params.id)
+        def service = Service.get(params.id.toLong())
 
         if (!service) {
             flash.message = "Service not found with id ${params.id}"
@@ -61,14 +61,43 @@ class ServiceController extends SecureController {
             return [service: service]
         }
     }
+    def editGoals = {
+        def service = Service.get(params.id)
+
+        if (!service) {
+            flash.message = "Cannot edit. Service not found with id ${params.id}"
+            redirect(action: list)
+        }
+        else {
+            return [service: service]
+        }
+    }
 
     def update = {
         def service = Service.get(params.id)
         if (service) {
             service.properties = params
+            if(params.goals.id || params.newGoals){
+                def ServiceScorecardGoals goals
+                if(service.goals){
+                    goals = service.goals
+                    goals.properties=params.goals
+                }else{
+                    goals = new ServiceScorecardGoals(params.goals)
+                }
+                println("saving goals: ${service.goals}")
+                if(service.goals.hasErrors() || !service.goals.save()){
+                    render(view: 'editGoals', model: [service: service])
+                    return
+                }
+            }
             if (!service.hasErrors() && service.save()) {
-                flash.message = "Updated: ${params.name}"
-                redirect(action: list)
+                flash.message = "Updated: ${service.name}"
+                if(params.goals.id || params.newGoals){
+                    redirect(action: show,id: params.id)
+                }else{
+                    redirect(action: list)
+                }
             }
             else {
                 render(view: 'edit', model: [service: service])

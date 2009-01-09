@@ -36,7 +36,7 @@
                             title="${receipt.level}%${receipt.process?' ('+receipt.process.name+')':''}"
                             color="${outagecolors[receipt.level]}"
                             image="${createLinkTo(dir:'images/skin',file:'script_edit.png')}"
-                            link="${createLink(action:'show',controller:'availabiltyReceipt',id:receipt.id)}"
+                            link="${createLink(action:'show',controller:'availabilityReceipt',id:receipt.id)}"
                             caption="${service.name} at ${receipt.level}% availability${receipt.process?', Caused by:'+ receipt.process.name:'' }, "
                             textColor="black"
                             classname="avail_receipt"
