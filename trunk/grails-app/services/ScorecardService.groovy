@@ -102,7 +102,7 @@ class ScorecardService implements ApplicationContextAware, InitializingBean {
                     between('date', params.startDate, params.endDate)
                     process{
                         service {
-                            idEq(params.service.id)
+                            eq('id',params.service.id)
                         }
                     }
                 }
