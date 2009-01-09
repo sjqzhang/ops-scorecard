@@ -40,6 +40,10 @@ class Resource {
 
     URL ciUri
 
+    def beforeInsert = {
+        createDate = new Date()
+    }
+
     String toString() {return name}
 
     static transients = ['calculateScores']
