@@ -1,10 +1,11 @@
 class ServiceManagementProcess {
+    static processCategories=['acceptance', 'build', 'change','configuration', 'detective', 'escalation',
+                'release', 'deployment','monitoring', 'verification']
     static constraints = {
         name(blank: false)
         description(blank: false)
         createDate(nullable:false)
-        category(inList: ['acceptance', 'build', 'change','configuration', 'detective', 'escalation',
-                'release', 'deployment','monitoring', 'verification'])
+        category(inList: processCategories)
         automationLevel(inList: ['none', 'manual','semi', 'full'])
         automationTool(nullable:true)
         syscontrol(inList: ['open-loop', 'closed-loop'])
