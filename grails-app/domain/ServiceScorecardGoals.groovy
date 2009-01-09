@@ -1,0 +1,3 @@
+class ServiceScorecardGoals extends ServiceScorecardBase{
+
+}
