@@ -54,13 +54,13 @@ a.action:hover, span.link.action:hover{
     background-color:#ddf;
 }
 
-span.link.create{
+span.link.create,a.link.create{
     background-image: url(../images/skin/add.png) ;
     background-position: 4px;
     background-repeat:no-repeat;
     padding-left:25px;
 }
-span.link.edit {
+span.link.edit,a.link.edit {
     background-image: url(../images/skin/pencil.png) ;
     background-position: 4px;
     background-repeat:no-repeat;
@@ -358,6 +358,17 @@ div.dialog.login{
 .prop .name.errors{
     color:red;
 }
+.prop .bname {
+    text-align: right;
+    white-space: nowrap;
+}
+.prop .bname.empty {
+    color: #888;
+}
+.prop .bname.errors{
+    color:red;
+}
+
 .prop .value {
     text-align: left;
     width: 85%;
@@ -391,6 +402,40 @@ div.dialog div.section, div.view div.section{
     padding:5px 5px 5px 15px;
     border:1px solid #ccc;
     color: #666;
+}
+
+/* service scorecard view */
+
+
+td.scoresummary{
+    text-align:right;
+    line-height:150%;
+    width: 200px;
+}
+td.scoresummary span.value{
+    display:block;
+    font-size:150%;
+}
+td.scoresummary span.value.good{
+    color:green;
+}
+td.scoresummary span.value.bad{
+    color:red;
+}
+td.scoresummary span.value.medium{
+    color:orange;
+}
+td.scoresummary span.value.ok{
+    color:yellow;
+}
+td.scoresummary span.title{
+    display:block;
+    font-weight:bold;
+    font-size:110%;
+}
+td.scoresummary span.goal{
+    display:block;
+    font-size:110%;
 }
 
 /* VIEW */

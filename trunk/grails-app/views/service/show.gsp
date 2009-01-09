@@ -8,7 +8,7 @@
     <g:javascript src="timeline/api-2.0/timeline-api.js"/>
     <script type="text/javascript">
         var tl;
-        var test=1;
+        var test=-1;
         function onLoad() {
             var eventSource = new Timeline.DefaultEventSource();
           var bandInfos = [
@@ -34,6 +34,14 @@
           bandInfos[1].highlight = true;
           tl = Timeline.create(document.getElementById("my-timeline"), bandInfos);
           Timeline.loadXML("${createLink(action:'xmlReceipts',id:service.id)}", function(xml, url) { eventSource.loadXML(xml, url); })
+        }
+        function toggleDate(elem){
+            test*=-1;onLoad();
+            if(test==1){
+                elem.innerHTML="Week View";
+            }else{
+                elem.innerHTML="Day View";
+            }
         }
  
         var resizeTimerID = null;
@@ -162,7 +170,7 @@
 
             <span class="menuButton"><g:link class="create" action="create" controller="serviceManagementProcess"
                     params="['service.id':service.id]">New process</g:link></span>
-            <span class="link action" onclick="test*=-1;onLoad();">test</span>
+
         </h3>
 
 
@@ -177,6 +185,21 @@
                 </div>
             </div>
         </g:else>
+        <div class="section">
+            <g:if test="${service.goals}">
+                <img src="${createLinkTo(dir:'images/skin',file:'tick.png')}" width="16px" height="16px"/>
+                Service Goals Are Set
+                <g:link class="edit link action" action="editGoals" id="${service.id}" title="Edit Service Goals">Edit</g:link>
+            </g:if>
+            <g:else>
+                No Service Goals Set
+                <g:link class="create link action" action="editGoals" id="${service.id}" title="Add Service Goals">Add Goals</g:link>
+            </g:else>
+        </div>
+        <h3 class="section">
+            Events
+            <span class="link action" onclick="toggleDate(this)">Day View</span>
+        </h3>
         <div id="my-timeline" style="height: 250px; border: 1px solid #ccc"></div>
 
 
