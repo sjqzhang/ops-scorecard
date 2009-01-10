@@ -783,6 +783,34 @@ class ServiceScorecardServiceTests extends GroovyTestCase {
         assertEquals "incorrect value ${availresults}", 1f, availresults.smActivitiesImpactedAvailabilityCount
 
 
+
+        //test that a dates that do not match have no results:
+
+        def calX = new GregorianCalendar()
+        calX.setTime(cal.getTime())
+        calX.add(Calendar.DAY_OF_YEAR,-7)
+
+        def datesX = serviceScorecardService.determinePreviousWeekForDatetime(calX.getTimeInMillis())
+        availresults = serviceScorecardService.genAvailabilityScores(testservice, datesX.start, datesX.end)
+        assertEquals "incorrect value", 0f, availresults.serviceFailuresCount
+        assertEquals "incorrect value", 0f, availresults.MTBFTime
+        assertEquals "incorrect value", 0f, availresults.MTTRTime
+        assertEquals "incorrect value", 0f, availresults.estimatedOutageCost
+        assertEquals "incorrect value", 100f, availresults.serviceAvailabilityPct
+        assertEquals "incorrect value", 0f, availresults.smActivitiesImpactedAvailabilityCount
+
+        calX.setTime(cal.getTime())
+        calX.add(Calendar.DAY_OF_YEAR,7)
+        datesX = serviceScorecardService.determinePreviousWeekForDatetime(calX.getTimeInMillis())
+        availresults = serviceScorecardService.genAvailabilityScores(testservice, datesX.start, datesX.end)
+        assertEquals "incorrect value", 0f, availresults.serviceFailuresCount
+        assertEquals "incorrect value", 0f, availresults.MTBFTime
+        assertEquals "incorrect value", 0f, availresults.MTTRTime
+        assertEquals "incorrect value", 0f, availresults.estimatedOutageCost
+        assertEquals "incorrect value", 100f, availresults.serviceAvailabilityPct
+        assertEquals "incorrect value", 0f, availresults.smActivitiesImpactedAvailabilityCount
+
+
         proc1.delete()
         r2.delete()
         r1.delete()
