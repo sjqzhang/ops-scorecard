@@ -134,9 +134,15 @@ class ServiceScorecardService {
         /* float serviceAvailabilityPct - percentage of time that service was available (from availability receipts) */
         //find availability receipts and calculate total availability percentage for the week
         def availreceipts = AvailabilityReceipt.withCriteria {
-            or {
-                ge('endDate', startdate)
-                le('startDate', enddate)
+            or{
+                and {
+                    ge('endDate', startdate)
+                    le('endDate', enddate)
+                }
+                and {
+                    ge('startDate', startdate)
+                    le('startDate', enddate)
+                }
             }
             delegate.'service' {
                 eq('id', service.id)
@@ -144,11 +150,11 @@ class ServiceScorecardService {
             order('startDate', 'desc')
         }
 
-        println("availreceipts: ${availreceipts}")
+
         //assume available time was 100% for entries not in availability receipts
         def long totalscoretime = enddate.getTime() - startdate.getTime()
         def long totalavailtime = totalscoretime
-
+        println("availreceipts: ${availreceipts}, dates: ${startdate}, ${enddate}, totalscoretime: ${totalscoretime}")
         //for MTTR, retain duration total and number of receipts
         def long totalAvailDuration = 0
         def int totalAvailReceiptCount = 0
@@ -180,6 +186,7 @@ class ServiceScorecardService {
             def float perc = receipt.level / 100f
             def float availtime = duration * perc
             totalavailtime -= (duration - availtime)
+            println("duration - availtime = ${duration} - ${availtime}, totalavailtime is now ${totalavailtime}")
 
             if (receipt.level < 100) {
                 serviceFailuresCount++
