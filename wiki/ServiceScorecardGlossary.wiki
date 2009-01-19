@@ -1,10 +1,10 @@
-#summary Glossary of scores used by the ConceptServiceScorecard
+#summary Glossary of scores used by the [ConceptServiceScorecard Service Scorecards]
 
 <wiki:toc max_depth="2" />
 
 = Introduction =
 
-These score metrics are used by the ConceptServiceScorecard
+These score metrics are used by [ConceptServiceScorecard Service Scorecards].
 
 
 = Metrics =
