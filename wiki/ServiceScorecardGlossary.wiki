@@ -1,4 +1,4 @@
-#summary Glossary of scores used by the [ConceptServiceScorecard Service Scorecards]
+#summary Glossary of scores used by Service Scorecards
 
 <wiki:toc max_depth="2" />
 
