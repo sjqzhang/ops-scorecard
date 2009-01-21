@@ -57,6 +57,11 @@
         </div>
         <div class="dialog" id="formbody" ${!params.createshow?'style="display:none;"':''}>
             <g:render template="form" model="${model}"/>
+            <g:if test="${params.createshow&&params?.service?.id}">
+                <script type="text/javascript">
+                    Event.observe(window,'load', function(e){ selectedService({value:'${params.service.id}'});});
+                </script>
+            </g:if>
         </div>
 
         <div class="view">

@@ -27,12 +27,12 @@
 
         <td class="${hasErrors(bean:availabilityReceipt,field:'service','errors')}">
             <g:select name="service.id"  optionValue="name" optionKey="id" noSelection="['null':'-Select a Service-']"
-                from="${Service.list()}" onChange="selectedService(this);" value="${availabilityReceipt?.service?.id}"
+                from="${Service.list()}" onChange="selectedService(this);" value="${availabilityReceipt?.service?.id?availabilityReceipt?.service?.id:params?.service?.id?params?.service?.id:null}"
             />
         </td>
         <td id="causeSelect"  class="${hasErrors(bean:availabilityReceipt,field:'process','errors')}">
             <g:if test="${availabilityReceipt?.service}">
-                <g:render template="/service/processSelect" model="[service:availabilityReceipt.service,selected:availabilityReceipt?.process?.id,selectName:'process.id',noselection:'-Unknown-']"/>
+                <g:render template="/service/processSelect" model="[service:availabilityReceipt.service,selected:availabilityReceipt?.service?.id?availabilityReceipt?.service?.id:params?.service?.id?params?.service?.id:null,selectName:'process.id',noselection:'-Unknown-']"/>
             </g:if>
             <g:else>
             <span class="note info">-unknown-</span>

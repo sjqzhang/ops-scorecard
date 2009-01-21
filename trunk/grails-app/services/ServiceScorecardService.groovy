@@ -10,7 +10,7 @@ class ServiceScorecardService {
         return generateScorecardsForDates(dates.start, dates.end)
     }
 
-    def Map determinePreviousWeekForDatetime(long reftime) {
+    public static Map determinePreviousWeekForDatetime(long reftime) {
         Calendar curcal = new GregorianCalendar()
         curcal.setTimeInMillis(reftime)
 

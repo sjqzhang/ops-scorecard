@@ -79,6 +79,9 @@ h1 {
 div.clear, span.clear{
     clear:both;
 }
+table {
+    border-collapse: collapse;
+}
 
 td.toollink{
     text-align:center;
@@ -287,12 +290,6 @@ table.summary td.empty{
 }
 /* LIST */
 
-.list table {
-    border-collapse: collapse;
-}
-.list th, .list td {
-    
-}
 .list th:hover, .list tr:hover {
     background: #b2d1ff;
 }
@@ -436,6 +433,62 @@ td.scoresummary span.title{
 td.scoresummary span.goal{
     display:block;
     font-size:110%;
+}
+
+dt{
+    font-weight:bold;
+}
+dd{
+    margin-left: 10px;
+}
+div.body.scoretable h2{
+    color: #888;
+}
+div.body.scoretable h3{
+    color: #6dba6d;
+}
+div.body.scoretable h1,div.body.scoretable h2,div.body.scoretable h3,div.body.scoretable div.datenav{
+    margin:0.5em 0;
+}
+td.cardlink{
+    padding:0;
+}
+td.cardlink a{
+    padding:5px 5px 5px 5;
+    display:block;
+    color: #008;
+}
+td.cardlink a .subtitle{
+    color: #000;
+    font-weight:normal;
+}
+td.cardlink a:hover{
+    text-decoration:none;
+    background: #ddf;
+}
+td.cardlink.processreceipt.successful a{
+    padding:5px 5px 5px 26px;
+    background: #fff url(../images/skin/tick.png) 5px 5px no-repeat;
+}
+td.cardlink.processreceipt.successful a:hover{
+    text-decoration:none;
+    background: #ddf url(../images/skin/tick.png) 5px 5px no-repeat;
+}
+td.cardlink.processreceipt.aborted a{
+    padding:5px 5px 5px 26px;
+    background: #fff url(../images/skin/error.png) 5px 5px no-repeat;
+}
+td.cardlink.processreceipt.aborted a:hover{
+    text-decoration:none;
+    background: #ddf url(../images/skin/error.png) 5px 5px no-repeat;
+}
+td.cardlink.processreceipt.withdrawn a{
+    padding:5px 5px 5px 26px;
+    background: #fff url(../images/skin/cancel.png) 5px 5px no-repeat;
+}
+td.cardlink.processreceipt.withdrawn a:hover{
+    text-decoration:none;
+    background: #ddf url(../images/skin/cancel.png) 5px 5px no-repeat;
 }
 
 /* VIEW */

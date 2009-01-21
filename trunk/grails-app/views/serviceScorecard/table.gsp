@@ -4,6 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
+        <meta name="guideitem" content="servicescorecard"/>
         <title>ServiceScorecard List</title>
         <style type="text/css">
             td.emptyAudit{
@@ -34,20 +35,27 @@
             <g:set var="options" value="${session.sscorecard_options?session.sscorecard_options:[goalsMetPct:true,processCoveragePct:true,processQualityPct:true,
             serviceAvailabilityPct:true,estimatedOutageCost:true,MTBFTime:true,MTTRTime:true,serviceFailuresCount:true,smActivitiesCount:true,highImpactActivityPct:true,
             smSuccessPct:true,smActivitiesImpactedAvailabilityCount:true,smActivitiesUnplannedCount:true]}"/>
-            <h1>Service Scores</h1>
+            <h1>Service Management Scores</h1>
             <h2>
                 <g:formatDate date="${startCal.getTime()}" format="yyyy/MM/dd"/>
                 to
                 <g:formatDate date="${endCal.getTime()}" format="yyyy/MM/dd"/>
             </h2>
+            <g:if test="${!nextDate}">
+                   <h3>
+                       Current Scores for Last Week
+                   </h3>
+            </g:if>
+            <div class="datenav">
             <g:link action="table" params="${[datetime:prevDate.getTime()]}">&laquo; previous</g:link>
             <g:if test="${null!=nextDate}">
                 <g:link action="table" params="${[datetime:nextDate.getTime()]}">next &raquo;</g:link>
             </g:if>
+            </div>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
-            <div class="list">
+            <div class="chart">
                 <table style="width:auto;">
                     <thead>
                         <tr>
@@ -65,11 +73,13 @@
                     </thead>
                     <tbody>
                     <g:each in="${serviceScorecardInstanceList}" status="i" var="serviceScorecardInstance">
-                        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+                        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}" class="cardrow">
 
-                            <td style="width:100px">
-                                <g:link controller="serviceScorecard" action="show" id="${serviceScorecardInstance.id}">
-                                    ${fieldValue(bean:serviceScorecardInstance, field:'service')}
+                            
+                            <td style="width:100px" class="cardlink">
+                                <g:link controller="serviceScorecard" action="show" id="${serviceScorecardInstance.id}" title="View Scorecard" >
+                                    <img src="${createLinkTo(dir: 'images', file: 'skin/chart_bar.png')}" alt="" width="16px" height="16px"/>
+                                    ${fieldValue(bean:serviceScorecardInstance, field:'service')} [${fieldValue(bean:serviceScorecardInstance, field:'service.type')}]
                                 </g:link>
                             </td>
 
@@ -100,7 +110,7 @@
                         <tr>
                             <td>
                                 <g:link controller="service" action="show" id="${service.id}">
-                                    ${fieldValue(bean:service, field:'name')}
+                                    ${fieldValue(bean:service, field:'name')}  [${fieldValue(bean:service, field:'type')}]
                                 </g:link>
                             </td>
                             <g:each in="${metricsList}" var="metric">
@@ -113,9 +123,31 @@
                     </tbody>
                 </table>
             </div>
-            <div class="paginateButtons">
-                <g:paginate total="${ServiceScorecard.count()}" />
+            %{--<div class="paginateButtons">--}%
+                %{--<g:paginate total="${ServiceScorecard.count()}" />--}%
+            %{--</div>--}%
+            <div class="info " style="padding:5px;">
+            <span class="link action " onclick="['metricsglossary','metricsglossary-toggle'].each(Element.toggle);" id="metricsglossary-toggle"  style="">
+                Metrics Glossary
+                <img src="${createLinkTo(dir:'images/menus',file:'icon-tiny-disclosure.png')}" width="12px" height="12px"/>
+            </span>
+            <div id="metricsglossary" style="display:none; ">
+                <span class="link action " onclick="['metricsglossary','metricsglossary-toggle'].each(Element.toggle);" style="">
+                    Metrics Glossary
+                    <img src="${createLinkTo(dir:'images/menus',file:'icon-tiny-disclosure-open.png')}" width="12px" height="12px"/>
+                </span>
+                <dl>
+                <g:each in="${metricsList}" var="metric">
+                        <dt id="def_${metric}">
+                            <g:wikiLink name="ServiceScorecardGlossary" sectionkey="metric.${metric}">
+                                ${message(code:"metric."+metric)}
+                        </g:wikiLink></dt>
+                        <dd><g:message code="metric.${metric}.info"/> (${metric})</dd>
+                </g:each>
+                </dl>
             </div>
+            </div>
+
         </div>
     
     </body>

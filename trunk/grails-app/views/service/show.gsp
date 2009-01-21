@@ -4,56 +4,6 @@
     <meta name="layout" content="main"/>
     <meta name="guideitem" content="service"/>
     <title>Inventory: Service: ${service?.name}</title>
-    <g:javascript src="ajax/api-2.0/simile-ajax-api.js"/>
-    <g:javascript src="timeline/api-2.0/timeline-api.js"/>
-    <script type="text/javascript">
-        var tl;
-        var test=-1;
-        function onLoad() {
-            var eventSource = new Timeline.DefaultEventSource();
-          var bandInfos = [
-            Timeline.createBandInfo({
-                eventSource:    eventSource,
-                timeZone:-8,
-                width:          "70%", 
-                intervalUnit:   test==1?Timeline.DateTime.HOUR:Timeline.DateTime.DAY,
-                intervalPixels: 80
-            }),
-            Timeline.createBandInfo({
-                eventSource:    eventSource,
-                showEventText:  false,
-                timeZone:-8,
-                trackHeight:    0.5,
-                trackGap:       0.2,
-                width:          "30%",
-                intervalUnit:   test==1?Timeline.DateTime.DAY:Timeline.DateTime.WEEK,
-                intervalPixels: 200
-            })
-          ];
-          bandInfos[1].syncWith = 0;
-          bandInfos[1].highlight = true;
-          tl = Timeline.create(document.getElementById("my-timeline"), bandInfos);
-          Timeline.loadXML("${createLink(action:'xmlReceipts',id:service.id)}", function(xml, url) { eventSource.loadXML(xml, url); })
-        }
-        function toggleDate(elem){
-            test*=-1;onLoad();
-            if(test==1){
-                elem.innerHTML="Week View";
-            }else{
-                elem.innerHTML="Day View";
-            }
-        }
- 
-        var resizeTimerID = null;
-        function onResize() {
-            if (resizeTimerID == null) {
-                resizeTimerID = window.setTimeout(function() {
-                    resizeTimerID = null;
-                    tl.layout();
-                }, 500);
-            }
-        }
-    </script>
 </head>
 <body >
 <script type="text/javascript">
@@ -75,6 +25,17 @@
     <div class="view service">
         <div class="header service">
             <g:render template="service_header" model="[service:service]"/>
+        </div>
+        <div class="section">
+            <g:if test="${service.goals}">
+                <img src="${createLinkTo(dir:'images/skin',file:'tick.png')}" width="16px" height="16px"/>
+                Service Goals Are Set
+                <g:link class="edit link action" action="editGoals" id="${service.id}" title="Edit Service Goals">Edit</g:link>
+            </g:if>
+            <g:else>
+                No Service Goals Set
+                <g:link class="create link action" action="editGoals" id="${service.id}" title="Add Service Goals">Add Goals</g:link>
+            </g:else>
         </div>
         <table>
             <tbody>
@@ -185,22 +146,25 @@
                 </div>
             </div>
         </g:else>
-        <div class="section">
-            <g:if test="${service.goals}">
-                <img src="${createLinkTo(dir:'images/skin',file:'tick.png')}" width="16px" height="16px"/>
-                Service Goals Are Set
-                <g:link class="edit link action" action="editGoals" id="${service.id}" title="Edit Service Goals">Edit</g:link>
-            </g:if>
-            <g:else>
-                No Service Goals Set
-                <g:link class="create link action" action="editGoals" id="${service.id}" title="Add Service Goals">Add Goals</g:link>
-            </g:else>
-        </div>
+        
         <h3 class="section">
-            Events
-            <span class="link action" onclick="toggleDate(this)">Day View</span>
+            Availability Receipts
+            <span class="menuButton"><g:link class="create" action="list" controller="availabilityReceipt"
+                    params="['service.id':service.id,'createshow':true]">Create</g:link></span>
         </h3>
-        <div id="my-timeline" style="height: 250px; border: 1px solid #ccc"></div>
+
+        <g:set var="availreceipts" value="${AvailabilityReceipt.findAllByService(service)}"/>
+        <g:if test="${availreceipts}">
+            <g:render template="/availabilityReceipt/list" model="[availabilityReceiptList:availreceipts]"/>
+        </g:if>
+        <g:else>
+            <div class="section">
+                <div class="info note">
+                    No Availability Receipts
+                </div>
+            </div>
+        </g:else>
+
 
 
         <h3 class="section">Audits

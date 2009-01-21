@@ -7,7 +7,9 @@ class UtilityTagLib{
     public static final monthsofyearord = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
     def frameworkService
-    
+    def timeZoneOffset = { attrs,body->
+        out << (int)Math.floor(TimeZone.getDefault().getRawOffset()/(60*60*1000L))
+    }
     def dayOfWeek = { attrs, body ->
 
         def java.text.DateFormatSymbols DFS = new java.text.DateFormatSymbols(request.getLocale());
@@ -101,7 +103,7 @@ class UtilityTagLib{
             }else if(cal.get(Calendar.YEAR)!=now.get(Calendar.YEAR)){
                     val << new SimpleDateFormat("MMM d yyyy").format(date)
             }else{
-                val << new SimpleDateFormat("d/M ha").format(date)
+                val << new SimpleDateFormat("M/d ha").format(date)
             }
             def title=  date.toString()
             out<<"<span title=\"${title.encodeAsHTML()}\">"
@@ -241,4 +243,35 @@ class UtilityTagLib{
             out << servletContext.getAttribute(attrs.attribute)
         }
     }
+
+    def wikiLink ={attrs,body->
+        if(attrs.name){
+            def name = attrs.name.replaceAll(/ /,'_')
+            if(attrs.section){
+                name+= "#"+attrs.section.replaceAll(/ /,'_')
+            }else if(attrs.sectionkey){
+                def section=g.message(code:attrs.sectionkey)
+                if(section!=attrs.sectionkey){
+                    name+= "#"+section.replaceAll(/ /,'_')
+                }
+            }
+            def urlbase = g.message(code:'wiki.urlbase')
+            if(urlbase!='wiki.urlbase'){
+                out<<"<a href=\"${urlbase}${name}\" target=\"_new\">"
+            }
+            def txt=body()
+            if(txt){
+                out<<txt
+            }else if(null!=attrs.title){
+                out<<attrs.title
+            }else{
+                out<<attrs.name
+            }
+            if(urlbase!='wiki.urlbase'){
+                out<<"</a>"
+            }
+
+        }
+    }
+
 }

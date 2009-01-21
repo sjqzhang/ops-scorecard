@@ -1,6 +1,10 @@
 class ProcessReceiptController extends SecureController {
     
-    def index = {  }
+    def index = {
+        def processReceiptList = ProcessReceipt.listOrderByDate(max:5,offset:0,order:'desc')
+        def availabilityReceiptList = AvailabilityReceipt.listOrderByStartDate(max:5,offset:0,order:'desc')
+        [processReceiptList:processReceiptList,availabilityReceiptList:availabilityReceiptList]
+    }
 
     // the delete, save and update actions only accept POST requests
     def allowedMethods = [delete:'POST', save:'POST', update:'POST']
