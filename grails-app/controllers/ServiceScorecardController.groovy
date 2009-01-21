@@ -63,7 +63,7 @@ class ServiceScorecardController extends SecureController{
         endCal.setTime(date2)
         Date prevDate = new Date(reftime-(7*24*60*60*1000 /*one week*/))
         Date nextDate = new Date(reftime+(7*24*60*60*1000 /*one week*/))
-        println("determined date: ${date}, ${date2}, or, ${prevDate}")
+//        println("determined date: ${date}, ${date2}, or, ${prevDate}")
 
 
         def cards = ServiceScorecard.findAllByEndDate(date2,sorts)
@@ -82,7 +82,6 @@ class ServiceScorecardController extends SecureController{
         cards.each{ card->
             if(seenservices[card.service.id]==card){
                 newcards<<card
-                println("selected card ${card.id}")
             }
         }
         newcards.each{ card->

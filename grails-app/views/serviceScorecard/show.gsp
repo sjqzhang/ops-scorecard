@@ -16,6 +16,9 @@
         var allgraphs =new Hash();
         var alldata =new Hash();
 
+        var tl;
+        var test=-1;
+
         function onLoad() {
             allgraphs.keys().each(function(gname){
                 var info=allgraphs.get(gname);
@@ -71,6 +74,42 @@
             });
         }
 
+        function onLoadEvents() {
+          var eventSource = new Timeline.DefaultEventSource();
+          var bandInfos = [
+            Timeline.createBandInfo({
+                timeZone:${g.timeZoneOffset()},
+                eventSource:    eventSource,
+                width:          "70%",
+                intervalUnit:   test==1?Timeline.DateTime.HOUR:Timeline.DateTime.DAY,
+                intervalPixels: 80
+            }),
+            Timeline.createBandInfo({
+                timeZone:${g.timeZoneOffset()},
+                eventSource:    eventSource,
+                showEventText:  false,
+                trackHeight:    0.5,
+                trackGap:       0.2,
+                width:          "30%",
+                intervalUnit:   test==1?Timeline.DateTime.DAY:Timeline.DateTime.WEEK,
+                intervalPixels: 200
+            })
+          ];
+          bandInfos[1].syncWith = 0;
+          bandInfos[1].highlight = true;
+          tl = Timeline.create(document.getElementById("my-timeline"), bandInfos);
+          Timeline.loadXML("${createLink(controller:'service',action:'xmlReceipts',id:serviceScorecardInstance.service.id)}", function(xml, url) { eventSource.loadXML(xml, url); })
+        }
+        function toggleDate(elem){
+            test*=-1;
+            onLoadEvents();
+            if(test==1){
+                elem.innerHTML="Week View";
+            }else{
+                elem.innerHTML="Day View";
+            }
+        }
+
         var resizeTimerID = null;
         function onResize() {
             if (resizeTimerID == null) {
@@ -79,6 +118,7 @@
                     alltimeplots.values().each(function(i){
                         i.repaint();
                     });
+                    tl.layout();
                 }, 100);
             }
         }
@@ -88,7 +128,7 @@
     <body>
 
 <script type="text/javascript">
-        Event.observe(window,'load', function(e){ onLoad(); });
+        Event.observe(window,'load', function(e){ onLoad(); onLoadEvents();});
         Event.observe(window,'resize', function(e){ onResize(); });
 </script>
 <g:set var="metricsList" value="${ServiceScorecardBase.metricsList}"/>
@@ -99,7 +139,7 @@
             </g:if>
             <div class="view">
                 <div class="header service">
-                    <g:render template="/service/service_header" model="[service:serviceScorecardInstance.service]"/>
+                    <g:render template="/service/service_header" model="[service:serviceScorecardInstance.service,showicon:true]"/>
                 </div>
 
                 <div class="section">
@@ -216,15 +256,20 @@
                             </tr>
                     </table>
                 </div>
-                
+                  <h3 class="section">
+                    Events
+                    <span class="link action" onclick="toggleDate(this)">Day View</span>
+                </h3>
+                <div id="my-timeline" style="height: 250px; border: 1px solid #ccc"></div>        
             </div>
-            <div class="buttons">
-                <g:form>
-                    <input type="hidden" name="id" value="${serviceScorecardInstance?.id}" />
-                    <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
-                    <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
-                </g:form>
-            </div>
+
+            %{--<div class="buttons">--}%
+                %{--<g:form>--}%
+                    %{--<input type="hidden" name="id" value="${serviceScorecardInstance?.id}" />--}%
+                    %{--<span class="button"><g:actionSubmit class="edit" value="Edit" /></span>--}%
+                    %{--<span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>--}%
+                %{--</g:form>--}%
+            %{--</div>--}%
         </div>
     </body>
 </html>

@@ -1,4 +1,6 @@
-<g:set var="options" value="${session.sscorecard_options?session.sscorecard_options:[goalsMetPct:true,MTBFTime:true,MTTRTime:true]}"/>
+<g:set var="options" value="${session.sscorecard_options?session.sscorecard_options:[goalsMetPct:true,processCoveragePct:true,processQualityPct:true,
+            serviceAvailabilityPct:true,estimatedOutageCost:true,MTBFTime:true,MTTRTime:true,serviceFailuresCount:true,smActivitiesCount:true,highImpactActivityPct:true,
+            smSuccessPct:true,smActivitiesImpactedAvailabilityCount:true,smActivitiesUnplannedCount:true]}"/>
 <g:set var="serviceoptions" value="${session.sscorecard_services?session.sscorecard_services:[:]}"/>
 <g:set var="metricsList" value="${ServiceScorecardBase.metricsList}"/>
 
@@ -27,6 +29,45 @@
                 <div class="presentation">
 
                     <table>
+                        <tr>
+                            <th colspan="2">Week</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+
+                                <select name="datetime">
+                                    <g:set var="lastscore" value="${ServiceScorecard.listOrderByEndDate(order:'asc',offset:0,max:1).get(0)}"/>
+                                    <g:set var="weekms" value="${7*24*60*60*1000}"/>
+                                    <g:set var="nowms" value="${System.currentTimeMillis()}"/>
+                                    <g:set var="nowdates" value="${ServiceScorecardService.determinePreviousWeekForDatetime(params.datetime?params.datetime.toLong():nowms)}"/>
+                                    <g:if test="${lastscore}">
+                                        <g:set var="lasttimems" value="${lastscore.endDate.getTime()}"/>
+                                        <g:set var="weekcount" value="${Math.floor((nowms-lasttimems)/weekms).toInteger()}"/>
+                                        <g:set var="weekrange" value="${0..(weekcount)}"/>
+                                        <!-- weekrange: ${weekrange}
+                                            nowdates.start=${nowdates.start.getTime()}
+                                        -->
+
+                                    </g:if>
+                                    <g:else>
+                                        <g:set var="weekrange" value="${0..1}"/>
+                                    </g:else>
+                                        <g:each in="${weekrange}" var="weekback">
+                                            <g:set var="weektimems" value="${nowms-(weekms*weekback)}"/>
+                                            <g:set var="weekdates" value="${ServiceScorecardService.determinePreviousWeekForDatetime(weektimems)}"/>
+
+                                            <!-- weekback: ${weekback}
+                                                weekdates.start=${weekdates.start.getTime()}
+                                            -->
+                                            <option value="${weektimems}" ${nowdates.start==weekdates.start?'selected="selected"':''}>
+                                                <g:formatDate date="${weekdates.start.getTime()}" format="yyyy/MM/dd"/>
+                                                -
+                                                <g:formatDate date="${weekdates.end.getTime()}" format="yyyy/MM/dd"/>
+                                            </option>
+                                        </g:each>
+                                </select>
+                            </td>
+                        </tr>
                         <tr>
                             <th colspan="2">Services</th>
                         </tr>
