@@ -41,7 +41,7 @@ class ServiceManagementProcess {
     Usergroup managers
 
 
-    String toString() {return name}
+    String toString() {return "${name} [${category}]"}
 
     static transients = ['calculateScores','zerodScores']
 

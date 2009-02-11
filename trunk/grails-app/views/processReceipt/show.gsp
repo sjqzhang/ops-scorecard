@@ -39,7 +39,7 @@
 
                     <td valign="top" class="value"><g:link controller="serviceManagementProcess" action="show"
                             id="${processReceipt?.process?.id}"
-                            title="${processReceipt?.process?.description}">${processReceipt?.process?.encodeAsHTML()} [${processReceipt?.process?.category}]</g:link></td>
+                            title="${processReceipt?.process?.description}">${processReceipt?.process?.encodeAsHTML()}</g:link></td>
 
                 </tr>
 
@@ -47,7 +47,7 @@
                     <td valign="top" class="name ${!processReceipt?.process?.service?'empty':''}">Service:</td>
 
                     <td valign="top" class="value"><g:link controller="service" action="show"
-                            id="${processReceipt?.process?.service?.id}">${processReceipt?.process?.service?.name} [${processReceipt?.process?.service?.type?.name}]</g:link></td>
+                            id="${processReceipt?.process?.service?.id}">${processReceipt?.process?.service}</g:link></td>
 
                 </tr>
 

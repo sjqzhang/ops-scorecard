@@ -50,13 +50,13 @@
                                 <div>
                                 <g:if test="${availabilityReceipt.service?.name}">
                                     <g:link controller="service" action="show" id="${availabilityReceipt.service.id}"  title="View Service">
-                                        ${availabilityReceipt.service.name} [${availabilityReceipt.service.type}]
+                                        ${availabilityReceipt.service}
                                     </g:link>
                                 </g:if>
                                 <g:if test="${availabilityReceipt.process?.name}">
                                     cause &rarr;
                                     <g:link controller="serviceManagementProcess" action="show" id="${availabilityReceipt.process.id}"  title="View Process">
-                                        ${availabilityReceipt.process.name}
+                                        ${availabilityReceipt.process}
                                     </g:link>
 
                                 </g:if>

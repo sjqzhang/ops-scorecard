@@ -26,7 +26,7 @@
     <tr>
 
         <td class="${hasErrors(bean:availabilityReceipt,field:'service','errors')}">
-            <g:select name="service.id"  optionValue="name" optionKey="id" noSelection="['null':'-Select a Service-']"
+            <g:select name="service.id"   optionKey="id" noSelection="['null':'-Select a Service-']"
                 from="${Service.list()}" onChange="selectedService(this);" value="${availabilityReceipt?.service?.id?availabilityReceipt?.service?.id:params?.service?.id?params?.service?.id:null}"
             />
         </td>
