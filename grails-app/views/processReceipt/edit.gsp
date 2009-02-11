@@ -38,14 +38,6 @@
                             <input type="text" id="title" name="title" value="${fieldValue(bean: processReceipt, field: 'title')}"/>
                         </td>
                     </tr>
-                    <tr class="prop">
-                        <td valign="top" class="name">
-                            <label for="date">Date:</label>
-                        </td>
-                        <td valign="top" class="value ${hasErrors(bean: processReceipt, field: 'date', 'errors')}">
-                            <g:datePicker name="date" value="${processReceipt?.date}"></g:datePicker>
-                        </td>
-                    </tr>
 
                     <tr class="prop">
                         <td valign="top" class="name">
@@ -138,6 +130,57 @@
 
                     <tr class="prop">
                         <td valign="top" class="name">
+                            <label for="actualStart">Actual Start:</label>
+                        </td>
+                        <td valign="top" class="value ${hasErrors(bean: processReceipt, field: 'actualStart', 'errors')}">
+                            <g:datePicker name="actualStart" value="${processReceipt?.actualStart}" noSelection="['':'']"></g:datePicker>
+                        </td>
+                    </tr>
+
+                    <tr class="prop">
+                        <td valign="top" class="name">
+                            <label for="actualEnd">Actual End:</label>
+                        </td>
+                        <td valign="top" class="value ${hasErrors(bean: processReceipt, field: 'actualEnd', 'errors')}">
+                            <g:datePicker name="actualEnd" value="${processReceipt?.actualEnd}" noSelection="['':'']"></g:datePicker>
+                        </td>
+                    </tr>
+                    </tbody>
+                <tbody>
+                    <tr >
+                        <td style="text-align:right;">
+                            <span class="link action " onclick="['extra_dates','extra_dates-toggle'].each(Element.toggle);" id="extra_dates-toggle"  style="">
+                                Extra Dates
+                                <img src="${createLinkTo(dir:'images/menus',file:'icon-tiny-disclosure.png')}" width="12px" height="12px"/>
+                            </span>
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                <tbody id="extra_dates" style="display:none;">
+
+                    <tr >
+                        <td style="text-align:right;">
+                            <span class="link action " onclick="['extra_dates','extra_dates-toggle'].each(Element.toggle);" id="extra_dates-toggle"  style="">
+                                Extra Dates
+                                <img src="${createLinkTo(dir:'images/menus',file:'icon-tiny-disclosure-open.png')}" width="12px" height="12px"/>
+                            </span>
+                        </td>
+                        <td></td>
+                    </tr>
+
+
+                    <tr class="prop">
+                        <td valign="top" class="name">
+                            <label for="date">Receipt Creation Date:</label>
+                        </td>
+                        <td valign="top" class="value ${hasErrors(bean: processReceipt, field: 'date', 'errors')}">
+                            <g:datePicker name="date" value="${processReceipt?.date}"></g:datePicker>
+                        </td>
+                    </tr>
+
+                    <tr class="prop">
+                        <td valign="top" class="name">
                             <label for="plannedStart">Planned Start:</label>
                         </td>
                         <td valign="top" class="value ${hasErrors(bean: processReceipt, field: 'plannedStart', 'errors')}">
@@ -160,24 +203,6 @@
                         </td>
                         <td valign="top" class="value ${hasErrors(bean: processReceipt, field: 'plannedExpectedBenefit', 'errors')}">
                             <g:datePicker name="plannedExpectedBenefit" value="${processReceipt?.plannedExpectedBenefit}" noSelection="['':'']"></g:datePicker>
-                        </td>
-                    </tr>
-
-                    <tr class="prop">
-                        <td valign="top" class="name">
-                            <label for="actualStart">Actual Start:</label>
-                        </td>
-                        <td valign="top" class="value ${hasErrors(bean: processReceipt, field: 'actualStart', 'errors')}">
-                            <g:datePicker name="actualStart" value="${processReceipt?.actualStart}" noSelection="['':'']"></g:datePicker>
-                        </td>
-                    </tr>
-
-                    <tr class="prop">
-                        <td valign="top" class="name">
-                            <label for="actualEnd">Actual End:</label>
-                        </td>
-                        <td valign="top" class="value ${hasErrors(bean: processReceipt, field: 'actualEnd', 'errors')}">
-                            <g:datePicker name="actualEnd" value="${processReceipt?.actualEnd}" noSelection="['':'']"></g:datePicker>
                         </td>
                     </tr>
 
