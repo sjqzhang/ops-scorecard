@@ -122,6 +122,9 @@
                         </g:each>
                     </tbody>
                 </table>
+                <div style="text-align:right;margin:5px 0;">
+                    <g:link class="button action" action="generate" params="${params?.datetime?params.subMap(['datetime']):[:]}" >Regenerate</g:link>
+                </div>
             </div>
             %{--<div class="paginateButtons">--}%
                 %{--<g:paginate total="${ServiceScorecard.count()}" />--}%
