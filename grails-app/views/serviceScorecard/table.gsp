@@ -36,10 +36,9 @@
             serviceAvailabilityPct:true,estimatedOutageCost:true,MTBFTime:true,MTTRTime:true,serviceFailuresCount:true,smActivitiesCount:true,highImpactActivityPct:true,
             smSuccessPct:true,smActivitiesImpactedAvailabilityCount:true,smActivitiesUnplannedCount:true]}"/>
             <h1>Service Management Scores</h1>
-            <h2>
-                <g:formatDate date="${startCal.getTime()}" format="yyyy/MM/dd"/>
+            <h2><g:link action="table" params="${params}"><g:formatDate date="${startCal.getTime()}" format="yyyy/MM/dd"/>
                 to
-                <g:formatDate date="${endCal.getTime()}" format="yyyy/MM/dd"/>
+                <g:formatDate date="${endCal.getTime()}" format="yyyy/MM/dd"/></g:link>
             </h2>
             <g:if test="${!nextDate}">
                    <h3>
