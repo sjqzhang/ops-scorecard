@@ -6,27 +6,6 @@
         <meta name="layout" content="main" />
         <meta name="guideitem" content="servicescorecard"/>
         <title>ServiceScorecard List</title>
-        <style type="text/css">
-            td.emptyAudit{
-                color: #888;
-            }
-            td.best{
-                background: #afa;
-                font-weight:bold;
-            }
-            td.worst{
-                background: #faa;
-                font-weight:bold;
-            }
-            div.scoretable{
-                float:left;
-                width:900px;
-            }
-            div.scoretable th{
-                background: #eee;
-                border:1px solid #ccc;
-            }
-        </style>
     </head>
     <body>
         <div class="body scoretable">
