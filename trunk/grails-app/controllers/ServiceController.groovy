@@ -77,7 +77,7 @@ class ServiceController extends SecureController {
         def service = Service.get(params.id)
         if (service) {
             service.properties = params
-            if(params.goals.id || params.newGoals){
+            if(params.goals && params.goals.id || params.newGoals){
                 def ServiceScorecardGoals goals
                 if(service.goals){
                     goals = service.goals
@@ -93,7 +93,7 @@ class ServiceController extends SecureController {
             }
             if (!service.hasErrors() && service.save()) {
                 flash.message = "Updated: ${service.name}"
-                if(params.goals.id || params.newGoals){
+                if(params.goals && params.goals.id || params.newGoals){
                     redirect(action: show,id: params.id)
                 }else{
                     redirect(action: list)
