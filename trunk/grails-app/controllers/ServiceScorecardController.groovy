@@ -199,7 +199,7 @@ class ServiceScorecardController extends SecureController{
     }
     def generate={
         serviceScorecardService.generatePreviousWeekScorecards(params.datetime?params.datetime.toLong():System.currentTimeMillis())
-        redirect(action:table)
+        redirect(action:table,params: params.datetime?params.subMap(['datetime']):[:])
     }
 
     def save = {
