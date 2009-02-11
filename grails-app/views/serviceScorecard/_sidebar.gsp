@@ -36,18 +36,18 @@
                             <td colspan="2">
 
                                 <select name="datetime">
-                                    <g:set var="lastscore" value="${ServiceScorecard.listOrderByEndDate(order:'asc',offset:0,max:1).get(0)}"/>
+                                    <g:set var="lastscoresarr" value="${ServiceScorecard.listOrderByEndDate(order:'asc',offset:0,max:1)}"/>
                                     <g:set var="weekms" value="${7*24*60*60*1000}"/>
                                     <g:set var="nowms" value="${System.currentTimeMillis()}"/>
                                     <g:set var="nowdates" value="${ServiceScorecardService.determinePreviousWeekForDatetime(params.datetime?params.datetime.toLong():nowms)}"/>
-                                    <g:if test="${lastscore}">
+                                    <g:if test="${lastscoresarr}">
+                                        <g:set var="lastscore" value="${lastscoresarr[0]}"/>
                                         <g:set var="lasttimems" value="${lastscore.endDate.getTime()}"/>
                                         <g:set var="weekcount" value="${Math.floor((nowms-lasttimems)/weekms).toInteger()}"/>
                                         <g:set var="weekrange" value="${0..(weekcount)}"/>
                                         <!-- weekrange: ${weekrange}
                                             nowdates.start=${nowdates.start.getTime()}
                                         -->
-
                                     </g:if>
                                     <g:else>
                                         <g:set var="weekrange" value="${0..1}"/>
@@ -65,6 +65,7 @@
                                                 <g:formatDate date="${weekdates.end.getTime()}" format="yyyy/MM/dd"/>
                                             </option>
                                         </g:each>
+
                                 </select>
                             </td>
                         </tr>
