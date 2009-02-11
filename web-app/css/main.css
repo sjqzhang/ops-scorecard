@@ -444,11 +444,33 @@ dd{
 div.body.scoretable h2{
     color: #888;
 }
+div.body.scoretable h2 a{
+    color: #888;
+}
 div.body.scoretable h3{
     color: #6dba6d;
 }
 div.body.scoretable h1,div.body.scoretable h2,div.body.scoretable h3,div.body.scoretable div.datenav{
     margin:0.5em 0;
+}
+div.body.scoretable td.emptyAudit{
+    color: #888;
+}
+div.body.scoretable td.best{
+    background: #afa;
+    font-weight:bold;
+}
+div.body.scoretable td.worst{
+    background: #faa;
+    font-weight:bold;
+}
+div.body.scoretable{
+    float:left;
+    width:900px;
+}
+div.body.scoretable th{
+    background: #eee;
+    border:1px solid #ccc;
 }
 td.cardlink{
     padding:0;
