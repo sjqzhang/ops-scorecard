@@ -105,7 +105,7 @@
                         link: createLink(action:'show',controller:'processReceipt',id:receipt.id),
                         textColor:'black',
                         color:receipt.outcome=='successful'?'green':receipt.outcome=='withdrawn'?'gray':'red',
-                        description:receipt.process.name+' was '+receipt.outcome ]}"/>
+                        description:receipt.process.toString()+' was '+receipt.outcome ]}"/>
                         addData(${jdata.encodeAsJSON()});
                     </g:each>
                     </script>
@@ -150,12 +150,12 @@
                         start:receipt.startDate,
                         end:receipt.endDate,
                         isDuration:receipt.startDate.compareTo(receipt.endDate)>0,
-                        title:receipt.service.name+' at '+receipt.level+'%'+(receipt.process?' ('+receipt?.process?.name+')':''),
+                        title:receipt.service.toString()+' at '+receipt.level+'%'+(receipt.process?' ('+receipt?.process?.toString()+')':''),
                         image: createLinkTo(dir:'images/skin',file:'script_edit.png'),
                         link: createLink(action:'show',controller:'availabilityReceipt',id:receipt.id),
                         textColor:'black',
                         color:outagecolors[receipt.level],
-                        description:receipt.service.name+' at '+receipt.level+'% availability'+(receipt.process?', Caused by: '+ receipt?.process?.name:'') ]}"/>
+                        description:receipt.service.toString()+' service at '+receipt.level+'% availability'+(receipt.process?', Caused by: '+ receipt?.process.toString() + ' process':'') ]}"/>
                         addData(${jdata.encodeAsJSON()});
                     </g:each>
                     </script>

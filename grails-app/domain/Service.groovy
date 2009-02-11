@@ -16,7 +16,7 @@ class Service extends Resource {
         createDate = new Date()
     }
     String toString() {
-        return "${name}"
+        return "${name} [${type.name}]"
     }
     static transients = ['calculateScores']
 

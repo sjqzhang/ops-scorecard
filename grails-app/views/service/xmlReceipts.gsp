@@ -11,15 +11,15 @@
                             end="${formatDate(format:'MMM dd yyyy HH:mm:ss z',date:receipt.actualEnd)}"
                             durationEvent="false"
                             isDuration="false"
-                            title="${process.name}: ${receipt.title?receipt.title:'Untitled'}"
+                            title="${process}: ${receipt.title?receipt.title:'Untitled'}"
                             color="${receipt.outcome=='successful'?'green':receipt.outcome=='withdrawn'?'gray':'red'}"
                             image="${createLinkTo(dir:'images/skin',file:'script_edit.png')}"
                             link="${createLink(action:'show',controller:'processReceipt',id:receipt.id)}"
-                            caption="${process.name} was ${receipt.outcome}"
+                            caption="${process} was ${receipt.outcome}"
                             textColor="black"
                             classname="process_receipt"
                             >
-                            ${process.name} was ${receipt.outcome}
+                            The ${process} process was ${receipt.outcome}
                             </event>
                             
             </g:each>
@@ -33,21 +33,23 @@
                             end="${formatDate(format:'MMM dd yyyy HH:mm:ss z',date:receipt.endDate)}"
                             durationEvent="${receipt.startDate.compareTo(receipt.endDate)<0}"
                             isDuration="${receipt.startDate.compareTo(receipt.endDate)<0}"
-                            title="${receipt.level}%${receipt.process?' ('+receipt.process.name+')':''}"
+                            title="${receipt.level}%${receipt.process?' ('+receipt.process+')':''}"
                             color="${outagecolors[receipt.level]}"
                             image="${createLinkTo(dir:'images/skin',file:'script_edit.png')}"
                             link="${createLink(action:'show',controller:'availabilityReceipt',id:receipt.id)}"
-                            caption="${service.name} at ${receipt.level}% availability${receipt.process?', Caused by:'+ receipt.process.name:'' }, "
+                            caption="${service} at ${receipt.level}% availability${receipt.process?', Caused by:'+ receipt.process:'' }, "
                             textColor="black"
                             classname="avail_receipt"
                             >
-                            ${service.name} at ${receipt.level}% availability.
+                            The ${service} service was at ${receipt.level}% availability.
                             &lt;br&gt;
                             <g:if test="${receipt.process}">
-                                Caused by: ${receipt.process.name}
+                                Caused by: ${receipt.process} process
                                 &lt;br&gt;
                             </g:if>
-                            &amp;ldquo;${receipt.comment}&amp;rdquo;
+                            <g:if test="${receipt.comment}">
+                                &amp;ldquo;${receipt.comment}&amp;rdquo;
+                            </g:if>
                             </event>
 
             </g:each>

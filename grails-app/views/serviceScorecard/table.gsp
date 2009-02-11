@@ -79,7 +79,7 @@
                             <td style="width:100px" class="cardlink">
                                 <g:link controller="serviceScorecard" action="show" id="${serviceScorecardInstance.id}" title="View Scorecard" >
                                     <img src="${createLinkTo(dir: 'images', file: 'skin/chart_bar.png')}" alt="" width="16px" height="16px"/>
-                                    ${fieldValue(bean:serviceScorecardInstance, field:'service')} [${fieldValue(bean:serviceScorecardInstance, field:'service.type')}]
+                                    ${fieldValue(bean:serviceScorecardInstance, field:'service')}
                                 </g:link>
                             </td>
 
