@@ -100,7 +100,7 @@
                     <script type="text/javascript">
                     <g:each in="${processReceiptList}" var="receipt">
                         <g:set var="jdata" value="${[ start:receipt.actualStart, end:receipt.actualEnd,
-                         title:receipt.process.name + ' : ' + (receipt.title?receipt.title:'Untitled'),
+                         title:receipt.process.toString() + ' : ' + (receipt.title?receipt.title:'Untitled'),
                         image: createLinkTo(dir:'images/skin',file:'script_edit.png'),
                         link: createLink(action:'show',controller:'processReceipt',id:receipt.id),
                         textColor:'black',
@@ -150,7 +150,7 @@
                         start:receipt.startDate,
                         end:receipt.endDate,
                         isDuration:receipt.startDate.compareTo(receipt.endDate)>0,
-                        title:receipt.service.toString()+' at '+receipt.level+'%'+(receipt.process?' ('+receipt?.process?.toString()+')':''),
+                        title:receipt.service.toString()+' at '+receipt.level+'%'+(receipt.process?' &bull;':''),
                         image: createLinkTo(dir:'images/skin',file:'script_edit.png'),
                         link: createLink(action:'show',controller:'availabilityReceipt',id:receipt.id),
                         textColor:'black',
