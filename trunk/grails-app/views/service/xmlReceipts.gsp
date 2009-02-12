@@ -11,7 +11,7 @@
                             end="${formatDate(format:'MMM dd yyyy HH:mm:ss z',date:receipt.actualEnd)}"
                             durationEvent="false"
                             isDuration="false"
-                            title="${process}: ${receipt.title?receipt.title:'Untitled'}"
+                            title="${process}: ${receipt.outcome}"
                             color="${receipt.outcome=='successful'?'green':receipt.outcome=='withdrawn'?'gray':'red'}"
                             image="${createLinkTo(dir:'images/skin',file:'script_edit.png')}"
                             link="${createLink(action:'show',controller:'processReceipt',id:receipt.id)}"
@@ -19,7 +19,7 @@
                             textColor="black"
                             classname="process_receipt"
                             >
-                            The ${process} process was ${receipt.outcome}
+                            The ${process} process, ${receipt.title?receipt.title:'Untitled'}, was ${receipt.outcome}
                             </event>
                             
             </g:each>
