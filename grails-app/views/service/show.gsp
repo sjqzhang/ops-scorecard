@@ -153,9 +153,24 @@
                     params="['service.id':service.id,'createshow':true]">Create</g:link></span>
         </h3>
 
-        <g:set var="availreceipts" value="${AvailabilityReceipt.findAllByService(service)}"/>
+        <g:if test="${params?.showAllAvailReceipts && params?.showAllAvailReceipts=='1'}">
+            <g:set var="availreceipts" value="${AvailabilityReceipt.findAllByService(service,[sort:'endDate',order:'desc'])}"/>
+        </g:if>
+        <g:else>
+            <g:set var="availreceipts" value="${AvailabilityReceipt.findAllByService(service,[max:5,sort:'endDate',order:'desc'])}"/>
+        </g:else>
         <g:if test="${availreceipts}">
-            <g:render template="/availabilityReceipt/list" model="[availabilityReceiptList:availreceipts]"/>
+
+                <g:render template="/availabilityReceipt/list" model="[availabilityReceiptList:availreceipts]"/>
+
+            <div style="text-align:right;" class="section">
+                <g:if test="${params?.showAllAvailReceipts && params?.showAllAvailReceipts=='1'}">
+                    <g:link action="show" controller="service" id="${service.id}">See fewer receipts&hellip;</g:link>
+                </g:if>
+                <g:else>
+                    <g:link action="show" controller="service" id="${service.id}" params="${[showAllAvailReceipts:'1']}">See all Availability receipts&hellip;</g:link>
+                </g:else>
+            </div>
         </g:if>
         <g:else>
             <div class="section">
