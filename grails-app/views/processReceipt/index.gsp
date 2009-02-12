@@ -100,12 +100,12 @@
                     <script type="text/javascript">
                     <g:each in="${processReceiptList}" var="receipt">
                         <g:set var="jdata" value="${[ start:receipt.actualStart, end:receipt.actualEnd,
-                         title:receipt.process.toString() + ' : ' + (receipt.title?receipt.title:'Untitled'),
+                         title:receipt.process.toString() + ' : ' + (receipt.outcome),
                         image: createLinkTo(dir:'images/skin',file:'script_edit.png'),
                         link: createLink(action:'show',controller:'processReceipt',id:receipt.id),
                         textColor:'black',
                         color:receipt.outcome=='successful'?'green':receipt.outcome=='withdrawn'?'gray':'red',
-                        description:receipt.process.toString()+' was '+receipt.outcome ]}"/>
+                        description:receipt.process.toString()+ ', '+(receipt.title?receipt.title:'Untitled')+ ', was '+receipt.outcome ]}"/>
                         addData(${jdata.encodeAsJSON()});
                     </g:each>
                     </script>
