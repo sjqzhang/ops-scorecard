@@ -150,6 +150,23 @@
                         to
                         <g:formatDate date="${serviceScorecardInstance?.endDate}" format="yyyy/MM/dd"/>
                     </h2>
+                    <div class="datenav">
+                        <g:set var="prevScores" value="${ServiceScorecard.findAllByServiceAndEndDate(serviceScorecardInstance.service,serviceScorecardInstance.startDate,[max:1,sort:'dateCreated',order:'desc'])}"/>
+                        <g:if test="${prevScores}">
+                            <g:link action="show" id="${prevScores[0].id}">&laquo; previous</g:link>
+                        </g:if>
+                        <g:else>
+                            <span class="info" title="No scorecard for previous week">&laquo; previous</span>
+                        </g:else>
+                        <g:set var="nextScores" value="${ServiceScorecard.findAllByServiceAndStartDate(serviceScorecardInstance.service,serviceScorecardInstance.endDate,[max:1,sort:'dateCreated',order:'desc'])}"/>
+                        <g:if test="${nextScores}">
+                            <g:link action="show" id="${nextScores[0].id}">next &raquo;</g:link>
+                        </g:if>
+                        <g:else>
+                            <span class="info" title="No scorecard for next week">next &raquo;</span>
+                        </g:else>
+
+                    </div>
                 </div>
                     <table>
                         <tbody>
