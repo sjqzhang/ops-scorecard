@@ -42,7 +42,7 @@
                                             by: ${receipt?.coordinator}
                                         </td>
                                         <td width="40">
-                                            <g:relativeDate elapsed="${receipt?.date}" agoClass="ago ended" untilClass="until ended"/>
+                                            <g:relativeDate elapsed="${receipt?.actualEnd}" agoClass="ago ended" untilClass="until ended"/>
                                         </td>
                                         <td width="40">
                                             ${receipt?.outcome}
