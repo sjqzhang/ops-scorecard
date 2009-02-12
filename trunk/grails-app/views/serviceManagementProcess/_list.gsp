@@ -25,7 +25,7 @@
                 </td>
 
             </tr>
-            <g:set var="receipts" value="${ProcessReceipt.findAllByProcess(serviceManagementProcess)}"/>
+            <g:set var="receipts" value="${ProcessReceipt.findAllByProcess(serviceManagementProcess,[max:5,sort:'actualEnd',order:'desc'])}"/>
             <g:if test="${receipts}">
                 <tr>
                     <td colspan="4">
@@ -51,6 +51,9 @@
                                 </tbody>
                             </g:each>
                         </table>
+                        <div style="text-align:right;">
+                            <g:link action="show" controller="serviceManagmentProcess" id="${serviceManagementProcess?.id}">See all receipts for ${serviceManagementProcess.name}&hellip;</g:link>
+                        </div>
                     </td>
                 </tr>
             </g:if>
