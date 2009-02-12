@@ -24,7 +24,7 @@
 
                         <g:sortableColumn property="startDate" title="Start" action="list"/>
                         <g:sortableColumn property="endDate" title="Duration"  action="list"/>
-                        <g:sortableColumn property="level" title="Level" action="list"/>
+                        <g:sortableColumn property="level" title="Availability" action="list"/>
                         <g:sortableColumn property="service" title="Service" action="list"/>
                         <g:sortableColumn property="process" title="Cause" action="list"/>
                         <g:sortableColumn property="reporter" title="Reporter" action="list"/>
