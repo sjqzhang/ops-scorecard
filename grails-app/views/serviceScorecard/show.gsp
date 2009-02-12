@@ -82,7 +82,8 @@
                 eventSource:    eventSource,
                 width:          "70%",
                 intervalUnit:   test==1?Timeline.DateTime.HOUR:Timeline.DateTime.DAY,
-                intervalPixels: 80
+                intervalPixels: 85,
+                date:new Date(${serviceScorecardInstance.startDate.getTime()+ 1000L*60*60*12*7L})
             }),
             Timeline.createBandInfo({
                 timeZone:${g.timeZoneOffset()},
@@ -92,7 +93,8 @@
                 trackGap:       0.2,
                 width:          "30%",
                 intervalUnit:   test==1?Timeline.DateTime.DAY:Timeline.DateTime.WEEK,
-                intervalPixels: 200
+                intervalPixels: 200,
+                date:new Date(${serviceScorecardInstance.startDate.getTime() + 1000L*60*60*12*7L})
             })
           ];
           bandInfos[1].syncWith = 0;
