@@ -198,56 +198,9 @@
                     <td valign="top" class="value">${fieldValue(bean: serviceManagementProcess, field: 'procedure')}</td>
 
                 </tr>
-
-
-
             </tbody>
-        </table>
-        <h3 class="section">Receipts
-        <span class="menuButton"><g:link class="create" action="create" controller="processReceipt"
-                    params="['process.id':serviceManagementProcess.id]">New receipt</g:link></span>
-        </h3>
-
-        <g:set var="receipts" value="${ProcessReceipt.findAllByProcess(serviceManagementProcess)}"/>
-        <g:if test="receipts">
-        <table>
-            <tr>
-                <th>Title</th>
-                <th>By</th>
-                <th>When</th>
-                <th>Outcome</th>
-            </tr>
-            <g:each in="${ProcessReceipt.findAllByProcess(serviceManagementProcess)}" var="receipt">
-                <tr>
-                    <td>
-                        <g:link controller="processReceipt" action="show" id="${receipt.id}">${receipt.title}</g:link>
-                    </td>
-                    <td>${receipt.coordinator}</td>
-                    <td>
-                        <g:relativeDate elapsed="${receipt?.date}" agoClass="ago " untilClass="until "/>
-
-                    </td>
-                    <td>${receipt?.outcome}</td>
-                </tr>
-            </g:each>
-        </table>
-        </g:if>
-        <g:else>
-        <div class="section">
-            <div class="info note">
-                No Receipts
-            </div>
-        </div>
-        </g:else>
-        <div class="timeplot-legend section">
-            Audit Scores:
-            <ul style="list-style:none;">
-                <li style="border-bottom: 2px solid #ff0000">Control</li>
-                <li style="border-bottom: 2px solid #00ff00">Process</li>
-                <li style="border-bottom: 2px solid #0000ff">Cumulative</li>
-            </ul>
-        </div>
-        <div id="my-timeplot" style="height: 150px;"></div>
+        </table>        
+        
     </div>
 
 </div>

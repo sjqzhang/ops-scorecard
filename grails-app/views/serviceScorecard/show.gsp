@@ -74,43 +74,6 @@
             });
         }
 
-        function onLoadEvents() {
-          var eventSource = new Timeline.DefaultEventSource();
-          var bandInfos = [
-            Timeline.createBandInfo({
-                timeZone:${g.timeZoneOffset()},
-                eventSource:    eventSource,
-                width:          "70%",
-                intervalUnit:   test==1?Timeline.DateTime.HOUR:Timeline.DateTime.DAY,
-                intervalPixels: 85,
-                date:new Date(${serviceScorecardInstance.startDate.getTime()+ 1000L*60*60*12*7L})
-            }),
-            Timeline.createBandInfo({
-                timeZone:${g.timeZoneOffset()},
-                eventSource:    eventSource,
-                showEventText:  false,
-                trackHeight:    0.5,
-                trackGap:       0.2,
-                width:          "30%",
-                intervalUnit:   test==1?Timeline.DateTime.DAY:Timeline.DateTime.WEEK,
-                intervalPixels: 200,
-                date:new Date(${serviceScorecardInstance.startDate.getTime() + 1000L*60*60*12*7L})
-            })
-          ];
-          bandInfos[1].syncWith = 0;
-          bandInfos[1].highlight = true;
-          tl = Timeline.create(document.getElementById("my-timeline"), bandInfos);
-          Timeline.loadXML("${createLink(controller:'service',action:'xmlReceipts',id:serviceScorecardInstance.service.id)}", function(xml, url) { eventSource.loadXML(xml, url); })
-        }
-        function toggleDate(elem){
-            test*=-1;
-            onLoadEvents();
-            if(test==1){
-                elem.innerHTML="Week View";
-            }else{
-                elem.innerHTML="Day View";
-            }
-        }
 
         var resizeTimerID = null;
         function onResize() {
@@ -274,12 +237,10 @@
                                     <g:render template="scoresummary" model="[score:serviceScorecardInstance,previousscores:previousscores,metric:'smActivitiesUnapprovedCount' ]"/>
                             </tr>
                     </table>
+
+			     
                 </div>
-                  <h3 class="section">
-                    Events
-                    <span class="link action" onclick="toggleDate(this)">Day View</span>
-                </h3>
-                <div id="my-timeline" style="height: 250px; border: 1px solid #ccc"></div>        
+                      
             </div>
 
             %{--<div class="buttons">--}%

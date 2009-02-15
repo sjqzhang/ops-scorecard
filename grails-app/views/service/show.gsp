@@ -4,6 +4,10 @@
     <meta name="layout" content="main"/>
     <meta name="guideitem" content="service"/>
     <title>Inventory: Service: ${service?.name}</title>
+
+    <g:javascript src="ajax/api-2.0/simile-ajax-api.js"/>
+    <g:javascript src="timeline/api-2.0/timeline-api.js"/>
+
 </head>
 <body >
 <script type="text/javascript">
@@ -146,81 +150,6 @@
                 </div>
             </div>
         </g:else>
-        
-        <h3 class="section">
-            Availability Receipts
-            <span class="menuButton"><g:link class="create" action="list" controller="availabilityReceipt"
-                    params="['service.id':service.id,'createshow':true]">Create</g:link></span>
-        </h3>
-
-        <g:if test="${params?.showAllAvailReceipts && params?.showAllAvailReceipts=='1'}">
-            <g:set var="availreceipts" value="${AvailabilityReceipt.findAllByService(service,[sort:'endDate',order:'desc'])}"/>
-        </g:if>
-        <g:else>
-            <g:set var="availreceipts" value="${AvailabilityReceipt.findAllByService(service,[max:5,sort:'endDate',order:'desc'])}"/>
-        </g:else>
-        <g:if test="${availreceipts}">
-
-                <g:render template="/availabilityReceipt/list" model="[availabilityReceiptList:availreceipts]"/>
-
-            <div style="text-align:right;" class="section">
-                <g:if test="${params?.showAllAvailReceipts && params?.showAllAvailReceipts=='1'}">
-                    <g:link action="show" controller="service" id="${service.id}">See fewer receipts&hellip;</g:link>
-                </g:if>
-                <g:else>
-                    <g:link action="show" controller="service" id="${service.id}" params="${[showAllAvailReceipts:'1']}">See all Availability receipts&hellip;</g:link>
-                </g:else>
-            </div>
-        </g:if>
-        <g:else>
-            <div class="section">
-                <div class="info note">
-                    No Availability Receipts
-                </div>
-            </div>
-        </g:else>
-
-
-
-        <h3 class="section">Audits
-            <span class="menuButton"><g:link class="create" action="create" controller="capabilityAudit"
-                    params="['service.id':service.id]">New audit</g:link></span>
-        </h3>
-        <g:set var="audits" value="${CapabilityAudit.findAllByService(service)}"/>
-        <g:if test="${audits}">
-            <table>
-                <thead>
-                    <tr>
-                    <th>Title</th>
-                    <th>Date</th>
-                    <th>Auditor</th>
-                    <th>Score Average</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <g:each in="${audits}" var="audit">
-                        <g:set var="scores" value="${audit.calculateScores()}"/>
-                        <tr>
-                            <td>
-                                <g:link action="show" controller="capabilityAudit"
-                                        id="${audit.id}">${audit.title}</g:link>
-                            </td>
-                            <td><g:relativeDate atDate="${audit.auditDate}"/></td>
-                            <td>${audit.auditor.login}</td>
-                            <td><g:prettyScore score="${scores['cumulative']}" format="numeric"/></td>
-                        </tr>
-                    </g:each>
-                </tbody>
-            </table>
-        </g:if>
-        <g:else>
-            <div class="section">
-                <div class="info note">
-                    No Audits
-                </div>
-            </div>
-        </g:else>
-
     </div>
 
 </div>

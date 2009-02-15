@@ -4,9 +4,23 @@
     <meta name="layout" content="main"/>
     <meta name="guideitem" content="audit"/>
     <title>Audit: Show CapabilityAudit</title>
+
+   <g:javascript>
+        var Timeplot_urlPrefix="${createLinkTo(dir:'js',file:'/timeplot/api/1.0/')}";
+    </g:javascript>
+    <g:javascript src="ajax/api-2.0/simile-ajax-api.js"/>
+    <g:javascript src="timeline/api-2.0/timeline-api.js"/>
+    <g:javascript src="timeplot/api/1.0/timeplot-api.js"/>
+
+
 </head>
 <body>
 
+	<script type="text/javascript">
+	        Event.observe(window,'load', function(e){ onLoad(); });
+	        Event.observe(window,'resize', function(e){ onResize(); });
+	</script>
+	
 <div class="body">
     <g:if test="${flash.message}">
         <div class="message">${flash.message}</div>
@@ -211,7 +225,7 @@
 
                         <g:each in="${capabilityAudit.scorecards}" var="scorecard">
                             <h3 class="sub">
-                                    ${scorecard.process.category}: <g:link action="show" controller="serviceManagementProcess" id="${scorecard.process.id}">${scorecard.process.name}</g:link>
+                                    ${scorecard.process.category}: <i>${scorecard.process.name},</i>
                                     <span style="font-style:italic;font-weight:normal">${scorecard.process.description}</span>
                             </h3>
 
@@ -237,6 +251,69 @@
                                     </g:each>
 
                                 </table>
+
+							   <script type="text/javascript">
+							        var timeplot_${scorecard.process.id};
+
+							        function onLoad() {
+							            var eventSource_${scorecard.process.id} = new Timeplot.DefaultEventSource();
+							            var valueGeometry=new Timeplot.DefaultValueGeometry({
+							                        gridColor: "#000000",
+							                        axisLabelsPlacement: "left",
+							                        min: 0,
+							                        max: 100
+							                      });
+							                      var timeGeometry= new Timeplot.DefaultTimeGeometry({
+							                        gridColor: "#000000",
+							                        axisLabelsPlacement: "top"
+							                      });
+							            var plotInfo_${scorecard.process.id} = [
+							                Timeplot.createPlotInfo({
+							                    id: "plot_control",
+							                    dataSource: new Timeplot.ColumnSource(eventSource_${scorecard.process.id}, 1),
+							                    valueGeometry:valueGeometry,
+							                    timeGeometry:timeGeometry,
+							                      lineColor: "#ff0000",
+							                      showValues: true
+							                }),
+
+							                Timeplot.createPlotInfo({
+							                    id: "plot_process",
+							                    dataSource: new Timeplot.ColumnSource(eventSource_${scorecard.process.id}, 2),
+							                    valueGeometry:valueGeometry,
+							                    timeGeometry:timeGeometry,
+							                      lineColor: "#00ff00",
+							                      showValues: true
+							                }),
+
+							                Timeplot.createPlotInfo({
+							                    id: "plot_cum",
+							                    dataSource: new Timeplot.ColumnSource(eventSource_${scorecard.process.id}, 3),
+							                    valueGeometry:valueGeometry,
+							                    timeGeometry:timeGeometry,
+							                      lineColor: "#0000ff",
+							                      showValues: true
+							                })
+							            ];
+
+							            timeplot_${scorecard.process.id} = Timeplot.create(document.getElementById("my-timeplot_${scorecard.process.id}"), plotInfo_${scorecard.process.id});
+							            timeplot_${scorecard.process.id}.loadText("${createLink(controller:'serviceManagementProcess',action:'txtAudit',id:scorecard.process.id)}", ",", eventSource_${scorecard.process.id});
+							        }
+
+							        var resizeTimerID_${scorecard.process.id} = null;
+							        function onResize() {
+							            if (resizeTimerID_${scorecard.process.id} == null) {
+							                resizeTimerID_${scorecard.process.id} = window.setTimeout(function() {
+							                    resizeTimerID_${scorecard.process.id} = null;
+							                    timeplot_${scorecard.process.id}.repaint();
+							                }, 100);
+							            }
+							        }
+
+							    </script>
+							    <h4>Historical audit scores</h4>
+						        <div id="my-timeplot_${scorecard.process.id}" style="height: 150px;"></div>
+
                         </g:each>
 
     </div>
