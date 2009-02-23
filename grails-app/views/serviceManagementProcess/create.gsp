@@ -18,11 +18,19 @@
             </div>
             </g:hasErrors>
             <g:form action="save" method="post" >
-
+                <g:hiddenField name="service.id" value="${serviceManagementProcess.service.id}"/>
                 <div class="dialog">
+
+                    <div class="view">
+                     <div class="header service">
+                         <g:render template="/service/service_header" model="[service:serviceManagementProcess.service,showicon:true]"/>
+                     </div>
+                     </div>
+                    
                     <div class="formtitle">
-                        Create Process
+                        New Process
                     </div>
+
                     <table>
                         <tbody>
                         
@@ -53,19 +61,6 @@
                                 </td>
                             </tr> 
 
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="service">Service:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:serviceManagementProcess,field:'service','errors')}">
-                                    <select name="service.id" id="service.id" >
-                                        <g:each in="${Service.list()}" var="service">
-                                            <option value="${service.id}" ${service.id==serviceManagementProcess?.service?.id?'selected="selected"':''}>${service?.name} [${service?.type?.name}]</option>
-                                        </g:each>
-                                    </select>
-                                </td>
-                            </tr>
-                            
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="automationLevel">Automation Level:</label>
@@ -122,7 +117,8 @@
                     </table>
                     <div class="buttons">
                         <span class="button"><input  type="submit" value="Create" /></span>
-                        <span class="button"><g:actionSubmit action="list" value="Cancel" /></span>
+                        <span class="button"><g:link action="show" controller="service"
+                                id="${serviceManagementProcess?.service?.id}">Cancel</g:link></span>
                     </div>
                 </div>
 

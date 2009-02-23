@@ -82,20 +82,29 @@
     <g:if test="${flash.message}">
         <div class="message">${flash.message}</div>
     </g:if>
-    <div class="buttons">
-        <g:form>
-            <input type="hidden" name="id" value="${serviceManagementProcess?.id}"/>
-            <span class="button"><g:actionSubmit class="edit" value="Edit"/></span>
-            <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete"/></span>
-            <span class="button"><g:actionSubmit class="list" value="List"/></span>
-
-        </g:form>
+    <div class="view">
+        <div class="header service">
+            <g:render template="/service/service_header" model="[service:serviceManagementProcess.service,showicon:true]"/>
+        </div>
     </div>
+    <div class="formtitle">
+        View Process
+    </div>
+
+
     <div class="view">
         <div class="header process">
             <span class="name"><g:link controller="serviceManagementProcess" action="show" id="${serviceManagementProcess?.id}">${serviceManagementProcess?.name}</g:link></span>
             <span class="desc">${serviceManagementProcess?.description}</span>
         </div>
+        <div class="buttons">
+               <g:form>
+                   <input type="hidden" name="id" value="${serviceManagementProcess?.id}"/>
+                   <span class="button"><g:actionSubmit class="edit" value="Edit"/></span>
+                   <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete"/></span>
+               </g:form>
+           </div>
+        
         <table>
             <tbody>
 

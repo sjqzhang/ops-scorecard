@@ -33,13 +33,14 @@ class ServiceManagementProcessController extends SecureController {
             it.delete()
         }
         if (serviceManagementProcess) {
+            def service = serviceManagementProcess.service
             serviceManagementProcess.delete()
-            flash.message = "Deleted: '${params.id}'"
-            redirect(action: list)
+            flash.message = "Deleted: '${serviceManagementProcess.category}' process"
+            redirect(controller:"service", action:"show", id:service.id)
         }
         else {
             flash.message = "ServiceManagementProcess not found with id ${params.id}"
-            redirect(action: list)
+            redirect(controller:"service", action: "list")
         }
     }
 
@@ -60,8 +61,8 @@ class ServiceManagementProcessController extends SecureController {
         if (serviceManagementProcess) {
             serviceManagementProcess.properties = params
             if (!serviceManagementProcess.hasErrors() && serviceManagementProcess.save()) {
-                flash.message = "Updated: ${params.name}"
-                redirect(action: list)
+                flash.message = "Updated: ${serviceManagementProcess.category} process"
+                redirect(controller:"service", action:"show", id:serviceManagementProcess.service.id)
             }
             else {
                 render(view: 'edit', model: [serviceManagementProcess: serviceManagementProcess])
@@ -84,7 +85,8 @@ class ServiceManagementProcessController extends SecureController {
         serviceManagementProcess.setCreateDate(new Date())
         if (!serviceManagementProcess.hasErrors() && serviceManagementProcess.save()) {
             flash.message = "Created: '${serviceManagementProcess.name}'"
-            redirect(action: list)
+            redirect(controller:"service", action:"show", id:serviceManagementProcess.service.id)
+
         }
         else {
             render(view: 'create', model: [serviceManagementProcess: serviceManagementProcess])

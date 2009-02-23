@@ -7,7 +7,7 @@ class Service extends Resource {
         goals(nullable:true)
     }
 	
-	Integer outageCost   // hourly
+	Integer outageCost = 0 // hourly
 	User customer
     URL serviceURL
     ServiceScorecardGoals goals
