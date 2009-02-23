@@ -16,16 +16,21 @@
             <g:renderErrors bean="${serviceManagementProcess}" as="list"/>
         </div>
     </g:hasErrors>
+    <div class="view">
+           <div class="header service">
+               <g:render template="/service/service_header" model="[service:serviceManagementProcess.service,showicon:true]"/>
+           </div>
+       </div>
+       <div class="formtitle">
+           Edit Process
+       </div>
+
     <g:form method="post">
-        <input type="hidden" name="id" value="${serviceManagementProcess?.id}"/>
-        <div class="buttons">
-            <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete"/></span>
-        </div>
+        <input type="hidden" name="id" value="${serviceManagementProcess?.id}"/>        
     </g:form>
     <g:form method="post">
         <input type="hidden" name="id" value="${serviceManagementProcess?.id}"/>
         <div class="dialog">
-            <div class="formtitle">Edit Process</div>
             <table>
                 <tbody>
 
@@ -55,18 +60,7 @@
                             <g:select id="category" name="category" from="${serviceManagementProcess.constraints.category.inList}" value="${serviceManagementProcess.category}"></g:select>
                         </td>
                     </tr>
-                    <tr class="prop">
-                        <td valign="top" class="name">
-                            <label for="service">Service:</label>
-                        </td>
-                        <td valign="top" class="value ${hasErrors(bean: serviceManagementProcess, field: 'service', 'errors')}">
-                            <select name="service.id" id="service.id">
-                                <g:each in="${Service.list()}" var="taretgetResource">
-                                    <option value="${taretgetResource.id}">${taretgetResource?.name} [${taretgetResource?.type?.name}]</option>
-                                </g:each>
-                            </select>
-                        </td>
-                    </tr>
+                   
                     <tr class="prop">
                         <td valign="top" class="name">
                             <label for="automationLevel">Automation Level:</label>
@@ -158,7 +152,7 @@
             </table>
             <div class="buttons">
                 <span class="button"><g:actionSubmit  value="Update"/></span>
-                <span class="button"><g:actionSubmit action="list" value="Cancel"/></span>
+                <span class="button"><g:link controller="service" action="show" id="${serviceManagementProcess.service.id}">Cancel</g:link></span>
             </div>
         </div>
 

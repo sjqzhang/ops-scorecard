@@ -12,7 +12,7 @@ class ServiceManagementProcess {
         artifactType(nullable: true)
         notificationRecipients(nullable: true)
         implementor(nullable: true)
-        service(nullable: true)
+        service(nullable: false)
         recipient(nullable: true)
         procedure(nullable: true)
         managers(nullable:true)
