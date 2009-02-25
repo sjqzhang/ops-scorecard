@@ -86,6 +86,125 @@ class ServiceScorecardServiceTests extends GroovyTestCase {
 
     }
 
+    void testGenerateScorecardsOverlapping(){
+        Calendar curcal = new GregorianCalendar(2008, 11, 31, 23, 23, 23)
+        def dates = serviceScorecardService.determinePreviousWeekForDatetime(curcal.getTimeInMillis())
+        Calendar cal2 = new GregorianCalendar()
+        cal2.setTimeInMillis(dates.start.getTime())
+        cal2.add(Calendar.DAY_OF_MONTH, 2)
+        def d1 = cal2.getTime()
+        cal2.add(Calendar.HOUR_OF_DAY, 24)
+        def d2 = cal2.getTime()
+    
+        //overlap times by 12 hours.
+        cal2.add(Calendar.HOUR_OF_DAY, -12)
+        def d3 = cal2.getTime()
+        cal2.add(Calendar.HOUR_OF_DAY, 36)
+        def d4 = cal2.getTime()
+
+        ServiceManagementProcess proc1 = new ServiceManagementProcess(
+                name: "test-build1",
+                description: "do test build",
+                service: testservice,
+                category: "build",
+                automationLevel: "semi",
+                syscontrol: "open-loop",
+                createDate: new Date(),
+        )
+        proc1.save()
+        ServiceManagementProcess proc2 = new ServiceManagementProcess(
+                name: "test-deploy1",
+                description: "do test deploy",
+                service: testservice,
+                category: "deployment",
+                automationLevel: "semi",
+                syscontrol: "open-loop",
+                createDate: new Date(),
+        )
+        proc2.save()
+
+
+        //create an audit
+        CapabilityAudit audit = new CapabilityAudit(service: testservice, title: 'test1', auditDate: d2, auditor: testuser)
+        assertTrue "couldn't save audit: ${audit}", audit.save() ? true : false
+        ServiceManagementProcessScorecard score1 = new ServiceManagementProcessScorecard(process: proc1)
+        score1.effectiveness = new ServiceManagementProcessScore(name: 'effectiveness', value: 'low', comment: '')
+        score1.reliability = new ServiceManagementProcessScore(name: 'reliability', value: 'low', comment: '')
+        score1.consistency = new ServiceManagementProcessScore(name: 'consistency', value: 'low', comment: '')
+        score1.safety = new ServiceManagementProcessScore(name: 'safety', value: 'low', comment: '')
+        score1.success = new ServiceManagementProcessScore(name: 'success', value: 'low', comment: '')
+        audit.addToScorecards(score1)
+        ServiceManagementProcessScorecard score2 = new ServiceManagementProcessScorecard(process: proc2)
+        score2.effectiveness = new ServiceManagementProcessScore(name: 'effectiveness', value: 'low', comment: '')
+        score2.reliability = new ServiceManagementProcessScore(name: 'reliability', value: 'low', comment: '')
+        score2.consistency = new ServiceManagementProcessScore(name: 'consistency', value: 'low', comment: '')
+        score2.safety = new ServiceManagementProcessScore(name: 'safety', value: 'low', comment: '')
+        score2.success = new ServiceManagementProcessScore(name: 'success', value: 'low', comment: '')
+        audit.addToScorecards(score2)
+
+        assertTrue "failed to save scorecard: ${audit}", audit.save() ? true : false
+
+
+        //create availability receipts
+        AvailabilityReceipt r1 = new AvailabilityReceipt(service: testservice, level: 25, reporter: testuser, startDate: d1, endDate: d2, comment: '')
+        if (!r1.save()) {
+            fail "couldn't save avail receipt: ${r1.errors.allErrors}"
+        }
+        
+        AvailabilityReceipt r2 = new AvailabilityReceipt(service: testservice, level: 75, reporter: testuser, startDate: d3, endDate: d4, comment: '', process: proc1)
+        if (!r2.save()) {
+            fail "couldn't save avail receipt: ${r2.errors.allErrors}"
+        }
+
+
+        //create process receipts
+        ProcessReceipt pr1 = new ProcessReceipt(title: 'test 1', date: d1, coordinator: testuser, process: proc1,
+                priority: 'low', status: 'planned', outcome: 'withdrawn', impactLevel: 'low', plannedStart: d1, plannedEnd: d2,
+                actualStart: d1, actualEnd: d2)
+        assertTrue "failed to save process receipt: ${pr1}", pr1.save() ? true : false
+
+        ProcessReceipt pr2 = new ProcessReceipt(title: 'test 2', date: d3, coordinator: testuser, process: proc1,
+                priority: 'low', status: 'unplanned', outcome: 'successful', impactLevel: 'high', plannedStart: d3, plannedEnd: d4,
+                actualStart: d3, actualEnd: d4)
+        assertTrue "failed to save process receipt: ${pr2}", pr2.save() ? true : false
+
+
+        //generate score
+
+        def Collection results = serviceScorecardService.generateScorecardsForDates(dates.start,dates.end)
+
+        assertNotNull results
+        assertEquals "wrong size",1,results.size()
+
+        ServiceScorecard score = results[0]
+        assertNull "should have null goals",  score.goals
+        assertEquals "wrong value", 0f, score.goalsMetPct
+        //check unimplimented calculations
+        assertEquals "wrong value", 0f, score.risk
+        assertEquals "wrong value", 0f, score.smControlsPct
+        assertEquals "wrong value", 0f, score.adHocActivityCount
+        assertEquals "wrong value", 0f, score.processDeviationsCount
+        assertEquals "wrong value", 0f, score.smActivitiesUnapprovedCount
+
+        //check expected values
+        assertEquals "wrong value", 20f, score.processCoveragePct
+        assertEquals "wrong value", 33f, score.processQualityPct
+        assertTrue "wrong value", score.auditsExist
+        //availability was 50% for 2/7 days, so total availability % is 6/7 days 
+        assertEquals "wrong value", 100f*(6f/7f), score.serviceAvailabilityPct,0.01f
+        assertEquals "wrong value", 2400f, score.estimatedOutageCost
+        assertEquals "wrong value", 24f, score.MTTRTime
+        assertEquals "wrong value", 0f, score.MTBFTime
+        assertEquals "wrong value", 2f, score.serviceFailuresCount
+        assertEquals "wrong value", 2f, score.smActivitiesCount
+        assertEquals "wrong value", 50f, score.highImpactActivityPct
+        assertEquals "wrong value", 50f, score.smSuccessPct
+        assertEquals "wrong value", 1f, score.smActivitiesImpactedAvailabilityCount
+        assertEquals "wrong value", 1f, score.smActivitiesUnplannedCount
+
+
+    }
+
     void testGenerateScorecardsForDates(){
         Calendar curcal = new GregorianCalendar(2008, 11, 31, 23, 23, 23)
         def dates = serviceScorecardService.determinePreviousWeekForDatetime(curcal.getTimeInMillis())

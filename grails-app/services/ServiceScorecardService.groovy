@@ -168,10 +168,43 @@ class ServiceScorecardService {
         def int serviceFailuresCount = 0
         def int smActivitiesImpactedAvailabilityCount = 0
 
-        availreceipts.each {AvailabilityReceipt receipt ->
+        //check for overlapping availability receipts
+        //mark off each start & end time, and put them in order.
+        def Set edgeTimes = new java.util.TreeSet()
+        availreceipts.each{ receipt ->
+            edgeTimes.add(receipt.startDate)
+            edgeTimes.add(receipt.endDate)
+            println "add dates: ${receipt.startDate}, ${receipt.endDate}"
+        }
+        def timeset = []
+        def edgeArr = new ArrayList(edgeTimes)
+        println "times: "+edgeArr.collect{ it-> ""+it.getTime() }
+        //go through the each area of time (start,end) . every receipt start/end marks a boundary
+        for(def i =0;i<edgeArr.size()-1;i++){
+            def Date estart= edgeArr[i]
+            def Date eend= edgeArr[i+1]
+            def lowlevel=100
+            //check each receipt.  if it falls on the start or end, or it encloses completely this timeperiod
+            //then that receipt covers this region of time.
+            //find the lowest availability level of all receipts that cover this region of time.
+            availreceipts.each{AvailabilityReceipt receipt ->
+                if(receipt.startDate==estart || receipt.endDate==eend || receipt.startDate < estart && receipt.endDate > eend){
+                    if(receipt.level < lowlevel){
+                        lowlevel=receipt.level
+                    }
+                }
+            }
+            if(lowlevel<100){
+                //if any receipt was found < 100 availability, then add it as a time period of low availability.
+                timeset.add([level:lowlevel,startDate:estart,endDate:eend])
+            }
+        }
+
+        //now we have a set of data marking each region of time covered by a receipt with the lowest availability
+        //level for any receipt over that region of time.
+        timeset.each { Map receipt ->
             Date start = receipt.startDate
             Date end = receipt.endDate
-
             if (receipt.startDate < startdate) {
                 //availability report started before our timeperiod did.  Calculate actual time that was
                 //within our timeperiod
@@ -188,14 +221,35 @@ class ServiceScorecardService {
             totalavailtime -= (duration - availtime)
             println("duration - availtime = ${duration} - ${availtime}, totalavailtime is now ${totalavailtime}")
 
+            totalAvailDuration += duration
+            
+        }
+
+
+        //finally, check the receipts as distinct units for numeric statistics
+        availreceipts.each {AvailabilityReceipt receipt ->
+            Date start = receipt.startDate
+            Date end = receipt.endDate
+
+            if (receipt.startDate < startdate) {
+                //availability report started before our timeperiod did.  Calculate actual time that was
+                //within our timeperiod
+                start = startdate
+            }
+            if (receipt.endDate > enddate) {
+                //availability report started before our timeperiod did.  Calculate actual time that was
+                //within our timeperiod
+                end = enddate
+            }
+
             if (receipt.level < 100) {
                 serviceFailuresCount++
                 if (null != receipt.process) {
                     smActivitiesImpactedAvailabilityCount++
                 }
-                totalAvailDuration += duration
+                
                 totalAvailReceiptCount++
-                if (prevFailureStart > 0) {
+                if (prevFailureStart > 0 && prevFailureStart > end.getTime()) {
                     totalAvailBFDuration += (prevFailureStart - end.getTime())
                     totalAvailBFCount++
                 }
