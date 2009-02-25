@@ -50,7 +50,6 @@ class ActivityController extends SecureController {
             startCal.add(Calendar.WEEK_OF_YEAR, 1)
         }
 
-        System.err.println "time range: ${startCal.getTime()} - ${nowDate}"
 
         def services = Service.listOrderByName()
 
@@ -68,7 +67,6 @@ class ActivityController extends SecureController {
                     }
                 }
             }
-            System.err.println "found receits: ${receipts.size()}"
             summaryMap[svc.id]=[:]
             summaryMap[svc.id]['smActivities']=receipts.size()
             summaryMap[svc.id]['highImpact']=receipts.findAll {ProcessReceipt rec -> rec.impactLevel=='high'}.size()
@@ -76,7 +74,6 @@ class ActivityController extends SecureController {
             summaryMap[svc.id]['smSuccessRate']=summaryMap[svc.id]['smActivities']? summaryMap[svc.id]['smSuccess']/summaryMap[svc.id]['smActivities'] : 0 
 
         }
-        System.err.println "summaryMap: ${summaryMap}"
         [services:services,summaryMap:summaryMap, startDate:startCal.getTime()]
     }
 
@@ -119,6 +116,7 @@ class ActivityController extends SecureController {
                     }
                 }
             }
+            maxResults(5)
             order('actualStart', 'desc')
         }
         def availabilityReceiptList = AvailabilityReceipt.withCriteria{
@@ -128,6 +126,7 @@ class ActivityController extends SecureController {
                     eq('id',svc.id)
                 }
             }
+            maxResults(5)
             order('startDate', 'desc')
         }
 
