@@ -5,6 +5,9 @@
     <g:elseif test="${type=='%'}">
         <g:formatNumber number="${new Float(value)}" formatName="###.#"/>${type}
     </g:elseif>
+    <g:elseif test="${type=='/%'}">
+        <g:formatNumber number="${new Float(value * 100)}" formatName="###.#"/>%
+    </g:elseif>
     <g:elseif test="${type=='h'}">
         <g:formatNumber number="${new Float(value)}" formatName="###.#"/>${type}
     </g:elseif>

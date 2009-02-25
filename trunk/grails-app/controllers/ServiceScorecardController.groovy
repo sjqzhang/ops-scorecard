@@ -29,7 +29,9 @@ class ServiceScorecardController extends SecureController{
         //get view options and service selections
         if(params['customView']){
             options=params['show']
-            session.sscorecard_options=options
+            if(null!=options){
+                session.sscorecard_options=options
+            }
             params['service'].keySet().each{
                 if(params['service'][it] && it.isNumber()){
                     println("saw it: ${it}")
@@ -119,7 +121,7 @@ class ServiceScorecardController extends SecureController{
     }
 
     def show = {
-        def serviceScorecardInstance = ServiceScorecard.get( params.id )
+        def serviceScorecardInstance = ServiceScorecard.get( params.id.toLong() )
 
         if(!serviceScorecardInstance) {
             flash.message = "ServiceScorecard not found with id ${params.id}"

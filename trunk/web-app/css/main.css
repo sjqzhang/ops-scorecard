@@ -53,6 +53,12 @@ a.action, span.link.action{
 a.action:hover, span.link.action:hover{
     background-color:#ddf;
 }
+a.action.selected, span.link.action.selected{
+    background-color:#eee;
+    border: 1px solid #ddd;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
 
 span.link.create,a.link.create{
     background-image: url(../images/skin/add.png) ;
@@ -527,6 +533,10 @@ div.view div.header.audit{
 }
 div.view div.header.service{
     background: #eef;
+    padding:0;
+}
+div.view div.header.service div.content{
+    padding:10px;
 }
 div.view div.header.availabilityReceipt{
     background: #ffd;
@@ -592,7 +602,30 @@ div.view div.header + h3{
 }
 div.view h3 + h3{
     border-top: 0;
+}
+div.view div.header.service div.content div.detail{
+    float:left;
+    margin-right:100px;
+}
+div.view div.header.service div.context-links{
+    float:right;
     
+    text-align:right;
+}
+div.view div.header.service:hover  div.context-links{
+}
+div.view div.header.service div.context-links a{
+    font-size: 90%;
+    
+    display:block;
+    border:1px solid #ddd;
+    padding:3px;
+    background: #eee url(../images/bggrad1.png) top left repeat-x;
+}
+div.view div.header.service div.context-links a:hover{
+    background: #eee url(../images/bggrad1.png) -10px left repeat-x;
+}
+div.view div.header.service a.activity{
 }
 /* ACTION BUTTONS */
 
@@ -944,4 +977,16 @@ div.timeplot-legend li{
     display:inline;
     padding:2px;
     margin:3px;
+}
+
+/** activity summary **/
+div.view.activitysummary td.summaryprimary{
+    padding:0;
+}
+div.view.activitysummary td.summaryprimary a{
+    display: block;
+    padding:5px;
+}
+div.view.activitysummary td.summaryprimary a:hover{
+    background: #ffa;
 }

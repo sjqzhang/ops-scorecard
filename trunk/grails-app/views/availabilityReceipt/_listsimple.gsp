@@ -19,7 +19,7 @@
             <table>
                 <tbody>
                     <tr>
-                        <th colspan="2">Most Recent</th>
+                        <th colspan="2">${title?title:'Most Recent'}</th>
                     </tr>
                     <g:each in="${availabilityReceiptList}" status="i" var="availabilityReceipt">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'} ${selected&& selected==availabilityReceipt.id?'hilite':''}">

@@ -39,7 +39,43 @@ class AvailabilityReceiptController extends SecureController {
         println("DEBUG: params: ${params.subMap(['sort','max','order','offset'])}")
        [availabilityReceiptList: AvailabilityReceipt.list(params)]
     }
-    
+
+    /**
+     * action forService displays the list of avail. receipts for a particular service by id
+     */
+    def forService = {
+        def service = Service.get(params.id.toLong())
+        if (!service) {
+            flash.message = "Service not found with id ${params.id}"
+            redirect(action: list)
+            return
+        }
+
+        if (!params.max)
+            params.max = 10
+        if (!params.order)
+            params.order = 'desc'
+        if (!params.sort)
+            params.sort = 'dateCreated'
+        println("DEBUG: params: ${params.subMap(['sort', 'max', 'order', 'offset'])}")
+        def max = params.max.toInteger()
+        def sortBy = params.sort
+        def orderDir = params.order
+        def offsetVal = params.offset ? params.offset.toInteger() : 0
+
+        def availabilityReceiptList = AvailabilityReceipt.withCriteria {
+
+            delegate.'service' {
+                eq('id', service.id)
+            }
+            maxResults(max)
+            order(sortBy, orderDir)
+            firstResult(offsetVal)
+        }
+
+        render(view: 'list', model: [availabilityReceiptList: availabilityReceiptList, service: service])
+    }
+
 
     def show = {
         def availabilityReceipt = AvailabilityReceipt.get(params.id)
