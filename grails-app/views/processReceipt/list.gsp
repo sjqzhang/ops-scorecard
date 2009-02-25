@@ -7,7 +7,7 @@
 </head>
 <body>
 <g:if test="${processReceiptList}">
-    <div class="body">
+    <div class="view body">
         <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
         </g:if>
@@ -16,6 +16,17 @@
             <span class="button"><g:actionSubmit class="create" value="Create"/></span>
         </g:form>
         </div>
+        <g:if test="${service}">
+                <h3>
+                    Activities for Service
+                </h3>
+            <div class="view service">
+                <div class="header service">
+
+                    <g:render template="/service/service_header" model="[service:service]"/>
+                </div>
+            </div>
+        </g:if>
         <div class="dialog">
             <table>
                 <thead>
@@ -98,7 +109,7 @@
             </table>
         </div>
         <div class="paginateButtons">
-            <g:paginate total="${ProcessReceipt.count()}"/>
+            <g:paginate total="${ProcessReceipt.count()}" params="${params.id?[id:params.id]:[:]}"/>
         </div>
 
     </div>

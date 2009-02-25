@@ -13,6 +13,32 @@ class ProcessReceiptController extends SecureController {
         if(!params.max) params.max = 10
         [ processReceiptList: ProcessReceipt.list( params ) ]
     }
+    /**
+     * action forService displays the list of proc. receipts for a particular service, by id
+     */
+    def forService = {
+        def service = Service.get(params.id.toLong())
+        if(!service){
+            flash.message="Service not found with id ${params.id}"
+            redirect(action:list)
+            return
+        }
+        if(!params.max) params.max = 10
+        def max = params.max.toInteger()
+
+        def processReceiptList = ProcessReceipt.withCriteria{
+
+            process{
+                delegate.'service'{
+                    eq('id',service.id)
+                }
+            }
+            maxResults(max)
+            order('actualStart','desc')
+        }
+
+        render(view:'list',model:[ processReceiptList: processReceiptList ,service:service])
+    }
 
     def show = {
         def processReceipt = ProcessReceipt.get( params.id )

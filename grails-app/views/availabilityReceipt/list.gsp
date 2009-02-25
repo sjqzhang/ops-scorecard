@@ -55,6 +55,18 @@
         <div class="section" style="padding:5px;display:none;" id="closelink" >
             <span class="action link close" onclick="$('formbody').hide()">Close</span>
         </div>
+
+        <g:if test="${service}">
+                <h3>
+                    Outages for Service
+                </h3>
+            <div class="view service">
+                <div class="header service">
+
+                    <g:render template="/service/service_header" model="[service:service]"/>
+                </div>
+            </div>
+        </g:if>
         <div class="dialog" id="formbody" ${!params.createshow?'style="display:none;"':''}>
             <g:render template="form" model="${model}"/>
             <g:if test="${params.createshow&&params?.service?.id}">
@@ -68,7 +80,7 @@
                <g:render template="list" model="${model}"/>
         </div>
         <div class="paginateButtons">
-            <g:paginate total="${AvailabilityReceipt.count()}"/>
+            <g:paginate total="${AvailabilityReceipt.count()}" params="${params.id?[id:params.id]:[:]}"/>
         </div>
         </div>
 
