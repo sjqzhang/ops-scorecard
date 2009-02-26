@@ -19,7 +19,7 @@
             <table>
                 <tbody>
                     <tr>
-                        <th colspan="2">${title?title:'Most Recent'}</th>
+                        <th ${!hide_service_info? 'colspan="2"':''}>${title?title:'Most Recent'}</th>
                     </tr>
                     <g:each in="${availabilityReceiptList}" status="i" var="availabilityReceipt">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'} ${selected&& selected==availabilityReceipt.id?'hilite':''}">
@@ -27,6 +27,14 @@
                                 <g:link action="show" controller="availabilityReceipt" id="${fieldValue(bean:availabilityReceipt, field:'id')}"  title="View Receipt" >
                                     ${fieldValue(bean: availabilityReceipt, field: 'level')}%
                                         for <g:relativeDate start="${availabilityReceipt.startDate}" end="${availabilityReceipt.endDate}" duration="true"/>
+
+
+                                    <g:if test="${hide_service_info && availabilityReceipt.process?.name}">
+                                        &rarr;
+                                        cause:
+                                        ${availabilityReceipt.process.category}
+
+                                    </g:if>
 
                                     <div class="subtitle ">
                                         <span class="ago ended">
@@ -45,6 +53,7 @@
                                 </g:link>
                             </td>
 
+                            <g:if test="${!hide_service_info}">
 
                             <td>
                                 <div>
@@ -62,7 +71,7 @@
                                 </g:if>
                                 </div>
                             </td>
-
+                            </g:if>
                         </tr>
                     </g:each>
                 </tbody>

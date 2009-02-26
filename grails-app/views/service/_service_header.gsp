@@ -5,6 +5,7 @@
     <img src="${createLinkTo(dir:'images',file:'skin/package.png')}" width="16px" height="16px"/>
     ${service}
 </g:link>
+    - ${service.status}
 </span>
 <span class="desc">${service?.description}</span>
 </div>

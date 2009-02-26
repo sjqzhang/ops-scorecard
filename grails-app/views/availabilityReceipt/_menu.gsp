@@ -1,3 +1,3 @@
 <div  class="menuBar">
-<g:render template="/common/menulinks" model="[selected:'receipts',subselected:'availability']"/>
+<g:render template="/common/menulinks" model="[selected:'activity',subselected:'availability']"/>
 </div>
