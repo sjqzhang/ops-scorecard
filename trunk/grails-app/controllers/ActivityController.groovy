@@ -116,7 +116,6 @@ class ActivityController extends SecureController {
                     }
                 }
             }
-            maxResults(5)
             order('actualStart', 'desc')
         }
         def availabilityReceiptList = AvailabilityReceipt.withCriteria{
@@ -126,7 +125,6 @@ class ActivityController extends SecureController {
                     eq('id',svc.id)
                 }
             }
-            maxResults(5)
             order('startDate', 'desc')
         }
 

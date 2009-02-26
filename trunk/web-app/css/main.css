@@ -480,6 +480,7 @@ div.body.scoretable th{
 }
 td.cardlink{
     padding:0;
+    border-bottom:1px solid #ddd;
 }
 td.cardlink a{
     padding:5px 5px 5px 5;
@@ -504,19 +505,43 @@ td.cardlink.processreceipt.successful a:hover{
 }
 td.cardlink.processreceipt.aborted a{
     padding:5px 5px 5px 26px;
-    background: #fff url(../images/skin/error.png) 5px 5px no-repeat;
+    background: #fff url(../images/skin/exclamation.png) 5px 5px no-repeat;
 }
 td.cardlink.processreceipt.aborted a:hover{
     text-decoration:none;
-    background: #ddf url(../images/skin/error.png) 5px 5px no-repeat;
+    background: #ddf url(../images/skin/exclamation.png) 5px 5px no-repeat;
 }
 td.cardlink.processreceipt.withdrawn a{
     padding:5px 5px 5px 26px;
-    background: #fff url(../images/skin/cancel.png) 5px 5px no-repeat;
+    background: #fff url(../images/skin/error.png) 5px 5px no-repeat;
 }
 td.cardlink.processreceipt.withdrawn a:hover{
     text-decoration:none;
-    background: #ddf url(../images/skin/cancel.png) 5px 5px no-repeat;
+    background: #ddf url(../images/skin/error.png) 5px 5px no-repeat;
+}
+td.cardlink.processreceipt span.impactLevel.high{
+    font-weight:bold;
+}
+td.cardlink.processreceipt span.impactLevel.moderate{
+    font-weight:normal;
+}
+td.cardlink.processreceipt span.impactLevel.low{
+    color:#888;
+}
+td.cardlink.processreceipt span.priority{
+    font-style:italic;
+}
+td.cardlink.processreceipt span.priority.urgent{
+    color:red;
+}
+td.cardlink.processreceipt span.priority.high{
+    color:orange;
+}
+td.cardlink.processreceipt span.priority.medium{
+    color:black;
+}
+td.cardlink.processreceipt span.priority.low{
+    color:#888;
 }
 
 /* VIEW */
