@@ -11,6 +11,9 @@
     <g:javascript src="ajax/api-2.0/simile-ajax-api.js"/>
     <g:javascript src="timeline/api-2.0/timeline-api.js"/>
     <g:javascript src="timeplot/api/1.0/timeplot-api.js"/>
+    <script type="text/javascript">
+        SimileAjax.History.enabled = false;
+    </script>
 </head>
 <body>
 <g:set var="services" value="${Service.list()}"/>

@@ -12,6 +12,7 @@
             <g:javascript src="timeline/api-2.0/timeline-api.js"/>
             <g:javascript src="timeplot/api/1.0/timeplot-api.js"/>
         <script type="text/javascript">
+        SimileAjax.History.enabled = false;
         var alltimeplots=new Hash();
         var allgraphs =new Hash();
         var alldata =new Hash();
